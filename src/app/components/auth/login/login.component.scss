@@ -1,0 +1,51 @@
+.auth-form {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 600px;
+    gap: 20px;
+  }
+
+  &__header {
+    margin-bottom: 100px;
+    font-size: 55px;
+    color: #b725ec;
+  }
+
+  &__input {
+    width: 100%;
+  }
+
+  &__link {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+
+    a {
+      text-decoration: none;
+      color: blue;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  &__register {
+    span {
+      color: blue;
+      cursor: pointer;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}

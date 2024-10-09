@@ -1,0 +1,34 @@
+<section class="auth-form">
+  <div class="auth-form__container">
+    <p class="auth-form__header">{{ "login.title" | translate }}</p>
+
+    <mat-form-field appearance="outline" class="auth-form__input">
+      <mat-label>{{ "login.email" | translate }}</mat-label>
+      <input matInput placeholder="{{ 'login.email' | translate }}" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="auth-form__input">
+      <mat-label>{{ "login.password" | translate }}</mat-label>
+      <input
+        matInput
+        type="password"
+        placeholder="{{ 'login.password' | translate }}"
+      />
+    </mat-form-field>
+
+    <div class="auth-form__link">
+      <a href="#">{{ "login.lb_forgot_passwd" | translate }}</a>
+    </div>
+
+    <button mat-raised-button color="primary">
+      {{ "login.btn_login" | translate }}
+    </button>
+
+    <p class="auth-form__register">
+      {{ "login.lb_no_account" | translate }}
+      <span [routerLink]="['/auth/register']">{{
+        "login.link_register" | translate
+      }}</span>
+    </p>
+  </div>
+</section>
