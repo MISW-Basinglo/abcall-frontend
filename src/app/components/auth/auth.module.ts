@@ -4,10 +4,8 @@ import { CommonModule } from '@angular/common';
 import { AuthRoutingModule } from './auth-routing.module';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import { MatInputModule} from '@angular/material/input';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatButtonModule } from '@angular/material/button';
 import { TranslateModule } from '@ngx-translate/core';
+import { SharedModule } from 'src/app/utils/shared.module';
 
 
 @NgModule({
@@ -18,9 +16,7 @@ import { TranslateModule } from '@ngx-translate/core';
   imports: [
     CommonModule,
     AuthRoutingModule,
-    MatInputModule,
-    MatFormFieldModule,
-    MatButtonModule,
+    SharedModule,
     TranslateModule
   ]
 })
