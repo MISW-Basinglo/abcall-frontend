@@ -1,0 +1,100 @@
+<mat-drawer-container class="example-container">
+  <mat-drawer
+    mode="side"
+    [opened]="isMenuOpened"
+    class="custom-navigation-rail"
+  >
+    <div class="custom-nav-header">
+      <button mat-icon-button (click)="toggleMenu()">
+        <mat-icon>{{
+          isMenuOpened ? "chevron_left" : "chevron_right"
+        }}</mat-icon>
+      </button>
+    </div>
+    <mat-nav-list>
+      <mat-list-item
+        class="custom-nav-item"
+        [ngClass]="{ active: selectedTab === 'files' }"
+        (click)="selectTab('files')"
+      >
+        <div
+          style="
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            flex-wrap: nowrap;
+          "
+        >
+          <mat-icon class="nav-icon">folder</mat-icon>
+          <span class="nav-label">Reports</span>
+        </div>
+      </mat-list-item>
+
+      <mat-list-item
+        class="custom-nav-item"
+        [ngClass]="{ active: selectedTab === 'recent' }"
+        (click)="selectTab('recent')"
+      >
+        <div
+          style="
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            flex-wrap: nowrap;
+          "
+        >
+          <mat-icon class="nav-icon">access_time</mat-icon>
+          <span class="nav-label">Recent</span>
+        </div>
+      </mat-list-item>
+
+      <mat-list-item
+        class="custom-nav-item"
+        [ngClass]="{ active: selectedTab === 'photos' }"
+        (click)="selectTab('photos')"
+      >
+        <div
+          style="
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            flex-wrap: nowrap;
+          "
+        >
+          <mat-icon class="nav-icon">photo</mat-icon>
+          <span class="nav-label">Photos</span>
+        </div>
+      </mat-list-item>
+
+      <mat-list-item
+        class="custom-nav-item"
+        [ngClass]="{ active: selectedTab === 'library' }"
+        (click)="selectTab('library')"
+      >
+        <div
+          style="
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            flex-wrap: nowrap;
+          "
+        >
+          <mat-icon class="nav-icon">library_books</mat-icon>
+          <span class="nav-label">Library</span>
+        </div>
+      </mat-list-item>
+    </mat-nav-list>
+  </mat-drawer>
+
+  <mat-drawer-content>
+    <button
+      *ngIf="!isMenuOpened"
+      mat-icon-button
+      (click)="toggleMenu()"
+      class="menu-toggle-button"
+    >
+      <mat-icon>menu</mat-icon>
+    </button>
+    <router-outlet></router-outlet>
+  </mat-drawer-content>
+</mat-drawer-container>
