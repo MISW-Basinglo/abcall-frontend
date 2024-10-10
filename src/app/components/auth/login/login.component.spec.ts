@@ -1,21 +1,23 @@
 import { TestBed } from '@angular/core/testing';
-import { AppComponent } from './app.component';
+import { LoginComponent } from './login.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient } from '@angular/common/http';
-import { RouterTestingModule } from '@angular/router/testing';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
 
-describe('AppComponent', () => {
+describe('LoginComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
         HttpClientTestingModule,
-        RouterTestingModule,
+        MatFormFieldModule,
+        MatInputModule,
         TranslateModule.forRoot({
           loader: {
             provide: TranslateLoader,
@@ -24,13 +26,13 @@ describe('AppComponent', () => {
           },
         }),
       ],
-      declarations: [AppComponent],
+      declarations: [LoginComponent],
     }).compileComponents();
   });
 
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
+  it('should create the login component', () => {
+    const fixture = TestBed.createComponent(LoginComponent);
+    const component = fixture.componentInstance;
+    expect(component).toBeTruthy();
   });
 });

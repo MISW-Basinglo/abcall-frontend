@@ -1,0 +1,11 @@
+{
+  "login": {
+    "title": "ABCALL",
+    "email": "Correo",
+    "password": "Contraseña",
+    "btn_login": "Ingresar",
+    "lb_forgot_passwd": "¿Olvidó su contraseña?",
+    "lb_no_account": "¿No tienes una cuenta?",
+    "link_register": "Registrate"
+  }
+}
