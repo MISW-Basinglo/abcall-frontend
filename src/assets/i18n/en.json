@@ -16,5 +16,22 @@
     "profileLabel": "Profile",
     "knowledgeBdLabel": "DB",
     "clientsManageLabel": "Clients"
+  },
+
+  "clients": {
+    "list": {
+      "btnNew": "New",
+      "clientIdLabel": "Client ID",
+      "registerDateLabel": "Register date",
+      "servicesLabel": "Services",
+      "companyLabel": "Company",
+      "stateLabel": "State",
+      "closeBtnInput": "Close",
+      "clientIdGrid": "ID",
+      "registerDateGrid": "Date",
+      "servicesGrid": "Services",
+      "companyGrid": "Company",
+      "stateGrid": "State"
+    }
   }
 }

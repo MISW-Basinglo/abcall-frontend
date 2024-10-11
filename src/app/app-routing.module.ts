@@ -32,6 +32,13 @@ const routes: Routes = [
       ),
   },
   {
+    path: 'clients',
+    loadChildren: () =>
+      import('./components/clients/clients.module').then(
+        (m) => m.ClientsModule
+      ),
+  },
+  {
     path: 'dashboard',
     loadChildren: () =>
       import('./components/dashboard/dashboard.module').then(

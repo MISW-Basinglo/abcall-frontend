@@ -1,13 +1,22 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
 })
-export class DashboardComponent {
-  constructor(private router: Router) {}
+export class DashboardComponent implements OnInit {
+  constructor(private router: Router, private route: ActivatedRoute) {}
+
+  ngOnInit() {
+    this.route.url.subscribe(() => {
+      const currentRoute = this.router.url.split('/').pop();
+      if (currentRoute) {
+        this.selectedTab = currentRoute;
+      }
+    });
+  }
 
   selectedTab: string = 'incidents';
   isMenuOpened: boolean = true;
