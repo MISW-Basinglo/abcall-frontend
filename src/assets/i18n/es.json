@@ -7,5 +7,14 @@
     "lb_forgot_passwd": "¿Olvidó su contraseña?",
     "lb_no_account": "¿No tienes una cuenta?",
     "link_register": "Registrate"
+  },
+
+  "menu": {
+    "incidentsManageLabel": "Incidentes",
+    "usersLabel": "Usuarios",
+    "reportsLabel": "Reportes",
+    "profileLabel": "Perfil",
+    "knowledgeBdLabel": "BD",
+    "clientsManageLabel": "Clientes"
   }
 }
