@@ -25,6 +25,13 @@ const routes: Routes = [
       ),
   },
   {
+    path: 'bd_knowledge',
+    loadChildren: () =>
+      import('./components/bd-knowledge/bd-knowledge.module').then(
+        (m) => m.BdKnowledgeModule
+      ),
+  },
+  {
     path: 'dashboard',
     loadChildren: () =>
       import('./components/dashboard/dashboard.module').then(

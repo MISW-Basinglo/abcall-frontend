@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -6,19 +7,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent {
+  constructor(private router: Router) {}
 
-  // Test Navigation:
-  navigationItems = [
-    { label: 'Home', icon: 'home', route: '/home' },
-    { label: 'Dashboard', icon: 'dashboard', route: '/dashboard' },
-    { label: 'Settings', icon: 'settings', route: '/settings' },
-  ];
-
-  selectedTab: string = 'files';
+  selectedTab: string = 'incidents';
   isMenuOpened: boolean = true;
 
   selectTab(tab: string) {
     this.selectedTab = tab;
+    this.router.navigate([`/dashboard/${tab}`]);
   }
 
   toggleMenu() {

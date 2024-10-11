@@ -29,10 +29,18 @@
   height: 190px;
 }
 
+.custom-nav-item-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+
 .nav-icon {
   font-size: 24px;
   background-color: transparent;
-  border-radius: 30px / 40px;
+  border-radius: 30px / 30px;
   display: block;
   margin-bottom: 2px;
   padding: 5px 15px;
