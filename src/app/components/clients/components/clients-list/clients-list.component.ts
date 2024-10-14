@@ -2,52 +2,10 @@ import { Component, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-
-export interface ClienteData {
-  id: string;
-  fecha: string;
-  servicios: string;
-  empresa: string;
-  estado: string;
-}
-
-const ELEMENT_DATA: ClienteData[] = [
-  {
-    id: '00000',
-    fecha: '03/09/2022',
-    servicios: 'Lorem ipsum dolor sit amet...',
-    empresa: 'Lorem ipsum dolor sit amet...',
-    estado: 'Activo',
-  },
-  {
-    id: '00001',
-    fecha: '03/09/2022',
-    servicios: 'Lorem ipsum dolor sit amet...',
-    empresa: 'Lorem ipsum dolor sit amet...',
-    estado: 'Inactivo',
-  },
-  {
-    id: '00002',
-    fecha: '03/09/2022',
-    servicios: 'Lorem ipsum dolor sit amet...',
-    empresa: 'Lorem ipsum dolor sit amet...',
-    estado: 'Activo',
-  },
-  {
-    id: '00003',
-    fecha: '03/09/2022',
-    servicios: 'Lorem ipsum dolor sit amet...',
-    empresa: 'Lorem ipsum dolor sit amet...',
-    estado: 'Inactivo',
-  },
-  {
-    id: '00004',
-    fecha: '03/09/2022',
-    servicios: 'Lorem ipsum dolor sit amet...',
-    empresa: 'Lorem ipsum dolor sit amet...',
-    estado: 'Activo',
-  },
-];
+import { ClientsService } from '../../service/clients.service';
+import { IClientData } from 'src/app/models/client.interface';
+import { MatDialog } from '@angular/material/dialog';
+import { ClientsFormComponent } from '../clients-form/clients-form.component';
 
 @Component({
   selector: 'app-clients-list',
@@ -56,52 +14,68 @@ const ELEMENT_DATA: ClienteData[] = [
 })
 export class ClientsListComponent {
   displayedColumns: string[] = [
-    'id',
+    'clientId',
     'fecha',
     'servicios',
     'empresa',
     'estado',
     'detalle',
   ];
-  dataSource = new MatTableDataSource<ClienteData>(ELEMENT_DATA);
-  totalLength = ELEMENT_DATA.length;
+
+  dataSource = new MatTableDataSource<IClientData>([]);
+  totalLength = 0;
+
+  filterValues: any = {
+    clientId: '',
+    fecha: '',
+    servicios: '',
+    empresa: '',
+    estado: '',
+  };
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
+  constructor(
+    private clientService: ClientsService,
+    private dialog: MatDialog
+  ) {}
+
+  openFormDialog() {
+    const dialogRef = this.dialog.open(ClientsFormComponent, {
+      width: '400px',
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+
   ngOnInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+    this.getClientsList();
+    this.dataSource.filterPredicate = this.createFilter();
   }
 
-  /**
-   * Filtering methodos
-   */
-  clearDate() {
-    /**
-     * TODO
-     */
+  getClientsList() {
+    this.clientService.getClients().subscribe({
+      next: (clients) => {
+        this.dataSource.data = clients;
+        this.totalLength = clients.length;
+        this.dataSource.paginator = this.paginator;
+
+        if (this.dataSource.paginator) {
+          this.dataSource.paginator.pageSize = 30;
+        }
+
+        this.dataSource.sort = this.sort;
+      },
+      error: (err) => {
+        console.error('Error al obtener los clientes', err);
+      },
+    });
   }
 
-  clearService() {
-    /**
-     * TODO
-     */
-  }
-
-  clearCompany() {
-    /**
-     * TODO
-     */
-  }
-
-  clearStatus() {
-    /**
-     * TODO
-     */
-  }
-
-  applyFilter(event: Event | string) {
+  applyFilter(event: Event | string, field: string) {
     let filterValue = '';
 
     if (typeof event === 'string') {
@@ -110,7 +84,38 @@ export class ClientsListComponent {
       filterValue = (event.target as HTMLInputElement).value;
     }
 
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+    this.filterValues[field] = filterValue.trim().toLowerCase();
+    this.dataSource.filter = JSON.stringify(this.filterValues);
+  }
+
+  createFilter(): (data: IClientData, filter: string) => boolean {
+    return (data: IClientData, filter: string): boolean => {
+      const searchTerms = JSON.parse(filter);
+
+      return (
+        data.clientId.toLowerCase().includes(searchTerms.clientId) &&
+        data.fecha.toLowerCase().includes(searchTerms.fecha) &&
+        data.servicios.toLowerCase().includes(searchTerms.servicios) &&
+        data.empresa.toLowerCase().includes(searchTerms.empresa) &&
+        data.estado.toLowerCase().includes(searchTerms.estado)
+      );
+    };
+  }
+
+  clearDate() {
+    this.applyFilter('', 'fecha');
+  }
+
+  clearService() {
+    this.applyFilter('', 'servicios');
+  }
+
+  clearCompany() {
+    this.applyFilter('', 'empresa');
+  }
+
+  clearStatus() {
+    this.applyFilter('', 'estado');
   }
 
   getStatusClass(status: string) {

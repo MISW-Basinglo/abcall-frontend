@@ -1,0 +1,27 @@
+.form-client-container {
+  margin: 25px;
+
+  h2 {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.form-content {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+
+  mat-form-field {
+    width: 80%;
+  }
+}
+
+.client-btn-content {
+  display: flex;
+  align-items: flex-end;
+  justify-content: end;
+  margin-right: 28px;
+}
