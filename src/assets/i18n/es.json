@@ -8,7 +8,6 @@
     "lb_no_account": "¿No tienes una cuenta?",
     "link_register": "Registrate"
   },
-
   "menu": {
     "incidentsManageLabel": "Incidentes",
     "usersLabel": "Usuarios",
@@ -17,7 +16,6 @@
     "knowledgeBdLabel": "BD",
     "clientsManageLabel": "Clientes"
   },
-
   "clients": {
     "list": {
       "btnNew": "Nuevo",
@@ -26,12 +24,28 @@
       "servicesLabel": "Servicios",
       "companyLabel": "Empresa",
       "stateLabel": "Estado",
-      "closeBtnInput": "Close",
+      "closeBtnInput": "Cerrar",
       "clientIdGrid": "ID",
       "registerDateGrid": "Fecha",
       "servicesGrid": "Servicios",
       "companyGrid": "Empresa",
       "stateGrid": "Estado"
+    },
+    "form": {
+      "title": "Nuevo Cliente",
+      "nameCompanyLabel": "Nombre de la empresa",
+      "nitLabel": "NIT/DNI",
+      "responsibleLabel": "Nombre del responsable",
+      "phoneLabel": "Teléfono",
+      "emailLabel": "Email",
+      "planLabel": "Plan contratado",
+      "cancelButton": "Cancelar",
+      "saveButton": "Guardar",
+      "plans": {
+        "basic": "Básico",
+        "premium": "Premium",
+        "enterprise": "Empresarial"
+      }
     }
   }
 }

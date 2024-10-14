@@ -3,26 +3,24 @@
     "title": "ABCALL",
     "email": "Email",
     "password": "Password",
-    "btn_login": "Log in",
+    "btn_login": "Login",
     "lb_forgot_passwd": "Forgot your password?",
     "lb_no_account": "Don't have an account?",
-    "link_register": "Sign up"
+    "link_register": "Register"
   },
-
   "menu": {
     "incidentsManageLabel": "Incidents",
     "usersLabel": "Users",
     "reportsLabel": "Reports",
     "profileLabel": "Profile",
-    "knowledgeBdLabel": "DB",
+    "knowledgeBdLabel": "Knowledge DB",
     "clientsManageLabel": "Clients"
   },
-
   "clients": {
     "list": {
       "btnNew": "New",
       "clientIdLabel": "Client ID",
-      "registerDateLabel": "Register date",
+      "registerDateLabel": "Registration Date",
       "servicesLabel": "Services",
       "companyLabel": "Company",
       "stateLabel": "State",
@@ -32,6 +30,22 @@
       "servicesGrid": "Services",
       "companyGrid": "Company",
       "stateGrid": "State"
+    },
+    "form": {
+      "title": "New Client",
+      "nameCompanyLabel": "Company Name",
+      "nitLabel": "NIT/DNI",
+      "responsibleLabel": "Responsible Person",
+      "phoneLabel": "Phone",
+      "emailLabel": "Email",
+      "planLabel": "Contracted Plan",
+      "cancelButton": "Cancel",
+      "saveButton": "Save",
+      "plans": {
+        "basic": "Basic",
+        "premium": "Premium",
+        "enterprise": "Enterprise"
+      }
     }
   }
 }

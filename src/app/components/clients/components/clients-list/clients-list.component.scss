@@ -52,28 +52,28 @@
   margin: 20px;
 }
 
-.mat-column-id {
-  width: 11%;
+.mat-table .mat-column-clientId {
+  width: 12% !important;
 }
 
-.mat-column-fecha {
-  width: 20%;
+.mat-table .mat-column-fecha {
+  width: 20% !important;
 }
 
-.mat-column-empresa {
-  width: 20%;
+.mat-table .mat-column-empresa {
+  width: 20% !important;
 }
 
-.mat-column-servicios {
-  width: 30%;
+.mat-table .mat-column-servicios {
+  width: 30% !important;
 }
 
-.mat-column-estado {
-  width: 12%;
+.mat-table .mat-column-estado {
+  width: 12% !important;
 }
 
-.mat-column-detalle {
-  width: 10%;
+.mat-table .mat-column-detalle {
+  width: 10% !important;
 }
 
 .mat-header-cell,
