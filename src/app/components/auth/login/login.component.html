@@ -4,7 +4,11 @@
 
     <mat-form-field appearance="outline" class="auth-form__input">
       <mat-label>{{ "login.email" | translate }}</mat-label>
-      <input matInput placeholder="{{ 'login.email' | translate }}" />
+      <input
+        matInput
+        [(ngModel)]="email"
+        placeholder="{{ 'login.email' | translate }}"
+      />
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="auth-form__input">
@@ -12,6 +16,7 @@
       <input
         matInput
         type="password"
+        [(ngModel)]="password"
         placeholder="{{ 'login.password' | translate }}"
       />
     </mat-form-field>
@@ -20,7 +25,7 @@
       <a href="#">{{ "login.lb_forgot_passwd" | translate }}</a>
     </div>
 
-    <button mat-raised-button color="primary" (click)="navigateToDashboard()">
+    <button mat-raised-button color="primary" (click)="login()">
       {{ "login.btn_login" | translate }}
     </button>
 

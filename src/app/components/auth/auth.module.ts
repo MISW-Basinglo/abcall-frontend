@@ -6,6 +6,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { SharedModule } from 'src/app/utils/shared.module';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -17,6 +18,7 @@ import { SharedModule } from 'src/app/utils/shared.module';
     CommonModule,
     AuthRoutingModule,
     SharedModule,
+    FormsModule,
     TranslateModule
   ]
 })
