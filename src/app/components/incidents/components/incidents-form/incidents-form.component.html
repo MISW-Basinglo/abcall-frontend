@@ -1,1 +1,60 @@
-<p>incidents-form works!</p>
+<section class="form-client-container">
+  <h2 mat-dialog-title class="dialog-title">
+    {{ "incidents.form.newTitle" | translate | uppercase }}
+  </h2>
+  <form
+    [formGroup]="incidentForm"
+    (ngSubmit)="submitForm()"
+    class="form-container"
+  >
+    <div class="form-content">
+      <mat-form-field appearance="outline">
+        <mat-label>{{ "incidents.form.dniLabel" | translate }}</mat-label>
+        <input matInput formControlName="userDni" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>{{ "incidents.form.issueTypeLabel" | translate }}</mat-label>
+        <mat-select formControlName="issueType">
+          <mat-option *ngFor="let issue of issueTypes" [value]="issue.value">
+            {{ issue.label | translate }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>{{
+          "incidents.form.descriptionLabel" | translate
+        }}</mat-label>
+        <textarea
+          matInput
+          placeholder="{{
+            'incidents.form.descriptionPlaceholder' | translate
+          }}"
+          formControlName="incidentDescription"
+          rows="5"
+        ></textarea>
+        <mat-hint align="start">{{
+          "incidents.form.descriptionHint" | translate
+        }}</mat-hint>
+        <mat-hint align="end"
+          >{{ descriptionControl?.value?.length || 0 }}/500</mat-hint
+        >
+      </mat-form-field>
+    </div>
+
+    <div mat-dialog-actions class="incident-btn-content">
+      <button mat-button (click)="closeDialog()" class="cancel-button">
+        {{ "incidents.form.btnCancel" | translate }}
+      </button>
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        [disabled]="!incidentForm.valid"
+      >
+        {{ "incidents.form.btnSave" | translate }}
+      </button>
+    </div>
+  </form>
+</section>

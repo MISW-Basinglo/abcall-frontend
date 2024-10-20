@@ -10,7 +10,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [ClientsListComponent, ClientsFormComponent],
-  imports: [CommonModule, ClientsRoutingModule, SharedModule, FormsModule, ReactiveFormsModule, TranslateModule],
-  
+  imports: [
+    CommonModule,
+    ClientsRoutingModule,
+    SharedModule,
+    FormsModule,
+    ReactiveFormsModule,
+    TranslateModule,
+  ],
 })
 export class ClientsModule {}

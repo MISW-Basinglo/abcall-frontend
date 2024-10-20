@@ -1,1 +1,121 @@
-<p>profile works!</p>
+<section class="profile-section">
+  <h1 mat-dialog-title class="dialog-title">
+    {{ "profile.title" | translate }}
+  </h1>
+
+  <form [formGroup]="profileForm" (ngSubmit)="onSubmit()" class="profile-form">
+    <div class="form-container">
+      <mat-form-field class="example-full-width">
+        <mat-label>{{ "profile.company" | translate }} </mat-label>
+        <input
+          matInput
+          formControlName="company"
+          placeholder="{{ 'profile.companyEx' | translate }}"
+        />
+        <mat-error *ngIf="profileForm.controls['company'].hasError('required')">
+          {{ "profile.errors.required" | translate }}
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>{{ "profile.responsible" | translate }}</mat-label>
+        <input
+          matInput
+          formControlName="responsible"
+          placeholder="{{ 'profile.responsibleEx' | translate }}"
+        />
+        <mat-error
+          *ngIf="profileForm.controls['responsible'].hasError('required')"
+        >
+          {{ "profile.errors.required" | translate }}
+        </mat-error>
+        <mat-error
+          *ngIf="
+            !profileForm.controls['responsible'].hasError('required') &&
+            profileForm.controls['responsible'].hasError('pattern')
+          "
+        >
+          {{ "profile.errors.invalidName" | translate }}
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>{{ "profile.clientDni" | translate }}</mat-label>
+        <input
+          matInput
+          formControlName="dni"
+          placeholder="{{ 'profile.clientDniEx' | translate }}"
+        />
+        <mat-error *ngIf="profileForm.controls['dni'].hasError('required')">
+          {{ "profile.errors.required" | translate }}
+        </mat-error>
+        <mat-error
+          *ngIf="
+            !profileForm.controls['dni'].hasError('required') &&
+            profileForm.controls['dni'].hasError('pattern')
+          "
+        >
+          {{ "profile.errors.invalidDni" | translate }}
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>{{ "profile.phoneNumber" | translate }}</mat-label>
+        <input
+          matInput
+          formControlName="phone"
+          placeholder="{{ 'profile.phoneNumberEx' | translate }}"
+        />
+        <mat-error *ngIf="profileForm.controls['phone'].hasError('required')">
+          {{ "profile.errors.required" | translate }}
+        </mat-error>
+        <mat-error
+          *ngIf="
+            !profileForm.controls['phone'].hasError('required') &&
+            profileForm.controls['phone'].hasError('pattern')
+          "
+        >
+          {{ "profile.errors.invalidPhone" | translate }}
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>{{ "profile.email" | translate }}</mat-label>
+        <input
+          matInput
+          formControlName="email"
+          placeholder="{{ 'profile.emailEx' | translate }}"
+        />
+        <mat-error *ngIf="profileForm.controls['email'].hasError('required')">
+          {{ "profile.errors.required" | translate }}
+        </mat-error>
+        <mat-error
+          *ngIf="
+            !profileForm.controls['email'].hasError('required') &&
+            profileForm.controls['email'].hasError('email')
+          "
+        >
+          {{ "profile.errors.invalidEmail" | translate }}
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="example-full-width">
+        <mat-label>{{ "clients.form.planLabel" | translate }}</mat-label>
+        <mat-select formControlName="plan">
+          <mat-option *ngFor="let plan of plans" [value]="plan.value">
+            {{ plan.label | translate }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="profileForm.controls['plan'].hasError('required')">
+          {{ "profile.errors.required" | translate }}
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="button-container">
+      <button mat-fab extended color="primary" [disabled]="profileForm.invalid">
+        {{ "profile.btnUpdate" | translate }}
+      </button>
+    </div>
+  </form>
+</section>

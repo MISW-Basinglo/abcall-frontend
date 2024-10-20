@@ -46,6 +46,13 @@ const routes: Routes = [
       ),
   },
   {
+    path: 'profile',
+    loadChildren: () =>
+      import('./components/profile/profile.module').then(
+        (m) => m.ProfileModule
+      ),
+  },
+  {
     path: '**',
     redirectTo: 'auth/login',
   },
