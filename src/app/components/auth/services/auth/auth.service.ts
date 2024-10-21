@@ -7,11 +7,10 @@ import { catchError, map } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class AuthService {
-  private apiUrl = 'http://localhost:80/auth';
+  private apiUrl = 'http://34.49.98.208/auth';
 
   constructor(private http: HttpClient) {}
 
-  
   login(email: string, password: string): Observable<any> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     const body = { email, password };
@@ -24,7 +23,9 @@ export class AuthService {
       return of(null);
     }
 
-    const headers = new HttpHeaders({ 'Authorization': `Bearer ${refreshToken}` });
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${refreshToken}`,
+    });
     return this.http.post(`${this.apiUrl}/refresh-token`, {}, { headers });
   }
 
