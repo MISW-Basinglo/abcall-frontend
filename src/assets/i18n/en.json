@@ -29,10 +29,22 @@
       "registerDateGrid": "Date",
       "servicesGrid": "Services",
       "companyGrid": "Company",
-      "stateGrid": "State"
+      "stateGrid": "State",
+      "placeholders": {
+        "clientId": "Client ID",
+        "registerDate": "Registration Date",
+        "services": "Services",
+        "company": "Company",
+        "state": "State"
+      },
+      "clientStatus": {
+        "active": "Active",
+        "inactive": "Inactive"
+      }
     },
     "form": {
-      "title": "New Client",
+      "newTitle": "New Client",
+      "editTitle": "Edit Client",
       "nameCompanyLabel": "Company Name",
       "nitLabel": "NIT/DNI",
       "responsibleLabel": "Responsible Person",
@@ -42,10 +54,80 @@
       "cancelButton": "Cancel",
       "saveButton": "Save",
       "plans": {
-        "basic": "Basic",
-        "premium": "Premium",
-        "enterprise": "Enterprise"
+        "entrepreneur": "Entrepreneur",
+        "business": "Business",
+        "business_plus": "Business Plus"
       }
+    }
+  },
+  "incidents": {
+    "list": {
+      "btnNew": "New",
+      "btnDownloadReport": "Download Report",
+      "filters": {
+        "incidentIdLabel": "Incident ID",
+        "registerDateLabel": "Registration Date",
+        "descriptionLabel": "Description",
+        "companyLabel": "Company",
+        "stateLabel": "State"
+      },
+      "grid": {
+        "incidentId": "Incident ID",
+        "registerDate": "Date",
+        "description": "Description",
+        "company": "Company",
+        "state": "State"
+      },
+      "placeholders": {
+        "issueId": "Incident ID",
+        "registerDate": "Registration Date",
+        "description": "Description",
+        "company": "Company",
+        "status": "State"
+      },
+      "issueStatus": {
+        "open": "Open",
+        "escalated": "Escalated",
+        "closed": "Closed"
+      }
+    },
+    "form": {
+      "issueTypes": {
+        "request": "Request",
+        "complaint": "Complaint",
+        "claim": "Claim",
+        "suggestion": "Suggestion",
+        "praise": "Praise"
+      },
+      "newTitle": "New Incident",
+      "dniLabel": "User DNI",
+      "issueTypeLabel": "Issue Type",
+      "descriptionLabel": "Description",
+      "descriptionPlaceholder": "Write your description here",
+      "descriptionHint": "Maximum 500 characters",
+      "btnCancel": "Cancel",
+      "btnSave": "Save"
+    }
+  },
+  "profile": {
+    "title": "Client Profile:",
+    "company": "Company Name",
+    "companyEx": "Ex. Heidenreich Group",
+    "responsible": "Responsible",
+    "responsibleEx": "Ex. Alfonso Bergnaum",
+    "clientDni": "DNI",
+    "clientDniEx": "Ex. 89398234",
+    "phoneNumber": "Phone Number",
+    "phoneNumberEx": "Ex. +174283488532",
+    "email": "Email",
+    "emailEx": "Ex. allberk@yopmail.com",
+    "btnUpdate": "Update",
+    "errors": {
+      "required": "This field is required",
+      "invalidName": "The name cannot contain numbers",
+      "invalidPhone": "Invalid phone format",
+      "invalidDni": "Invalid DNI format",
+      "invalidEmail": "Invalid email format"
     }
   }
 }

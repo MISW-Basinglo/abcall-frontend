@@ -1,9 +1,9 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ClientsService } from '../../service/clients.service';
-import { IClientData } from 'src/app/models/client.interface';
+import { IClientData } from 'src/app/models/abcall.interfaces';
 import { MatDialog } from '@angular/material/dialog';
 import { ClientsFormComponent } from '../clients-form/clients-form.component';
 
@@ -12,13 +12,13 @@ import { ClientsFormComponent } from '../clients-form/clients-form.component';
   templateUrl: './clients-list.component.html',
   styleUrls: ['./clients-list.component.scss'],
 })
-export class ClientsListComponent {
+export class ClientsListComponent implements OnInit {
   displayedColumns: string[] = [
     'clientId',
-    'fecha',
-    'servicios',
-    'empresa',
-    'estado',
+    'date',
+    'services',
+    'company',
+    'status',
     'detalle',
   ];
 
@@ -27,11 +27,13 @@ export class ClientsListComponent {
 
   filterValues: any = {
     clientId: '',
-    fecha: '',
-    servicios: '',
-    empresa: '',
-    estado: '',
+    date: '',
+    services: '',
+    company: '',
+    status: '',
   };
+
+  client: IClientData | undefined;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -41,9 +43,10 @@ export class ClientsListComponent {
     private dialog: MatDialog
   ) {}
 
-  openFormDialog() {
+  openFormDialog(client?: IClientData) {
     const dialogRef = this.dialog.open(ClientsFormComponent, {
       width: '400px',
+      data: client || {},
     });
 
     dialogRef.afterClosed().subscribe((result) => {
@@ -94,38 +97,43 @@ export class ClientsListComponent {
 
       return (
         data.clientId.toLowerCase().includes(searchTerms.clientId) &&
-        data.fecha.toLowerCase().includes(searchTerms.fecha) &&
-        data.servicios.toLowerCase().includes(searchTerms.servicios) &&
-        data.empresa.toLowerCase().includes(searchTerms.empresa) &&
-        data.estado.toLowerCase().includes(searchTerms.estado)
+        data.date.toLowerCase().includes(searchTerms.date) &&
+        data.services.toLowerCase().includes(searchTerms.services) &&
+        data.company.toLowerCase().includes(searchTerms.company) &&
+        data.status.toLowerCase().includes(searchTerms.status)
       );
     };
   }
 
   clearDate() {
-    this.applyFilter('', 'fecha');
+    this.applyFilter('', 'date');
   }
 
   clearService() {
-    this.applyFilter('', 'servicios');
+    this.applyFilter('', 'services');
   }
 
   clearCompany() {
-    this.applyFilter('', 'empresa');
+    this.applyFilter('', 'company');
   }
 
   clearStatus() {
-    this.applyFilter('', 'estado');
+    this.applyFilter('', 'status');
   }
 
   getStatusClass(status: string) {
     switch (status) {
-      case 'Activo':
+      case 'active':
         return 'status-active';
-      case 'Inactivo':
+      case 'inactive':
         return 'status-inactive';
       default:
         return '';
     }
+  }
+
+  getClientToEdit(client: IClientData) {
+    // console.log(client);
+    this.openFormDialog(client);
   }
 }

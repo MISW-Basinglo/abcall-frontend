@@ -1,6 +1,6 @@
 import { ClientsListComponent } from './clients-list.component';
 import { of } from 'rxjs';
-import { IClientData } from 'src/app/models/client.interface';
+import { IClientData } from 'src/app/models/abcall.interfaces';
 
 describe('ClientsListComponent', () => {
   let component: ClientsListComponent;
@@ -30,18 +30,18 @@ describe('ClientsListComponent', () => {
       {
         id: '1234',
         clientId: '1',
-        fecha: '2022-01-01',
-        servicios: 'Service1',
-        empresa: 'Company1',
-        estado: 'Activo',
+        date: '2022-01-01',
+        services: 'Service1',
+        company: 'Company1',
+        status: 'active',
       },
       {
         id: '5678',
         clientId: '2',
-        fecha: '2022-01-02',
-        servicios: 'Service2',
-        empresa: 'Company2',
-        estado: 'Inactivo',
+        date: '2022-01-02',
+        services: 'Service2',
+        company: 'Company2',
+        status: 'inactive',
       },
     ];
 
@@ -65,21 +65,21 @@ describe('ClientsListComponent', () => {
 
   it('should clear filters correctly', () => {
     component.clearDate();
-    expect(component.filterValues['fecha']).toBe('');
+    expect(component.filterValues['date']).toBe('');
 
     component.clearService();
-    expect(component.filterValues['servicios']).toBe('');
+    expect(component.filterValues['services']).toBe('');
 
     component.clearCompany();
-    expect(component.filterValues['empresa']).toBe('');
+    expect(component.filterValues['company']).toBe('');
 
     component.clearStatus();
-    expect(component.filterValues['estado']).toBe('');
+    expect(component.filterValues['status']).toBe('');
   });
 
   it('should return the correct class for status', () => {
-    expect(component.getStatusClass('Activo')).toBe('status-active');
-    expect(component.getStatusClass('Inactivo')).toBe('status-inactive');
+    expect(component.getStatusClass('active')).toBe('status-active');
+    expect(component.getStatusClass('inactive')).toBe('status-inactive');
     expect(component.getStatusClass('Unknown')).toBe('');
   });
 });

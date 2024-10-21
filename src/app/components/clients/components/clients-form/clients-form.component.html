@@ -1,8 +1,10 @@
 <section class="form-client-container">
-  <h2 mat-dialog-title class="dialog-title">
-    {{ "clients.form.title" | translate | uppercase }}
+  <h2 mat-dialog-title class="dialog-title" *ngIf="isEmptyObject(clientData)">
+    {{ "clients.form.newTitle" | translate | uppercase }}
   </h2>
-
+  <h2 mat-dialog-title class="dialog-title" *ngIf="!isEmptyObject(clientData)">
+    {{ "clients.form.editTitle" | translate | uppercase }}
+  </h2>
   <form
     [formGroup]="clientsForm"
     (ngSubmit)="submitForm()"
@@ -11,7 +13,7 @@
     <div class="form-content">
       <mat-form-field appearance="outline">
         <mat-label>{{ "clients.form.nameCompanyLabel" | translate }}</mat-label>
-        <input matInput formControlName="nombreEmpresa" />
+        <input matInput formControlName="company" />
       </mat-form-field>
 
       <mat-form-field appearance="outline">
@@ -21,12 +23,12 @@
 
       <mat-form-field appearance="outline">
         <mat-label>{{ "clients.form.responsibleLabel" | translate }}</mat-label>
-        <input matInput formControlName="responsable" />
+        <input matInput formControlName="responsible" />
       </mat-form-field>
 
       <mat-form-field appearance="outline">
         <mat-label>{{ "clients.form.phoneLabel" | translate }}</mat-label>
-        <input matInput formControlName="telefono" />
+        <input matInput formControlName="phone" />
       </mat-form-field>
 
       <mat-form-field appearance="outline">
@@ -37,15 +39,9 @@
       <mat-form-field appearance="outline">
         <mat-label>{{ "clients.form.planLabel" | translate }}</mat-label>
         <mat-select formControlName="plan">
-          <mat-option [value]="'basic'">{{
-            "clients.form.plans.basic" | translate
-          }}</mat-option>
-          <mat-option [value]="'premium'">{{
-            "clients.form.plans.premium" | translate
-          }}</mat-option>
-          <mat-option [value]="'enterprise'">{{
-            "clients.form.plans.enterprise" | translate
-          }}</mat-option>
+          <mat-option *ngFor="let plan of plans" [value]="plan.value">
+            {{ plan.label | translate }}
+          </mat-option>
         </mat-select>
       </mat-form-field>
     </div>
