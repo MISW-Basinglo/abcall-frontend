@@ -1,6 +1,6 @@
 <div class="container">
   <div class="button-container">
-    <button mat-raised-button color="primary" (click)="openFormDialog()">
+    <button mat-fab extended  color="primary" (click)="openFormDialog()">
       {{ "clients.list.btnNew" | translate }}
     </button>
   </div>
@@ -11,7 +11,7 @@
       <input
         matInput
         (keyup)="applyFilter($event, 'clientId')"
-        placeholder="ID Cliente"
+        placeholder="{{ 'clients.list.placeholders.clientId' | translate }}"
         #input
       />
       <button
@@ -24,12 +24,12 @@
       </button>
     </mat-form-field>
 
-    <mat-form-field class="filter-fecha" appearance="outline">
+    <mat-form-field class="filter-date" appearance="outline">
       <mat-label>{{ "clients.list.registerDateLabel" | translate }}</mat-label>
       <input
         matInput
-        (keyup)="applyFilter($event, 'fecha')"
-        placeholder="Fecha de registro"
+        (keyup)="applyFilter($event, 'date')"
+        placeholder="{{ 'clients.list.placeholders.registerDate' | translate }}"
         #inputDate
       />
       <button
@@ -42,12 +42,12 @@
       </button>
     </mat-form-field>
 
-    <mat-form-field class="filter-servicios" appearance="outline">
+    <mat-form-field class="filter-services" appearance="outline">
       <mat-label>{{ "clients.list.servicesLabel" | translate }}</mat-label>
       <input
         matInput
-        (keyup)="applyFilter($event, 'servicios')"
-        placeholder="Servicios"
+        (keyup)="applyFilter($event, 'services')"
+        placeholder="{{ 'clients.list.placeholders.services' | translate }}"
         #inputService
       />
       <button
@@ -60,12 +60,12 @@
       </button>
     </mat-form-field>
 
-    <mat-form-field class="filter-empresa" appearance="outline">
+    <mat-form-field class="filter-company" appearance="outline">
       <mat-label>{{ "clients.list.companyLabel" | translate }}</mat-label>
       <input
         matInput
-        (keyup)="applyFilter($event, 'empresa')"
-        placeholder="Empresa"
+        (keyup)="applyFilter($event, 'company')"
+        placeholder="{{ 'clients.list.placeholders.company' | translate }}"
         #inputCompany
       />
       <button
@@ -78,12 +78,12 @@
       </button>
     </mat-form-field>
 
-    <mat-form-field class="filter-estado" appearance="outline">
+    <mat-form-field class="filter-status" appearance="outline">
       <mat-label>{{ "clients.list.stateLabel" | translate }}</mat-label>
       <input
         matInput
-        (keyup)="applyFilter($event, 'estado')"
-        placeholder="Estado"
+        (keyup)="applyFilter($event, 'status')"
+        placeholder="{{ 'clients.list.placeholders.state' | translate }}"
         #inputState
       />
       <button
@@ -107,38 +107,40 @@
       <td mat-cell *matCellDef="let element">{{ element.clientId }}</td>
     </ng-container>
 
-    <ng-container matColumnDef="fecha">
+    <ng-container matColumnDef="date">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>
         {{ "clients.list.registerDateGrid" | translate }}
       </th>
-      <td mat-cell *matCellDef="let element">{{ element.fecha }}</td>
+      <td mat-cell *matCellDef="let element">{{ element.date }}</td>
     </ng-container>
 
-    <ng-container matColumnDef="servicios">
+    <ng-container matColumnDef="services">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>
         {{ "clients.list.servicesGrid" | translate }}
       </th>
-      <td mat-cell *matCellDef="let element">{{ element.servicios }}</td>
+      <td mat-cell *matCellDef="let element">{{ element.services }}</td>
     </ng-container>
 
-    <ng-container matColumnDef="empresa">
+    <ng-container matColumnDef="company">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>
         {{ "clients.list.companyGrid" | translate }}
       </th>
-      <td mat-cell *matCellDef="let element">{{ element.empresa }}</td>
+      <td mat-cell *matCellDef="let element">{{ element.company }}</td>
     </ng-container>
 
-    <ng-container matColumnDef="estado">
+    <ng-container matColumnDef="status">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>
         {{ "clients.list.stateGrid" | translate }}
       </th>
-      <td mat-cell *matCellDef="let element">{{ element.estado }}</td>
+      <td mat-cell *matCellDef="let element" [ngClass]="getStatusClass(element.status)">
+        {{ "clients.list.clientStatus." + element.status | translate }}
+      </td>
     </ng-container>
 
     <ng-container matColumnDef="detalle">
       <th mat-header-cell *matHeaderCellDef></th>
       <td mat-cell *matCellDef="let element">
-        <button mat-icon-button>
+        <button mat-icon-button (click)="getClientToEdit(element)">
           <mat-icon>visibility</mat-icon>
         </button>
       </td>

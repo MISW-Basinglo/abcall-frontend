@@ -29,14 +29,26 @@
       "companyLabel": "Empresa",
       "stateLabel": "Estado",
       "closeBtnInput": "Cerrar",
-      "clientIdGrid": "ID",
+      "clientIdGrid": "ID Cliente",
       "registerDateGrid": "Fecha",
       "servicesGrid": "Servicios",
       "companyGrid": "Empresa",
-      "stateGrid": "Estado"
+      "stateGrid": "Estado",
+      "placeholders": {
+        "clientId": "ID Cliente",
+        "registerDate": "Fecha de registro",
+        "services": "Servicios",
+        "company": "Empresa",
+        "state": "Estado"
+      },
+      "clientStatus": {
+        "active": "activo",
+        "inactive": "inactivo"
+      }
     },
     "form": {
-      "title": "Nuevo Cliente",
+      "newTitle": "Nuevo Cliente",
+      "editTitle": "Edición Cliente",
       "nameCompanyLabel": "Nombre de la empresa",
       "nitLabel": "NIT/DNI",
       "responsibleLabel": "Nombre del responsable",
@@ -46,10 +58,80 @@
       "cancelButton": "Cancelar",
       "saveButton": "Guardar",
       "plans": {
-        "basic": "Básico",
-        "premium": "Premium",
-        "enterprise": "Empresarial"
+        "entrepreneur": "Emprendedor",
+        "business": "Negocios",
+        "business_plus": "Negocios Plus"
       }
+    }
+  },
+  "incidents": {
+    "list": {
+      "btnNew": "Nuevo",
+      "btnDownloadReport": "Descargar reporte",
+      "filters": {
+        "incidentIdLabel": "ID Incidente",
+        "registerDateLabel": "Fecha de registro",
+        "descriptionLabel": "Descripción",
+        "companyLabel": "Empresa",
+        "stateLabel": "Estado"
+      },
+      "grid": {
+        "incidentId": "ID incidente",
+        "registerDate": "Fecha",
+        "description": "Descripción",
+        "company": "Empresa",
+        "state": "Estado"
+      },
+      "placeholders": {
+        "issueId": "ID Incidente",
+        "registerDate": "Fecha de registro",
+        "description": "Descripción",
+        "company": "Empresa",
+        "status": "Estado"
+      },
+      "issueStatus": {
+        "open": "Abierto",
+        "escalated": "Escalado",
+        "closed": "Cerrado"
+      }
+    },
+    "form": {
+      "issueTypes": {
+        "request": "Solicitud",
+        "complaint": "Queja",
+        "claim": "Reclamo",
+        "suggestion": "Sugerencia",
+        "praise": "Elogio"
+      },
+      "newTitle": "Nuevo incidente",
+      "dniLabel": "DNI Usuario",
+      "issueTypeLabel": "Tipo Incidente",
+      "descriptionLabel": "Descripción",
+      "descriptionPlaceholder": "Escribe tu descripción aquí",
+      "descriptionHint": "Máximo 500 caracteres",
+      "btnCancel": "Cancelar",
+      "btnSave": "Guardar"
+    }
+  },
+  "profile": {
+    "title": "Perfil del cliente:",
+    "company": "Nombre de la empresa",
+    "companyEx": "Ej. Heidenreich Group",
+    "responsible": "Responsable",
+    "responsibleEx": "Ej. Alfonso Bergnaum",
+    "clientDni": "DNI",
+    "clientDniEx": "Ej. 89398234",
+    "phoneNumber": "Teléfono",
+    "phoneNumberEx": "Ej. +174283488532",
+    "email": "Correo electrónico",
+    "emailEx": "Ej. allberk@yopmail.com",
+    "btnUpdate": "Actualizar",
+    "errors": {
+      "required": "Este campo es obligatorio",
+      "invalidName": "El nombre no puede contener números",
+      "invalidPhone": "Formato de teléfono inválido",
+      "invalidDni": "Formato de DNI inválido",
+      "invalidEmail": "Formato de correo electrónico inválido"
     }
   }
 }

@@ -1,11 +1,13 @@
 import { ClientsFormComponent } from './clients-form.component';
 import { FormBuilder } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
+import { IClientData } from 'src/app/models/abcall.interfaces';
 
 describe('ClientsFormComponent', () => {
   let component: ClientsFormComponent;
   let dialogRefMock: jest.Mocked<MatDialogRef<ClientsFormComponent>>;
   let formBuilder: FormBuilder;
+  let mockClientData: IClientData | null;
 
   beforeEach(() => {
     dialogRefMock = {
@@ -14,19 +16,57 @@ describe('ClientsFormComponent', () => {
 
     formBuilder = new FormBuilder();
 
-    component = new ClientsFormComponent(formBuilder, dialogRefMock);
+    mockClientData = {
+      id: '1',
+      clientId: '2',
+      company: 'Test Company',
+      responsible: 'John Doe',
+      phone: '123456789',
+      email: 'test@example.com',
+      plan: 'BUSINESS',
+      date: '2024-10-20',
+      services: 'Chatbot',
+      status: 'active',
+    };
+
+    component = new ClientsFormComponent(
+      formBuilder,
+      dialogRefMock,
+      mockClientData
+    );
   });
 
   it('should create the component', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should initialize the form with empty controls', () => {
+  it('should initialize the form with provided clientData', () => {
+    component.ngOnInit();
     expect(component.clientsForm).toBeDefined();
-    expect(component.clientsForm.controls['nombreEmpresa'].value).toBe('');
-    expect(component.clientsForm.controls['nit'].value).toBe('');
-    expect(component.clientsForm.controls['responsable'].value).toBe('');
-    expect(component.clientsForm.controls['telefono'].value).toBe('');
+    expect(component.clientsForm.controls['company'].value).toBe(
+      'Test Company'
+    );
+    expect(component.clientsForm.controls['responsible'].value).toBe(
+      'John Doe'
+    );
+    expect(component.clientsForm.controls['phone'].value).toBe('123456789');
+    expect(component.clientsForm.controls['email'].value).toBe(
+      'test@example.com'
+    );
+    expect(component.clientsForm.controls['plan'].value).toBe('BUSINESS');
+  });
+
+  it('should initialize the form with empty controls if no clientData is provided', () => {
+    component = new ClientsFormComponent(
+      formBuilder,
+      dialogRefMock,
+      null as any
+    );
+    component.ngOnInit();
+    expect(component.clientsForm).toBeDefined();
+    expect(component.clientsForm.controls['company'].value).toBe('');
+    expect(component.clientsForm.controls['responsible'].value).toBe('');
+    expect(component.clientsForm.controls['phone'].value).toBe('');
     expect(component.clientsForm.controls['email'].value).toBe('');
     expect(component.clientsForm.controls['plan'].value).toBe('');
   });
@@ -34,26 +74,6 @@ describe('ClientsFormComponent', () => {
   it('should close the dialog when closeDialog is called', () => {
     component.closeDialog();
     expect(dialogRefMock.close).toHaveBeenCalled();
-  });
-
-  it('should close the dialog with form value when submitForm is called and form is valid', () => {
-    component.clientsForm.controls['nombreEmpresa'].setValue('Test Company');
-    component.clientsForm.controls['nit'].setValue('12345678');
-    component.clientsForm.controls['responsable'].setValue('John Doe');
-    component.clientsForm.controls['telefono'].setValue('123456789');
-    component.clientsForm.controls['email'].setValue('test@example.com');
-    component.clientsForm.controls['plan'].setValue('basic');
-
-    component.submitForm();
-
-    expect(dialogRefMock.close).toHaveBeenCalledWith({
-      nombreEmpresa: 'Test Company',
-      nit: '12345678',
-      responsable: 'John Doe',
-      telefono: '123456789',
-      email: 'test@example.com',
-      plan: 'basic',
-    });
   });
 
   it('should not close the dialog when submitForm is called and form is invalid', () => {

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { IClientData } from 'src/app/models/client.interface';
+import { IClientData } from 'src/app/models/abcall.interfaces';
 import { generateClients } from 'src/app/utils/abcall.mocks';
 
 @Injectable({

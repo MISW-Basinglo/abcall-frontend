@@ -6,7 +6,8 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "jest"
+    "test": "jest",
+    "restart": "npm cache clean --force && rm -rf node_modules dist && npm install && npm run start"
   },
   "private": true,
   "dependencies": {
