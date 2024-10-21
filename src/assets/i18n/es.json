@@ -6,7 +6,11 @@
     "btn_login": "Ingresar",
     "lb_forgot_passwd": "¿Olvidó su contraseña?",
     "lb_no_account": "¿No tienes una cuenta?",
-    "link_register": "Registrate"
+    "link_register": "Registrate",
+    "toastr": {
+      "errorTitle": "Error",
+      "errorMsg": "Error de inicio de sesión. Por favor, verifique sus credenciales."
+    }
   },
   "menu": {
     "incidentsManageLabel": "Incidentes",

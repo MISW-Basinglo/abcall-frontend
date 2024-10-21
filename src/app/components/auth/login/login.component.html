@@ -21,15 +21,15 @@
       />
     </mat-form-field>
 
-    <div class="auth-form__link">
+    <div class="auth-form__link" *ngIf="false">
       <a href="#">{{ "login.lb_forgot_passwd" | translate }}</a>
     </div>
 
-    <button mat-raised-button color="primary" (click)="login()">
+    <button mat-fab extended color="primary" (click)="login()">
       {{ "login.btn_login" | translate }}
     </button>
 
-    <p class="auth-form__register">
+    <p class="auth-form__register" *ngIf="false">
       {{ "login.lb_no_account" | translate }}
       <span [routerLink]="['/auth/register']">{{
         "login.link_register" | translate

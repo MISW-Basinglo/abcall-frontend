@@ -1,23 +1,24 @@
 import { inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
+import { catchError, map, switchMap } from 'rxjs/operators';
 import { AuthService } from '../auth/auth.service';
 
 export const authGuard = (): Observable<boolean> => {
   const authService = inject(AuthService);
   const router = inject(Router);
 
-  const token = authService.getToken();
-
-  if (token) {
-    return authService.isTokenValid(token).pipe(
-      map((isValid: boolean) => {
-        if (isValid) {
-          return true;
+  if (authService.isTokenValid()) {
+    return of(true);
+  } else {
+    
+    return authService.handleTokenExpiration().pipe(
+      switchMap((isTokenRefreshed: boolean) => {
+        if (isTokenRefreshed) {
+          return of(true);
         } else {
           router.navigate(['/auth/login']);
-          return false;
+          return of(false);
         }
       }),
       catchError(() => {
@@ -25,8 +26,5 @@ export const authGuard = (): Observable<boolean> => {
         return of(false);
       })
     );
-  } else {
-    router.navigate(['/auth/login']);
-    return of(false);
   }
 };
