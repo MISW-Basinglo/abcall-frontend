@@ -6,7 +6,11 @@
     "btn_login": "Login",
     "lb_forgot_passwd": "Forgot your password?",
     "lb_no_account": "Don't have an account?",
-    "link_register": "Register"
+    "link_register": "Register",
+    "toastr": {
+      "errorTitle": "Error",
+      "errorMsg": "Login failed. Please check your credentials."
+    }
   },
   "menu": {
     "incidentsManageLabel": "Incidents",

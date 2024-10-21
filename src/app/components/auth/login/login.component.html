@@ -4,7 +4,11 @@
 
     <mat-form-field appearance="outline" class="auth-form__input">
       <mat-label>{{ "login.email" | translate }}</mat-label>
-      <input matInput placeholder="{{ 'login.email' | translate }}" />
+      <input
+        matInput
+        [(ngModel)]="email"
+        placeholder="{{ 'login.email' | translate }}"
+      />
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="auth-form__input">
@@ -12,19 +16,20 @@
       <input
         matInput
         type="password"
+        [(ngModel)]="password"
         placeholder="{{ 'login.password' | translate }}"
       />
     </mat-form-field>
 
-    <div class="auth-form__link">
+    <div class="auth-form__link" *ngIf="false">
       <a href="#">{{ "login.lb_forgot_passwd" | translate }}</a>
     </div>
 
-    <button mat-raised-button color="primary" (click)="navigateToDashboard()">
+    <button mat-fab extended color="primary" (click)="login()">
       {{ "login.btn_login" | translate }}
     </button>
 
-    <p class="auth-form__register">
+    <p class="auth-form__register" *ngIf="false">
       {{ "login.lb_no_account" | translate }}
       <span [routerLink]="['/auth/register']">{{
         "login.link_register" | translate
