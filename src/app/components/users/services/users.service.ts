@@ -6,29 +6,17 @@ import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root',
 })
-export class IncidentsService {
+export class UsersService {
   private apiUrl = environment.apiUrl;
 
   constructor(private http: HttpClient) {}
 
-  getIncidents(): Observable<any> {
+  getCompanies(): Observable<any> {
     const token = localStorage.getItem('access_token');
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`,
     });
-    return this.http.get<any>(`${this.apiUrl}/issues_management`, {
-      headers,
-    });
-  }
-
-  createIssue(issueData: any): Observable<any> {
-    const token = localStorage.getItem('access_token');
-    const headers = new HttpHeaders({
-      Authorization: `Bearer ${token}`,
-      'Content-Type': 'application/json',
-    });
-
-    return this.http.post<any>(`${this.apiUrl}/issues_management`, issueData, {
+    return this.http.get<any>(`${this.apiUrl}/company`, {
       headers,
     });
   }

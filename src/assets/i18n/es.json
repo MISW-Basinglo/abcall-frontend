@@ -90,9 +90,9 @@
         "status": "Estado"
       },
       "issueStatus": {
-        "open": "Abierto",
-        "escalated": "Escalado",
-        "closed": "Cerrado"
+        "OPEN": "Abierto",
+        "SCALED": "Escalado",
+        "CLOSED": "Cerrado"
       }
     },
     "form": {
@@ -110,7 +110,17 @@
       "descriptionPlaceholder": "Escribe tu descripción aquí",
       "descriptionHint": "Máximo 500 caracteres",
       "btnCancel": "Cancelar",
-      "btnSave": "Guardar"
+      "btnSave": "Guardar",
+      "toastr": {
+        "success": {
+          "title": "Éxito",
+          "message": "Incidente creado satisfactoriamente."
+        },
+        "error": {
+          "title": "Error",
+          "message": "Ha ocurrido un error, intente nuevamente."
+        }
+      }
     }
   },
   "profile": {
