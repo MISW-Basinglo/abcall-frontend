@@ -83,4 +83,5 @@ describe('AuthService', () => {
 
     expect(headers.get('Authorization')).toBe(`Bearer ${refreshToken}`);
   });
+
 });
