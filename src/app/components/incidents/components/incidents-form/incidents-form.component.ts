@@ -2,6 +2,10 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { ClientsFormComponent } from 'src/app/components/clients/components/clients-form/clients-form.component';
+import { IncidentsService } from '../../service/incidents.service';
+import { ToastrService } from 'ngx-toastr';
+import { finalize } from 'rxjs';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-incidents-form',
@@ -21,12 +25,16 @@ export class IncidentsFormComponent {
 
   constructor(
     private fb: FormBuilder,
-    private dialogRef: MatDialogRef<IncidentsFormComponent>
+    private dialogRef: MatDialogRef<IncidentsFormComponent>,
+    private incidentsService: IncidentsService,
+    private toastr: ToastrService,
+    private translate: TranslateService
   ) {
     this.incidentForm = this.fb.group({
-      userDni: ['', [Validators.required]],
-      issueType: ['', [Validators.required]],
-      incidentDescription: ['', [Validators.maxLength(500)]],
+      user_id: ['', [Validators.required]],
+      type: ['', [Validators.required]],
+      description: ['', [Validators.maxLength(500)]],
+      source: ['WEB'],
     });
   }
 
@@ -36,12 +44,42 @@ export class IncidentsFormComponent {
 
   submitForm() {
     if (this.incidentForm.valid) {
-      console.log(this.incidentForm.value);
-      this.dialogRef.close(this.incidentForm.value);
+      const issue = this.incidentForm.value;
+      this.incidentsService
+        .createIssue(issue)
+        .pipe(
+          finalize(() => {
+            this.dialogRef.close(true);
+          })
+        )
+        .subscribe({
+          next: () => {
+            this.translate
+              .get('incidents.form.toastr.success.message')
+              .subscribe((errorMessage: string) => {
+                this.translate
+                  .get('incidents.form.toastr.success.title')
+                  .subscribe((errorTitle: string) => {
+                    this.toastr.success(errorMessage, errorTitle);
+                  });
+              });
+          },
+          error: () => {
+            this.translate
+              .get('incidents.form.toastr.error.message')
+              .subscribe((errorMessage: string) => {
+                this.translate
+                  .get('incidents.form.toastr.error.title')
+                  .subscribe((errorTitle: string) => {
+                    this.toastr.error(errorMessage, errorTitle);
+                  });
+              });
+          },
+        });
     }
   }
 
   get descriptionControl() {
-    return this.incidentForm.get('incidentDescription');
+    return this.incidentForm.get('description');
   }
 }

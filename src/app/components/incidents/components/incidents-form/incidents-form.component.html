@@ -10,12 +10,12 @@
     <div class="form-content">
       <mat-form-field appearance="outline">
         <mat-label>{{ "incidents.form.dniLabel" | translate }}</mat-label>
-        <input matInput formControlName="userDni" />
+        <input matInput formControlName="user_id" />
       </mat-form-field>
 
       <mat-form-field appearance="outline">
         <mat-label>{{ "incidents.form.issueTypeLabel" | translate }}</mat-label>
-        <mat-select formControlName="issueType">
+        <mat-select formControlName="type">
           <mat-option *ngFor="let issue of issueTypes" [value]="issue.value">
             {{ issue.label | translate }}
           </mat-option>
@@ -31,7 +31,7 @@
           placeholder="{{
             'incidents.form.descriptionPlaceholder' | translate
           }}"
-          formControlName="incidentDescription"
+          formControlName="description"
           rows="5"
         ></textarea>
         <mat-hint align="start">{{

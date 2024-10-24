@@ -2,10 +2,16 @@ import { Component, ViewChild, OnInit } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { IIncidentData } from 'src/app/models/abcall.interfaces';
+import {
+  ICompany,
+  ICompanyData,
+  IIssueData,
+} from 'src/app/models/abcall.interfaces';
 import { IncidentsService } from '../../service/incidents.service';
 import { MatDialog } from '@angular/material/dialog';
 import { IncidentsFormComponent } from '../incidents-form/incidents-form.component';
+import { UsersService } from 'src/app/components/users/services/users.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-incidents-list',
@@ -14,31 +20,35 @@ import { IncidentsFormComponent } from '../incidents-form/incidents-form.compone
 })
 export class IncidentsListComponent implements OnInit {
   displayedColumns: string[] = [
-    'incidentId',
-    'date',
+    'id',
+    'created_at',
     'description',
     'company',
     'status',
     'detail',
   ];
 
-  dataSource = new MatTableDataSource<IIncidentData>([]);
+  dataSource = new MatTableDataSource<IIssueData>([]);
   totalLength = 0;
 
   filterValues: any = {
-    incidentId: '',
-    date: '',
+    id: '',
+    created_at: '',
     description: '',
     company: '',
     status: '',
   };
+  companiesList: ICompany[] = [];
+  SIZE_PAGE = 30;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
   constructor(
     private incidentsService: IncidentsService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private usersService: UsersService,
+    private translate: TranslateService
   ) {}
 
   openFormDialog() {
@@ -47,7 +57,9 @@ export class IncidentsListComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe((result) => {
-      console.log(`Dialog result: ${result}`);
+      if (result) {
+        this.getIssuesList();
+      }
     });
   }
 
@@ -59,18 +71,54 @@ export class IncidentsListComponent implements OnInit {
   getIssuesList() {
     this.incidentsService.getIncidents().subscribe({
       next: (incidents) => {
-        this.dataSource.data = incidents;
-        this.totalLength = incidents.length;
-        this.dataSource.paginator = this.paginator;
+        this.getAllCompanies();
 
-        if (this.dataSource.paginator) {
-          this.dataSource.paginator.pageSize = 30;
-        }
+        this.usersService.getCompanies().subscribe({
+          next: (companies: ICompanyData) => {
+            this.companiesList = companies.data;
 
-        this.dataSource.sort = this.sort;
+            incidents.data.forEach((incident: IIssueData) => {
+              const company = this.companiesList.find(
+                (c) => c.id === incident.company_id
+              );
+              if (company) {
+                incident['company'] = company.name;
+              } else {
+                incident['company'] = 'Unknown';
+              }
+              incident['created_at'] = new Date(incident.created_at)
+                .toISOString()
+                .split('T')[0];
+            });
+
+            this.dataSource.data = incidents.data;
+            this.totalLength = incidents.count;
+            this.dataSource.paginator = this.paginator;
+
+            if (this.dataSource.paginator) {
+              this.dataSource.paginator.pageSize = this.SIZE_PAGE;
+            }
+
+            this.dataSource.sort = this.sort;
+          },
+          error: (err) => {
+            console.error(err);
+          },
+        });
       },
       error: (err) => {
-        console.error('Error al obtener los incidentes', err);
+        console.error(err);
+      },
+    });
+  }
+
+  getAllCompanies() {
+    this.usersService.getCompanies().subscribe({
+      next: (companies) => {
+        this.companiesList = companies.data;
+      },
+      error: (err) => {
+        console.error(err);
       },
     });
   }
@@ -88,22 +136,36 @@ export class IncidentsListComponent implements OnInit {
     this.dataSource.filter = JSON.stringify(this.filterValues);
   }
 
-  createFilter(): (data: IIncidentData, filter: string) => boolean {
-    return (data: IIncidentData, filter: string): boolean => {
+  createFilter(): (data: IIssueData, filter: string) => boolean {
+    return (data: IIssueData, filter: string): boolean => {
       const searchTerms = JSON.parse(filter);
+      const translatedStatus = this.translate.instant(
+        `incidents.list.issueStatus.${data.status}`
+      );
+
+      const issueDate = new Date(data.created_at).toLocaleDateString();
 
       return (
-        data.incidentId.toLowerCase().includes(searchTerms.incidentId) &&
-        data.date.toLowerCase().includes(searchTerms.date) &&
-        data.description.toLowerCase().includes(searchTerms.description) &&
-        data.company.toLowerCase().includes(searchTerms.company) &&
-        data.status.toLowerCase().includes(searchTerms.status)
+        data.id
+          .toString()
+          .toLowerCase()
+          .includes(searchTerms.id ?? '') &&
+        issueDate.includes(searchTerms.created_at ?? '') &&
+        data.description
+          ?.toLowerCase()
+          .includes(searchTerms.description ?? '') &&
+        data.company
+          .toLowerCase()
+          .includes(searchTerms.company?.toLowerCase() ?? '') &&
+        translatedStatus?.toLowerCase().includes(searchTerms.status ?? '') &&
+        data.type?.toLowerCase().includes(searchTerms.type ?? '') &&
+        data.source?.toLowerCase().includes(searchTerms.source ?? '')
       );
     };
   }
 
   clearDate() {
-    this.applyFilter('', 'date');
+    this.applyFilter('', 'created_at');
   }
 
   clearService() {
@@ -120,11 +182,11 @@ export class IncidentsListComponent implements OnInit {
 
   getStatusClass(status: string): string {
     switch (status) {
-      case 'open':
+      case 'OPEN':
         return 'status-open';
-      case 'escalated':
+      case 'SCALED':
         return 'status-escalated';
-      case 'closed':
+      case 'CLOSED':
         return 'status-closed';
       default:
         return '';

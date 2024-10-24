@@ -29,7 +29,7 @@
       "companyLabel": "Company",
       "stateLabel": "State",
       "closeBtnInput": "Close",
-      "clientIdGrid": "ID",
+      "clientIdGrid": "Client ID",
       "registerDateGrid": "Date",
       "servicesGrid": "Services",
       "companyGrid": "Company",
@@ -90,9 +90,9 @@
         "status": "State"
       },
       "issueStatus": {
-        "open": "Open",
-        "escalated": "Escalated",
-        "closed": "Closed"
+        "OPEN": "Open",
+        "SCALED": "Escalated",
+        "CLOSED": "Closed"
       }
     },
     "form": {
@@ -110,7 +110,17 @@
       "descriptionPlaceholder": "Write your description here",
       "descriptionHint": "Maximum 500 characters",
       "btnCancel": "Cancel",
-      "btnSave": "Save"
+      "btnSave": "Save",
+      "toastr": {
+        "success": {
+          "title": "Success",
+          "message": "Incident created successfully."
+        },
+        "error": {
+          "title": "Error",
+          "message": "An error occurred, please try again."
+        }
+      }
     }
   },
   "profile": {
