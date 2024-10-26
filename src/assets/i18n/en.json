@@ -61,6 +61,16 @@
         "entrepreneur": "Entrepreneur",
         "business": "Business",
         "business_plus": "Business Plus"
+      },
+      "toastr": {
+        "success": {
+          "title": "Success",
+          "message": "Client created successfully."
+        },
+        "error": {
+          "title": "Error",
+          "message": "An error occurred, please try again."
+        }
       }
     }
   },
