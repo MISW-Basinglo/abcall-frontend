@@ -13,7 +13,7 @@
     <div class="form-content">
       <mat-form-field appearance="outline">
         <mat-label>{{ "clients.form.nameCompanyLabel" | translate }}</mat-label>
-        <input matInput formControlName="company" />
+        <input matInput formControlName="company_name" />
       </mat-form-field>
 
       <mat-form-field appearance="outline">
@@ -23,7 +23,7 @@
 
       <mat-form-field appearance="outline">
         <mat-label>{{ "clients.form.responsibleLabel" | translate }}</mat-label>
-        <input matInput formControlName="responsible" />
+        <input matInput formControlName="user_name" />
       </mat-form-field>
 
       <mat-form-field appearance="outline">
@@ -53,7 +53,8 @@
       <button
         mat-raised-button
         color="primary"
-        type="submit"
+        type="button"
+        (click)="submitForm()"
         [disabled]="!clientsForm.valid"
       >
         {{ "clients.form.saveButton" | translate }}

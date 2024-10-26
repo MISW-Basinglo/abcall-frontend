@@ -7,7 +7,7 @@ import {
   ICompanyData,
   IIssueData,
 } from 'src/app/models/abcall.interfaces';
-import { IncidentsService } from '../../service/incidents.service';
+import { IncidentsService } from '../../services/incidents.service';
 import { MatDialog } from '@angular/material/dialog';
 import { IncidentsFormComponent } from '../incidents-form/incidents-form.component';
 import { UsersService } from 'src/app/components/users/services/users.service';

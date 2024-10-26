@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
-import { ClientsFormComponent } from 'src/app/components/clients/components/clients-form/clients-form.component';
-import { IncidentsService } from '../../service/incidents.service';
+import { IncidentsService } from '../../services/incidents.service';
 import { ToastrService } from 'ngx-toastr';
 import { finalize } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';

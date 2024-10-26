@@ -56,3 +56,12 @@ export interface IIssueToSave {
   user_id: string;
   source: string;
 }
+
+export interface IClientToSave {
+  company_name: string;
+  nit: string;
+  plan: 'ENTREPRENEUR' | 'BUSINESS' | 'BUSINESS_PLUS';
+  user_name: string;
+  phone: string;
+  email: string;
+}
