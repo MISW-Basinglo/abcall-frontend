@@ -1,6 +1,6 @@
 <div class="container">
   <div class="button-container">
-    <button mat-fab extended  color="primary" (click)="openFormDialog()">
+    <button mat-fab extended color="primary" (click)="openFormDialog()">
       {{ "clients.list.btnNew" | translate }}
     </button>
   </div>
@@ -132,7 +132,11 @@
       <th mat-header-cell *matHeaderCellDef mat-sort-header>
         {{ "clients.list.stateGrid" | translate }}
       </th>
-      <td mat-cell *matCellDef="let element" [ngClass]="getStatusClass(element.status)">
+      <td
+        mat-cell
+        *matCellDef="let element"
+        [ngClass]="getStatusClass(element.status)"
+      >
         {{ "clients.list.clientStatus." + element.status | translate }}
       </td>
     </ng-container>
@@ -140,7 +144,11 @@
     <ng-container matColumnDef="detalle">
       <th mat-header-cell *matHeaderCellDef></th>
       <td mat-cell *matCellDef="let element">
-        <button mat-icon-button (click)="getClientToEdit(element)">
+        <button
+          mat-icon-button
+          (click)="getClientToEdit(element)"
+          *ngIf="false"
+        >
           <mat-icon>visibility</mat-icon>
         </button>
       </td>

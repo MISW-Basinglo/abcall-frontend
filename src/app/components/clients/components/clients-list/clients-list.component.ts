@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { ClientsService } from '../../service/clients.service';
+import { ClientsService } from '../../services/clients.service';
 import { IClientData } from 'src/app/models/abcall.interfaces';
 import { MatDialog } from '@angular/material/dialog';
 import { ClientsFormComponent } from '../clients-form/clients-form.component';
@@ -50,7 +50,9 @@ export class ClientsListComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe((result) => {
-      console.log(`Dialog result: ${result}`);
+      if (result) {
+        this.getClientsList();
+      }
     });
   }
 
@@ -133,7 +135,6 @@ export class ClientsListComponent implements OnInit {
   }
 
   getClientToEdit(client: IClientData) {
-    // console.log(client);
     this.openFormDialog(client);
   }
 }

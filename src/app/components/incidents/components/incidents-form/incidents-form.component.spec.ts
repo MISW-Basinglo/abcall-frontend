@@ -1,7 +1,7 @@
 import { IncidentsFormComponent } from './incidents-form.component';
 import { FormBuilder } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
-import { IncidentsService } from '../../service/incidents.service';
+import { IncidentsService } from '../../services/incidents.service';
 import { ToastrService } from 'ngx-toastr';
 import { of, throwError } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
