@@ -1,12 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ProfileService } from '../services/profile.service';
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss'],
 })
-export class ProfileComponent {
+export class ProfileComponent implements OnInit {
   profileForm: FormGroup;
 
   plans = [
@@ -15,7 +16,7 @@ export class ProfileComponent {
     { value: 'BUSINESS_PLUS', label: 'clients.form.plans.business_plus' },
   ];
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private profileService: ProfileService) {
     this.profileForm = this.fb.group({
       company: ['', [Validators.required]],
       responsible: [
@@ -28,11 +29,20 @@ export class ProfileComponent {
       plan: ['', [Validators.required]],
     });
   }
+  ngOnInit(): void {
+    this.getProfile();
+  }
 
   onSubmit(): void {
     if (this.profileForm.valid) {
       console.log('Form data:', this.profileForm.value);
       // TODO
     }
+  }
+
+  getProfile() {
+    this.profileService.getProfile().subscribe({
+      next: (resp) => console.log(resp),
+    });
   }
 }
