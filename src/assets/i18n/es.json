@@ -71,6 +71,13 @@
           "title": "Error",
           "message": "Ha ocurrido un error, intente nuevamente."
         }
+      },
+      "errors": {
+        "required": "Este campo es obligatorio",
+        "invalidName": "El nombre no puede contener números",
+        "invalidPhone": "Formato de teléfono inválido",
+        "invalidDni": "Formato de DNI inválido",
+        "invalidEmail": "Formato de correo electrónico inválido"
       }
     }
   },

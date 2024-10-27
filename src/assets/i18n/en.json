@@ -71,6 +71,13 @@
           "title": "Error",
           "message": "An error occurred, please try again."
         }
+      },
+      "errors": {
+        "required": "This field is required",
+        "invalidName": "The name cannot contain numbers",
+        "invalidPhone": "Invalid phone format",
+        "invalidDni": "Invalid DNI format",
+        "invalidEmail": "Invalid email format"
       }
     }
   },

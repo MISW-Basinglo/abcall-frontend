@@ -62,37 +62,31 @@ export class ClientsFormComponent implements OnInit {
   submitForm() {
     const client = this.clientsForm.value;
     if (this.clientsForm.valid) {
-      this.clientsService
-        .createClient(client)
-        .pipe(
-          finalize(() => {
-            this.dialogRef.close(this.clientsForm.value);
-          })
-        )
-        .subscribe({
-          next: () => {
-            this.translate
-              .get('clients.form.toastr.success.message')
-              .subscribe((errorMessage: string) => {
-                this.translate
-                  .get('clients.form.toastr.success.title')
-                  .subscribe((errorTitle: string) => {
-                    this.toastr.success(errorMessage, errorTitle);
-                  });
-              });
-          },
-          error: () => {
-            this.translate
-              .get('clients.form.toastr.error.message')
-              .subscribe((errorMessage: string) => {
-                this.translate
-                  .get('clients.form.toastr.error.title')
-                  .subscribe((errorTitle: string) => {
-                    this.toastr.error(errorMessage, errorTitle);
-                  });
-              });
-          },
-        });
+      this.clientsService.createClient(client).subscribe({
+        next: () => {
+          this.translate
+            .get('clients.form.toastr.success.message')
+            .pipe(finalize(() => this.dialogRef.close(this.clientsForm.value)))
+            .subscribe((errorMessage: string) => {
+              this.translate
+                .get('clients.form.toastr.success.title')
+                .subscribe((errorTitle: string) => {
+                  this.toastr.success(errorMessage, errorTitle);
+                });
+            });
+        },
+        error: () => {
+          this.translate
+            .get('clients.form.toastr.error.message')
+            .subscribe((errorMessage: string) => {
+              this.translate
+                .get('clients.form.toastr.error.title')
+                .subscribe((errorTitle: string) => {
+                  this.toastr.error(errorMessage, errorTitle);
+                });
+            });
+        },
+      });
     }
   }
 

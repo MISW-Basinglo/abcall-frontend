@@ -14,26 +14,69 @@
       <mat-form-field appearance="outline">
         <mat-label>{{ "clients.form.nameCompanyLabel" | translate }}</mat-label>
         <input matInput formControlName="company_name" />
+        <mat-error
+          *ngIf="clientsForm.controls['company_name'].hasError('required')"
+        >
+          {{ "clients.form.errors.required" | translate }}
+        </mat-error>
       </mat-form-field>
 
       <mat-form-field appearance="outline">
         <mat-label>{{ "clients.form.nitLabel" | translate }}</mat-label>
         <input matInput formControlName="nit" />
+        <mat-error *ngIf="clientsForm.controls['nit'].hasError('required')">
+          {{ "clients.form.errors.required" | translate }}
+        </mat-error>
       </mat-form-field>
 
       <mat-form-field appearance="outline">
         <mat-label>{{ "clients.form.responsibleLabel" | translate }}</mat-label>
         <input matInput formControlName="user_name" />
+        <mat-error
+          *ngIf="clientsForm.controls['user_name'].hasError('required')"
+        >
+          {{ "profile.errors.required" | translate }}
+        </mat-error>
+        <mat-error
+          *ngIf="
+            !clientsForm.controls['user_name'].hasError('required') &&
+            clientsForm.controls['user_name'].hasError('pattern')
+          "
+        >
+          {{ "profile.errors.invalidName" | translate }}
+        </mat-error>
       </mat-form-field>
 
       <mat-form-field appearance="outline">
         <mat-label>{{ "clients.form.phoneLabel" | translate }}</mat-label>
         <input matInput formControlName="phone" />
+        <mat-error *ngIf="clientsForm.controls['phone'].hasError('required')">
+          {{ "profile.errors.required" | translate }}
+        </mat-error>
+        <mat-error
+          *ngIf="
+            !clientsForm.controls['phone'].hasError('required') &&
+            clientsForm.controls['phone'].hasError('pattern')
+          "
+        >
+          {{ "profile.errors.invalidPhone" | translate }}
+        </mat-error>
       </mat-form-field>
 
       <mat-form-field appearance="outline">
         <mat-label>{{ "clients.form.emailLabel" | translate }}</mat-label>
         <input matInput formControlName="email" />
+        <mat-error *ngIf="clientsForm.controls['email'].hasError('required')">
+          {{ "profile.errors.required" | translate }}
+        </mat-error>
+        <mat-error
+          *ngIf="
+            !clientsForm.controls['email'].hasError('required') &&
+            clientsForm.controls['email'].hasError('email')
+          "
+        >
+          {{ "profile.errors.invalidEmail" | translate }}
+        </mat-error>
       </mat-form-field>
 
       <mat-form-field appearance="outline">
@@ -43,6 +86,9 @@
             {{ plan.label | translate }}
           </mat-option>
         </mat-select>
+        <mat-error *ngIf="clientsForm.controls['plan'].hasError('required')">
+          {{ "profile.errors.required" | translate }}
+        </mat-error>
       </mat-form-field>
     </div>
 
