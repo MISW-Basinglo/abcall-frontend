@@ -37,3 +37,18 @@ button[disabled] {
   opacity: 0.5;
   pointer-events: none;
 }
+
+.disabled-select {
+  pointer-events: none;
+  opacity: 0.5;
+
+  .mat-select {
+    background-color: #f0f0f0;
+    cursor: not-allowed;
+  }
+
+  .mat-select-placeholder,
+  .mat-select-value {
+    color: #9e9e9e;
+  }
+}

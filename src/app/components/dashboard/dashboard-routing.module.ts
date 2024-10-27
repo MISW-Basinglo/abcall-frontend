@@ -4,7 +4,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { IncidentsListComponent } from '../incidents/components/incidents-list/incidents-list.component';
 import { UsersListComponent } from '../users/components/users-list/users-list.component';
 import { ReportComponent } from '../reports/report/report.component';
-import { ProfileComponent } from '../profile/profile/profile.component';
+import { ProfileComponent } from '../profile/component/profile.component';
 import { BdKnowledgeComponent } from '../bd-knowledge/bd-knowledge/bd-knowledge.component';
 import { ClientsListComponent } from '../clients/components/clients-list/clients-list.component';
 

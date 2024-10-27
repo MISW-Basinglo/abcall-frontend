@@ -65,3 +65,24 @@ export interface IClientToSave {
   phone: string;
   email: string;
 }
+
+export interface IProfileData {
+  count: number;
+  data: IProfileUser[];
+}
+
+export interface IProfileUser {
+  ta: string;
+  channel: string;
+  company_id: number;
+  created_at: string;
+  dni: string;
+  email: string;
+  id: number;
+  importance: number;
+  name: string;
+  phone: string;
+  role: string;
+  status: string;
+  updated_at: string;
+}

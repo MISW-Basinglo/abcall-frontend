@@ -152,6 +152,16 @@
       "invalidPhone": "Formato de teléfono inválido",
       "invalidDni": "Formato de DNI inválido",
       "invalidEmail": "Formato de correo electrónico inválido"
+    },
+    "toastr": {
+      "success": {
+        "title": "Éxito",
+        "message": "Perfil actualizado satisfactoriamente."
+      },
+      "error": {
+        "title": "Error",
+        "message": "Ha ocurrido un error, intente nuevamente."
+      }
     }
   }
 }

@@ -5,7 +5,10 @@
 
   <form [formGroup]="profileForm" (ngSubmit)="onSubmit()" class="profile-form">
     <div class="form-container">
-      <mat-form-field class="example-full-width">
+      <mat-form-field
+        class="example-full-width"
+        [ngClass]="{ 'disabled-select': isDisabled }"
+      >
         <mat-label>{{ "profile.company" | translate }} </mat-label>
         <input
           matInput
@@ -39,7 +42,10 @@
         </mat-error>
       </mat-form-field>
 
-      <mat-form-field class="example-full-width">
+      <mat-form-field
+        class="example-full-width"
+        [ngClass]="{ 'disabled-select': isDisabled }"
+      >
         <mat-label>{{ "profile.clientDni" | translate }}</mat-label>
         <input
           matInput
@@ -99,7 +105,11 @@
         </mat-error>
       </mat-form-field>
 
-      <mat-form-field appearance="fill" class="example-full-width">
+      <mat-form-field
+        appearance="fill"
+        class="example-full-width"
+        [ngClass]="{ 'disabled-select': isDisabled }"
+      >
         <mat-label>{{ "clients.form.planLabel" | translate }}</mat-label>
         <mat-select formControlName="plan">
           <mat-option *ngFor="let plan of plans" [value]="plan.value">
