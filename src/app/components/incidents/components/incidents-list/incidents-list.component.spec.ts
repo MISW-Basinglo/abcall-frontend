@@ -2,6 +2,7 @@ import { IncidentsListComponent } from './incidents-list.component';
 import { of } from 'rxjs';
 import { IIssueData } from 'src/app/models/abcall.interfaces';
 import { IncidentsFormComponent } from '../incidents-form/incidents-form.component';
+import { v } from '@faker-js/faker/dist/airline-C5Qwd7_q';
 
 describe('IncidentsListComponent', () => {
   let component: IncidentsListComponent;
@@ -9,6 +10,7 @@ describe('IncidentsListComponent', () => {
   let dialogMock: any;
   let usersServiceMock: any;
   let translateServiceMock: any;
+  let routerMock: any;
 
   beforeEach(() => {
     incidentsServiceMock = {
@@ -29,11 +31,16 @@ describe('IncidentsListComponent', () => {
       instant: jest.fn().mockReturnValue('translated status'),
     };
 
+    routerMock = {
+      navigate: jest.fn(),
+    };
+
     component = new IncidentsListComponent(
       incidentsServiceMock,
       dialogMock,
       usersServiceMock,
-      translateServiceMock
+      translateServiceMock,
+      routerMock
     );
   });
 

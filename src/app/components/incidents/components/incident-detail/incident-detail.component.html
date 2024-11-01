@@ -1,0 +1,179 @@
+<section class="main-section__content">
+  <div class="main-section_oriented">
+    <div class="label-section_content">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">
+            <a (click)="goBackToList()">{{
+              "incidents.list.detail.breadcrump.firstRoute" | translate
+            }}</a>
+          </li>
+          <li class="breadcrumb-item active" aria-current="page">
+            {{
+              "incidents.list.detail.breadcrump.secondRoute"
+                | translate : { incidentId: incidentId }
+            }}
+          </li>
+        </ol>
+      </nav>
+
+      <div class="incident-detail_title">
+        <h1>
+          {{
+            "incidents.list.detail.incidentDetail.title"
+              | translate : { incidentId: incidentId }
+          }}
+        </h1>
+      </div>
+
+      <div class="incident-information_content">
+        <div>
+          <p class="highlight-text">
+            {{ "incidents.list.detail.incidentDetail.dateLabel" | translate }}
+          </p>
+          <p>{{ incident?.created_at | date : "yyyy-MM-dd" }}</p>
+        </div>
+
+        <div>
+          <p class="highlight-text"></p>
+          <p class="highlight-text">
+            {{
+              "incidents.list.detail.incidentDetail.lastUpdateLabel" | translate
+            }}
+          </p>
+          <p>{{ incident?.updated_at | date : "yyyy-MM-dd" }}</p>
+        </div>
+
+        <div>
+          <p class="highlight-text">
+            {{
+              "incidents.list.detail.incidentDetail.descriptionLabel"
+                | translate
+            }}
+          </p>
+          <p>{{ incident?.description }}</p>
+        </div>
+
+        <div>
+          <p class="highlight-text">
+            {{ "incidents.list.detail.incidentDetail.sourceLabel" | translate }}
+          </p>
+          <p>{{ incident?.source }}</p>
+        </div>
+
+        <div class="v360-user_content">
+          <mat-form-field
+            appearance="fill"
+            class="example-full-width"
+            *ngIf="incident"
+          >
+            <mat-label>{{
+              "incidents.list.issueStatus.STATUS" | translate
+            }}</mat-label>
+            <mat-select
+              [(ngModel)]="incident.status"
+              name="status"
+              (ngModelChange)="onStatusChange()"
+            >
+              <mat-option
+                *ngFor="let status of statusList"
+                [value]="status.value"
+              >
+                {{ status.label | translate }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field
+            *ngIf="showDescription"
+            appearance="outline"
+            style="width: 500px"
+          >
+            <mat-label>{{
+              "incidents.form.descriptionLabel" | translate
+            }}</mat-label>
+            <textarea
+              matInput
+              placeholder="{{
+                'incidents.form.descriptionPlaceholder' | translate
+              }}"
+              rows="5"
+            ></textarea>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+
+    <div class="v360-user_detail">
+      <h3 class="highlight-text">
+        {{ "incidents.list.detail.userDetail.title" | translate }}
+      </h3>
+
+      <div>
+        <div>
+          <p class="highlight-text">
+            {{ "incidents.list.detail.userDetail.name" | translate }}
+          </p>
+          <p>{{ user.name }}</p>
+        </div>
+
+        <div>
+          <p class="highlight-text">
+            {{ "incidents.list.detail.userDetail.dniNit" | translate }}
+          </p>
+          <p>{{ user.nit }}</p>
+        </div>
+
+        <div>
+          <p class="highlight-text"></p>
+          <p class="highlight-text">
+            {{ "incidents.list.detail.userDetail.responsible" | translate }}
+          </p>
+          <p>{{ user.responsible_name }}</p>
+        </div>
+
+        <div>
+          <p class="highlight-text">
+            {{ "incidents.list.detail.userDetail.phone" | translate }}
+          </p>
+          <p>{{ user.responsible_phone }}</p>
+        </div>
+
+        <div>
+          <p class="highlight-text">
+            {{ "incidents.list.detail.userDetail.email" | translate }}
+          </p>
+          <p>{{ user.responsible_email }}</p>
+        </div>
+
+        <div>
+          <p class="highlight-text">
+            {{
+              "incidents.list.detail.userDetail.productsAndServices" | translate
+            }}
+          </p>
+          <p>
+            {{ "incidents.list.detail.userDetail.allProducts" | translate }}
+          </p>
+        </div>
+
+        <div>
+          <p class="highlight-text">
+            {{ "incidents.list.detail.userDetail.importanceLevel" | translate }}
+          </p>
+          <p>{{ userImportance }}</p>
+        </div>
+      </div>
+
+      <button
+        mat-fab
+        extended
+        color="primary"
+        (click)="openHistoryDialog()"
+        id="btn_history_calls"
+      >
+        {{ "incidents.list.detail.userDetail.btnCallsHistory" | translate }}
+      </button>
+    </div>
+  </div>
+</section>

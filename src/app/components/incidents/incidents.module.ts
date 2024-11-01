@@ -7,9 +7,16 @@ import { IncidentsFormComponent } from './components/incidents-form/incidents-fo
 import { SharedModule } from 'src/app/utils/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
+import { IncidentDetailComponent } from './components/incident-detail/incident-detail.component';
+import { HistoryDialogComponent } from './components/history-dialog/history-dialog.component';
 
 @NgModule({
-  declarations: [IncidentsListComponent, IncidentsFormComponent],
+  declarations: [
+    IncidentsListComponent,
+    IncidentsFormComponent,
+    IncidentDetailComponent,
+    HistoryDialogComponent,
+  ],
   imports: [
     CommonModule,
     IncidentsRoutingModule,

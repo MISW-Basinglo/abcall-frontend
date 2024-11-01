@@ -86,3 +86,16 @@ export interface IProfileUser {
   status: string;
   updated_at: string;
 }
+
+export interface IPhoneHistory {
+  company_id: number;
+  created_at: string;
+  description: string;
+  id: number;
+  solution: string;
+  source: string;
+  status: string;
+  type: string;
+  updated_at: string;
+  user_id: number;
+}
