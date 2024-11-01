@@ -12,6 +12,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { IncidentsFormComponent } from '../incidents-form/incidents-form.component';
 import { UsersService } from 'src/app/components/users/services/users.service';
 import { TranslateService } from '@ngx-translate/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-incidents-list',
@@ -48,7 +49,8 @@ export class IncidentsListComponent implements OnInit {
     private incidentsService: IncidentsService,
     private dialog: MatDialog,
     private usersService: UsersService,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private router: Router
   ) {}
 
   openFormDialog() {
@@ -191,5 +193,11 @@ export class IncidentsListComponent implements OnInit {
       default:
         return '';
     }
+  }
+
+  navigateToIncidentDetail(incident: IIssueData) {
+    this.router.navigate(['dashboard', 'incidents', 'detail', incident.id], {
+      state: { incident },
+    });
   }
 }

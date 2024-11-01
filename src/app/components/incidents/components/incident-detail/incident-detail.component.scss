@@ -1,0 +1,73 @@
+.breadcrumb {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.breadcrumb-item {
+  margin-right: 0.5rem;
+}
+
+.breadcrumb-item::after {
+  content: "/";
+  margin-left: 0.5rem;
+  color: #6c757d;
+}
+
+.breadcrumb-item:last-child::after {
+  content: "";
+}
+
+.breadcrumb-item a {
+  text-decoration: none;
+  color: #007bff;
+  cursor: pointer;
+}
+
+.breadcrumb-item a:hover {
+  text-decoration: underline;
+}
+
+.breadcrumb-item.active {
+  color: #6c757d;
+  pointer-events: none;
+}
+
+.main-section__content {
+  margin: 50px;
+}
+
+.main-section_oriented {
+  display: flex;
+  flex-direction: row;
+}
+
+.incident-detail_title {
+  margin-bottom: 50px;
+  margin-top: 40px;
+}
+
+.highlight-text {
+  font-weight: bold;
+}
+
+.v360-user_content {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  width: 230;
+}
+
+.v360-user_detail {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin-left: 400px;
+  margin-top: 60px;
+}
+
+#btn_history_calls {
+  margin-top: 25px;
+}

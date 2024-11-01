@@ -20,4 +20,14 @@ export class UsersService {
       headers,
     });
   }
+
+  getCompanyById(id: number): Observable<any> {
+    const token = localStorage.getItem('access_token');
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+    });
+    return this.http.get<any>(`${this.apiUrl}/company/${id}`, {
+      headers,
+    });
+  }
 }

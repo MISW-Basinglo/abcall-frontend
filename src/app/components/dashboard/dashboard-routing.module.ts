@@ -7,6 +7,7 @@ import { ReportComponent } from '../reports/report/report.component';
 import { ProfileComponent } from '../profile/component/profile.component';
 import { BdKnowledgeComponent } from '../bd-knowledge/bd-knowledge/bd-knowledge.component';
 import { ClientsListComponent } from '../clients/components/clients-list/clients-list.component';
+import { IncidentDetailComponent } from '../incidents/components/incident-detail/incident-detail.component';
 
 const routes: Routes = [
   {
@@ -14,6 +15,7 @@ const routes: Routes = [
     component: DashboardComponent,
     children: [
       { path: 'incidents', component: IncidentsListComponent },
+      { path: 'incidents/detail/:id', component: IncidentDetailComponent },
       { path: 'users', component: UsersListComponent },
       { path: 'reports', component: ReportComponent },
       { path: 'profile', component: ProfileComponent },

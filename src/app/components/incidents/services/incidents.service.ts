@@ -32,4 +32,30 @@ export class IncidentsService {
       headers,
     });
   }
+
+  getIssueById(id: number): Observable<any> {
+    const token = localStorage.getItem('access_token');
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    });
+
+    return this.http.get<any>(`${this.apiUrl}/issues_management/${id}`, {
+      headers,
+    });
+  }
+
+  getListOfCalls(userId: number): Observable<any> {
+    const token = localStorage.getItem('access_token');
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    });
+    return this.http.get<any>(
+      `${this.apiUrl}/issues_management/call/${userId}`,
+      {
+        headers,
+      }
+    );
+  }
 }

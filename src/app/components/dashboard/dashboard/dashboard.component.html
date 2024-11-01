@@ -16,6 +16,7 @@
         class="custom-nav-item"
         [ngClass]="{ active: selectedTab === 'incidents' }"
         (click)="selectTab('incidents')"
+        data-cy="nav-incidents"
       >
         <div class="custom-nav-item-content">
           <mat-icon class="nav-icon">assignment</mat-icon>

@@ -109,7 +109,37 @@
       "issueStatus": {
         "OPEN": "Open",
         "SCALED": "Escalated",
-        "CLOSED": "Closed"
+        "CLOSED": "Closed",
+        "STATUS": "State"
+      },
+      "detail": {
+        "breadcrump": {
+          "firstRoute": "Incidents",
+          "secondRoute": "Incident Detail {{ incidentId }}"
+        },
+        "incidentDetail": {
+          "title": "Incident {{ incidentId }}",
+          "dateLabel": "Registration Date",
+          "lastUpdateLabel": "Last Update",
+          "descriptionLabel": "Description",
+          "sourceLabel": "Source"
+        },
+        "userDetail": {
+          "title": "USER 360 VIEW",
+          "name": "Name",
+          "dniNit": "DNI/NIT",
+          "responsible": "Responsible",
+          "phone": "Phone",
+          "email": "Email",
+          "productsAndServices": "Contracted Products and Services",
+          "allProducts": "All",
+          "importanceLevel": "Importance Level",
+          "btnCallsHistory": "Calls History"
+        },
+        "historyCallsGrid": {
+          "title": "Calls History",
+          "btn-close": "Close"
+        }
       }
     },
     "form": {

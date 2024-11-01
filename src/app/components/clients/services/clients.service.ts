@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { IClientData, IClientToSave } from 'src/app/models/abcall.interfaces';
@@ -28,5 +28,16 @@ export class ClientsService {
     return this.http.post<IClientToSave>(`${this.apiUrl}/user`, client, {
       headers,
     });
+  }
+
+  getUser(id: number): Observable<any> {
+    const token = localStorage.getItem('access_token');
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    });
+
+    const params = new HttpParams().set('id', id.toString());
+    return this.http.get(`${this.apiUrl}/user`, { params, headers });
   }
 }
