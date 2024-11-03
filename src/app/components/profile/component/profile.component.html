@@ -26,6 +26,7 @@
           matInput
           formControlName="responsible"
           placeholder="{{ 'profile.responsibleEx' | translate }}"
+          data-cy="input-responsible"
         />
         <mat-error
           *ngIf="profileForm.controls['responsible'].hasError('required')"
@@ -71,6 +72,7 @@
           matInput
           formControlName="phone"
           placeholder="{{ 'profile.phoneNumberEx' | translate }}"
+          data-cy="input-phone"
         />
         <mat-error *ngIf="profileForm.controls['phone'].hasError('required')">
           {{ "profile.errors.required" | translate }}
@@ -91,6 +93,7 @@
           matInput
           formControlName="email"
           placeholder="{{ 'profile.emailEx' | translate }}"
+          data-cy="input-email"
         />
         <mat-error *ngIf="profileForm.controls['email'].hasError('required')">
           {{ "profile.errors.required" | translate }}
@@ -123,7 +126,13 @@
     </div>
 
     <div class="button-container">
-      <button mat-fab extended color="primary" [disabled]="profileForm.invalid">
+      <button
+        mat-fab
+        extended
+        color="primary"
+        [disabled]="profileForm.invalid"
+        data-cy="btn-update-profile"
+      >
         {{ "profile.btnUpdate" | translate }}
       </button>
     </div>

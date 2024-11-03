@@ -54,6 +54,7 @@
         class="custom-nav-item"
         [ngClass]="{ active: selectedTab === 'profile' }"
         (click)="selectTab('profile')"
+        data-cy="nav-profile"
       >
         <div class="custom-nav-item-content">
           <mat-icon class="nav-icon">account_circle</mat-icon>
@@ -79,6 +80,7 @@
         class="custom-nav-item"
         [ngClass]="{ active: selectedTab === 'clients' }"
         (click)="selectTab('clients')"
+        data-cy="nav-clients"
       >
         <div class="custom-nav-item-content">
           <span class="material-symbols-outlined nav-icon">handshake</span>

@@ -1,6 +1,7 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "types": ["jest", "cypress"],
     "esModuleInterop": true,
     "allowJs": true,
     "skipLibCheck": true,
@@ -23,7 +24,7 @@
     "useDefineForClassFields": false,
     "lib": ["ES2022", "dom"]
   },
-  "include": ["src/**/*.ts"],
+  "include": ["src/**/*.ts", "cypress/**/*.ts", "cypress/support/cypress.d.ts"],
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,

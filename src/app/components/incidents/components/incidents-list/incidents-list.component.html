@@ -9,7 +9,13 @@
     >
       {{ "incidents.list.btnDownloadReport" | translate }}
     </button>
-    <button mat-fab extended color="primary" (click)="openFormDialog()">
+    <button
+      mat-fab
+      extended
+      color="primary"
+      (click)="openFormDialog()"
+      data-cy="btn-new-incident"
+    >
       {{ "incidents.list.btnNew" | translate }}
     </button>
   </div>
