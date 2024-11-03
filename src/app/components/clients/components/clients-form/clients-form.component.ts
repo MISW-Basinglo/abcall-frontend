@@ -6,6 +6,7 @@ import { ClientsService } from '../../services/clients.service';
 import { ToastrService } from 'ngx-toastr';
 import { TranslateService } from '@ngx-translate/core';
 import { finalize } from 'rxjs';
+import { UsersService } from 'src/app/components/users/services/users.service';
 
 @Component({
   selector: 'app-clients-form',
@@ -24,9 +25,10 @@ export class ClientsFormComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private dialogRef: MatDialogRef<ClientsFormComponent>,
-    @Inject(MAT_DIALOG_DATA) public clientData: IClientData,
+    @Inject(MAT_DIALOG_DATA) public clientData: IClientData | null,
     private clientsService: ClientsService,
     private toastr: ToastrService,
+    private usersService: UsersService,
     private translate: TranslateService
   ) {
     this.clientsForm = this.fb.group({
@@ -45,11 +47,11 @@ export class ClientsFormComponent implements OnInit {
   ngOnInit(): void {
     if (this.clientData) {
       this.clientsForm.patchValue({
-        company_name: this.clientData.company,
+        company_name: this.clientData.name,
         nit: this.clientData.nit,
-        user_name: this.clientData.responsible,
-        phone: this.clientData.phone,
-        email: this.clientData.email,
+        user_name: this.clientData.responsible_name,
+        phone: this.clientData.responsible_phone,
+        email: this.clientData.responsible_email,
         plan: this.clientData.plan,
       });
     }
@@ -61,36 +63,77 @@ export class ClientsFormComponent implements OnInit {
 
   submitForm() {
     const client = this.clientsForm.value;
-    if (this.clientsForm.valid) {
-      this.clientsService.createClient(client).subscribe({
-        next: () => {
-          this.translate
-            .get('clients.form.toastr.success.message')
-            .pipe(finalize(() => this.dialogRef.close(this.clientsForm.value)))
-            .subscribe((errorMessage: string) => {
+    if (this.isEmptyObject(this.clientData)) {
+      if (this.clientsForm.valid) {
+        this.clientsService.createClient(client).subscribe({
+          next: () => {
+            this.translate
+              .get('clients.form.toastr.success.message')
+              .pipe(
+                finalize(() => this.dialogRef.close(this.clientsForm.value))
+              )
+              .subscribe((errorMessage: string) => {
+                this.translate
+                  .get('clients.form.toastr.success.title')
+                  .subscribe((errorTitle: string) => {
+                    this.toastr.success(errorMessage, errorTitle);
+                  });
+              });
+          },
+          error: () => {
+            this.translate
+              .get('clients.form.toastr.error.message')
+              .subscribe((errorMessage: string) => {
+                this.translate
+                  .get('clients.form.toastr.error.title')
+                  .subscribe((errorTitle: string) => {
+                    this.toastr.error(errorMessage, errorTitle);
+                  });
+              });
+          },
+        });
+      }
+    } else {
+      if (this.clientsForm.valid) {
+        const companyToSave = {
+          plan: client.plan,
+        };
+
+        this.usersService
+          .updateCompany(this.clientData!.id, companyToSave)
+          .subscribe({
+            next: () => {
               this.translate
-                .get('clients.form.toastr.success.title')
-                .subscribe((errorTitle: string) => {
-                  this.toastr.success(errorMessage, errorTitle);
+                .get('clients.form.toastr.success.editionMessage')
+                .pipe(
+                  finalize(() => this.dialogRef.close(this.clientsForm.value))
+                )
+                .subscribe((errorMessage: string) => {
+                  this.translate
+                    .get('clients.form.toastr.success.editionTitle')
+                    .subscribe((errorTitle: string) => {
+                      this.toastr.success(errorMessage, errorTitle);
+                    });
                 });
-            });
-        },
-        error: () => {
-          this.translate
-            .get('clients.form.toastr.error.message')
-            .subscribe((errorMessage: string) => {
+            },
+
+            error: () => {
               this.translate
-                .get('clients.form.toastr.error.title')
-                .subscribe((errorTitle: string) => {
-                  this.toastr.error(errorMessage, errorTitle);
+                .get('clients.form.toastr.error.message')
+                .subscribe((errorMessage: string) => {
+                  this.translate
+                    .get('clients.form.toastr.error.title')
+                    .subscribe((errorTitle: string) => {
+                      this.toastr.error(errorMessage, errorTitle);
+                    });
                 });
-            });
-        },
-      });
+            },
+          });
+      }
     }
   }
 
-  isEmptyObject = (obj: object): boolean => {
-    return Object.keys(obj).length === 0;
+  isEmptyObject = (obj: object | null | undefined): boolean => {
+    return !obj || Object.keys(obj).length === 0;
   };
 }

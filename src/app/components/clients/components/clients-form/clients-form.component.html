@@ -11,9 +11,16 @@
     class="form-container"
   >
     <div class="form-content">
-      <mat-form-field appearance="outline">
+      <mat-form-field
+        appearance="outline"
+        [ngClass]="{ 'readonly-field': !isEmptyObject(clientData) }"
+      >
         <mat-label>{{ "clients.form.nameCompanyLabel" | translate }}</mat-label>
-        <input matInput formControlName="company_name" />
+        <input
+          matInput
+          formControlName="company_name"
+          [readonly]="!isEmptyObject(clientData)"
+        />
         <mat-error
           *ngIf="clientsForm.controls['company_name'].hasError('required')"
         >
@@ -21,17 +28,31 @@
         </mat-error>
       </mat-form-field>
 
-      <mat-form-field appearance="outline">
+      <mat-form-field
+        appearance="outline"
+        [ngClass]="{ 'readonly-field': !isEmptyObject(clientData) }"
+      >
         <mat-label>{{ "clients.form.nitLabel" | translate }}</mat-label>
-        <input matInput formControlName="nit" />
+        <input
+          matInput
+          formControlName="nit"
+          [readonly]="!isEmptyObject(clientData)"
+        />
         <mat-error *ngIf="clientsForm.controls['nit'].hasError('required')">
           {{ "clients.form.errors.required" | translate }}
         </mat-error>
       </mat-form-field>
 
-      <mat-form-field appearance="outline">
+      <mat-form-field
+        appearance="outline"
+        [ngClass]="{ 'readonly-field': !isEmptyObject(clientData) }"
+      >
         <mat-label>{{ "clients.form.responsibleLabel" | translate }}</mat-label>
-        <input matInput formControlName="user_name" />
+        <input
+          matInput
+          formControlName="user_name"
+          [readonly]="!isEmptyObject(clientData)"
+        />
         <mat-error
           *ngIf="clientsForm.controls['user_name'].hasError('required')"
         >
@@ -47,9 +68,16 @@
         </mat-error>
       </mat-form-field>
 
-      <mat-form-field appearance="outline">
+      <mat-form-field
+        appearance="outline"
+        [ngClass]="{ 'readonly-field': !isEmptyObject(clientData) }"
+      >
         <mat-label>{{ "clients.form.phoneLabel" | translate }}</mat-label>
-        <input matInput formControlName="phone" />
+        <input
+          matInput
+          formControlName="phone"
+          [readonly]="!isEmptyObject(clientData)"
+        />
         <mat-error *ngIf="clientsForm.controls['phone'].hasError('required')">
           {{ "profile.errors.required" | translate }}
         </mat-error>
@@ -63,9 +91,16 @@
         </mat-error>
       </mat-form-field>
 
-      <mat-form-field appearance="outline">
+      <mat-form-field
+        appearance="outline"
+        [ngClass]="{ 'readonly-field': !isEmptyObject(clientData) }"
+      >
         <mat-label>{{ "clients.form.emailLabel" | translate }}</mat-label>
-        <input matInput formControlName="email" />
+        <input
+          matInput
+          formControlName="email"
+          [readonly]="!isEmptyObject(clientData)"
+        />
         <mat-error *ngIf="clientsForm.controls['email'].hasError('required')">
           {{ "profile.errors.required" | translate }}
         </mat-error>
@@ -93,7 +128,12 @@
     </div>
 
     <div mat-dialog-actions class="client-btn-content">
-      <button mat-button (click)="closeDialog()" class="cancel-button">
+      <button
+        mat-button
+        type="button"
+        (click)="closeDialog()"
+        class="cancel-button"
+      >
         {{ "clients.form.cancelButton" | translate }}
       </button>
       <button

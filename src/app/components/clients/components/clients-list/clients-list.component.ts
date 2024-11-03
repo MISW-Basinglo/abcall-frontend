@@ -2,10 +2,10 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { ClientsService } from '../../services/clients.service';
 import { IClientData } from 'src/app/models/abcall.interfaces';
 import { MatDialog } from '@angular/material/dialog';
 import { ClientsFormComponent } from '../clients-form/clients-form.component';
+import { UsersService } from 'src/app/components/users/services/users.service';
 
 @Component({
   selector: 'app-clients-list',
@@ -14,22 +14,23 @@ import { ClientsFormComponent } from '../clients-form/clients-form.component';
 })
 export class ClientsListComponent implements OnInit {
   displayedColumns: string[] = [
-    'clientId',
-    'date',
+    'id',
+    'created_at',
     'services',
-    'company',
+    'name',
     'status',
     'detalle',
   ];
 
   dataSource = new MatTableDataSource<IClientData>([]);
   totalLength = 0;
+  companiesList = [];
 
   filterValues: any = {
-    clientId: '',
-    date: '',
+    id: '',
+    created_at: '',
     services: '',
-    company: '',
+    name: '',
     status: '',
   };
 
@@ -38,10 +39,7 @@ export class ClientsListComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(
-    private clientService: ClientsService,
-    private dialog: MatDialog
-  ) {}
+  constructor(private dialog: MatDialog, private usersService: UsersService) {}
 
   openFormDialog(client?: IClientData) {
     const dialogRef = this.dialog.open(ClientsFormComponent, {
@@ -51,33 +49,14 @@ export class ClientsListComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.getClientsList();
+        this.getCompaniesClients();
       }
     });
   }
 
   ngOnInit() {
-    this.getClientsList();
     this.dataSource.filterPredicate = this.createFilter();
-  }
-
-  getClientsList() {
-    this.clientService.getClients().subscribe({
-      next: (clients) => {
-        this.dataSource.data = clients;
-        this.totalLength = clients.length;
-        this.dataSource.paginator = this.paginator;
-
-        if (this.dataSource.paginator) {
-          this.dataSource.paginator.pageSize = 30;
-        }
-
-        this.dataSource.sort = this.sort;
-      },
-      error: (err) => {
-        console.error('Error al obtener los clientes', err);
-      },
-    });
+    this.getCompaniesClients();
   }
 
   applyFilter(event: Event | string, field: string) {
@@ -98,17 +77,17 @@ export class ClientsListComponent implements OnInit {
       const searchTerms = JSON.parse(filter);
 
       return (
-        data.clientId.toLowerCase().includes(searchTerms.clientId) &&
-        data.date.toLowerCase().includes(searchTerms.date) &&
+        data.id.toLowerCase().includes(searchTerms.id) &&
+        data.created_at.toLowerCase().includes(searchTerms.created_at) &&
         data.services.toLowerCase().includes(searchTerms.services) &&
-        data.company.toLowerCase().includes(searchTerms.company) &&
+        data.name.toLowerCase().includes(searchTerms.name) &&
         data.status.toLowerCase().includes(searchTerms.status)
       );
     };
   }
 
   clearDate() {
-    this.applyFilter('', 'date');
+    this.applyFilter('', 'created_at');
   }
 
   clearService() {
@@ -116,7 +95,7 @@ export class ClientsListComponent implements OnInit {
   }
 
   clearCompany() {
-    this.applyFilter('', 'company');
+    this.applyFilter('', 'name');
   }
 
   clearStatus() {
@@ -125,9 +104,9 @@ export class ClientsListComponent implements OnInit {
 
   getStatusClass(status: string) {
     switch (status) {
-      case 'active':
+      case 'ACTIVE':
         return 'status-active';
-      case 'inactive':
+      case 'INACTIVE':
         return 'status-inactive';
       default:
         return '';
@@ -136,5 +115,46 @@ export class ClientsListComponent implements OnInit {
 
   getClientToEdit(client: IClientData) {
     this.openFormDialog(client);
+  }
+
+  getCompaniesClients() {
+    this.usersService.getCompanies().subscribe({
+      next: (companies) => {
+        this.companiesList = companies.data;
+        this.companiesList.forEach((item: any) => {
+          item.services = 'ALL';
+
+          this.getCompanyDetail(item.id).then((companyDetail) => {
+            item.responsible_dni = companyDetail.responsible_dni;
+            item.responsible_email = companyDetail.responsible_email;
+            item.responsible_name = companyDetail.responsible_name;
+            item.responsible_phone = companyDetail.responsible_phone;
+          });
+        });
+        this.dataSource.data = this.companiesList;
+        this.totalLength = this.companiesList.length;
+        this.dataSource.paginator = this.paginator;
+
+        if (this.dataSource.paginator) {
+          this.dataSource.paginator.pageSize = 30;
+        }
+
+        this.dataSource.sort = this.sort;
+      },
+    });
+  }
+
+  async getCompanyDetail(companyId: number): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.usersService.getCompanyById(companyId).subscribe({
+        next: (company) => {
+          resolve(company.data);
+        },
+        error: (err) => {
+          console.error(err);
+          reject(err);
+        },
+      });
+    });
   }
 }

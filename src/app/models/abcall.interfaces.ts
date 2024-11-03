@@ -1,15 +1,16 @@
 export interface IClientData {
+  created_at: string;
   id: string;
-  clientId: string;
-  date: string;
-  services: string;
-  company: string;
-  status: string;
+  name: string;
   nit?: string;
-  responsible?: string;
-  phone?: string;
-  email?: string;
   plan?: string;
+  responsible_dni?: string;
+  responsible_email?: string;
+  responsible_name?: string;
+  responsible_phone?: string;
+  services: string;
+  status: string;
+  updated_at: string;
 }
 
 export interface IIncidentData {

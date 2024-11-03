@@ -4,23 +4,24 @@ import { IClientData, IIncidentData } from '../models/abcall.interfaces';
 export const generateClients = (): IClientData[] => {
   const clients: IClientData[] = [];
 
-  for (let i = 0; i < 100; i++) {
+  for (let i = 0; i < 10; i++) {
     const client: IClientData = {
       id: faker.string.uuid(),
-      clientId: faker.string.alphanumeric(12),
-      date: faker.date.past().toISOString().split('T')[0],
-      services: faker.commerce.productName(),
-      company: faker.company.name(),
-      status: faker.helpers.arrayElement(['active', 'inactive']),
+      created_at: faker.date.past().toISOString().split('T')[0],
+      updated_at: faker.date.recent().toISOString().split('T')[0],
+      name: faker.company.name(),
       nit: faker.string.alphanumeric(10),
-      responsible: faker.name.fullName(),
-      phone: faker.phone.number(),
-      email: faker.internet.email(),
       plan: faker.helpers.arrayElement([
         'ENTREPRENEUR',
         'BUSINESS',
         'BUSINESS_PLUS',
       ]),
+      responsible_dni: faker.phone.number(),
+      responsible_email: faker.internet.email(),
+      responsible_name: faker.name.fullName(),
+      responsible_phone: faker.phone.number(),
+      services: faker.commerce.productName(),
+      status: faker.helpers.arrayElement(['ACTIVE', 'INACTIVE']),
     };
 
     clients.push(client);
@@ -32,7 +33,7 @@ export const generateClients = (): IClientData[] => {
 export const generateIncidents = (): IIncidentData[] => {
   const incidents: IIncidentData[] = [];
 
-  for (let i = 0; i < 100; i++) {
+  for (let i = 0; i < 10; i++) {
     const incident: IIncidentData = {
       id: faker.string.uuid(),
       incidentId: faker.string.alphanumeric(12),

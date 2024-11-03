@@ -30,4 +30,15 @@ export class UsersService {
       headers,
     });
   }
+
+  updateCompany(id: string, company: any): Observable<any> {
+    const token = localStorage.getItem('access_token');
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+    });
+
+    return this.http.patch<any>(`${this.apiUrl}/company/${id}`, company, {
+      headers,
+    });
+  }
 }
