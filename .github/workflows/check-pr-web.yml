@@ -68,42 +68,43 @@ jobs:
       - name: Push Docker image to Artifact Registry
         run: docker push us-central1-docker.pkg.dev/basingo-abcall/basinglo-abcall-misw/abcall-front:latest
 
-  # deployment-k8s:
-  #   runs-on: ubuntu-latest
-  #   needs: [build-and-test]
-  #   steps:
-        # 1. Chequear el código desde el repositorio
-        # - name: Checkout code
-        #   uses: actions/checkout@v4
-  #     - name: Set up Google Cloud SDK
-  #       uses: google-github-actions/setup-gcloud@v1
-  #       with:
-  #         project_id: 'basingo-abcall'
-  #         service_account_key: ${{ secrets.GCP_SERVICE_ACCOUNT_KEY }}
+  deployment-k8s:
+    runs-on: ubuntu-latest
+    needs: [build-and-test]
+    steps:
+      #1. Chequear el código desde el repositorio
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-  #     # Autenticar con Google Cloud usando la cuenta de servicio
-  #     - name: Authenticate to GCP
-  #       uses: google-github-actions/auth@v1
-  #       with:
-  #         credentials_json: ${{ secrets.GCP_SERVICE_ACCOUNT_KEY }}
+      - name: Set up Google Cloud SDK
+        uses: google-github-actions/setup-gcloud@v1
+        with:
+          project_id: 'basingo-abcall'
+          service_account_key: ${{ secrets.GCP_SERVICE_ACCOUNT_KEY }}
 
-  #     # Authenticate to Google Cloud
-  #     - name: Configure Docker
-  #       run: |
-  #         gcloud auth configure-docker us-central1-docker.pkg.dev
+      # Autenticar con Google Cloud usando la cuenta de servicio
+      - name: Authenticate to GCP
+        uses: google-github-actions/auth@v1
+        with:
+          credentials_json: ${{ secrets.GCP_SERVICE_ACCOUNT_KEY }}
 
-  #     # Install gke-gcloud-auth-plugin
-  #     - name: Install gke-gcloud-auth-plugin
-  #       run: |
-  #         gcloud components install gke-gcloud-auth-plugin
+      # Authenticate to Google Cloud
+      - name: Configure Docker
+        run: |
+          gcloud auth configure-docker us-central1-docker.pkg.dev
 
-  #     # Configure kubectl
-  #     - name: Set up kubectl
-  #       run: |
-  #         gcloud config set project basingo-abcall
-  #         gcloud container clusters get-credentials basinglo-abcall-k8s --zone us-central1
+      # Install gke-gcloud-auth-plugin
+      - name: Install gke-gcloud-auth-plugin
+        run: |
+          gcloud components install gke-gcloud-auth-plugin
 
-  #     # Aplicar el archivo de configuración de Kubernetes
-  #     - name: Apply Kubernetes configuration
-  #       run: |
-  #         kubectl apply -f deployment/
+      # Configure kubectl
+      - name: Set up kubectl
+        run: |
+          gcloud config set project basingo-abcall
+          gcloud container clusters get-credentials basinglo-abcall-k8s --zone us-central1
+
+      # Aplicar el archivo de configuración de Kubernetes
+      - name: Apply Kubernetes configuration
+        run: |
+          kubectl apply -f deployment/
