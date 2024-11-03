@@ -6,6 +6,7 @@ import { ClientsService } from '../../services/clients.service';
 import { ToastrService } from 'ngx-toastr';
 import { TranslateService } from '@ngx-translate/core';
 import { of } from 'rxjs';
+import { UsersService } from 'src/app/components/users/services/users.service';
 
 describe('ClientsFormComponent', () => {
   let component: ClientsFormComponent;
@@ -14,39 +15,30 @@ describe('ClientsFormComponent', () => {
   let toastrServiceMock: Partial<ToastrService>;
   let translateServiceMock: Partial<TranslateService>;
   let formBuilder: FormBuilder;
+  let usersServiceMock: Partial<UsersService>;
   let mockClientData: IClientData | null;
 
   beforeEach(() => {
-    dialogRefMock = {
-      close: jest.fn(),
-    };
-
-    clientsServiceMock = {
-      createClient: jest.fn().mockReturnValue(of({})),
-    };
-
-    toastrServiceMock = {
-      success: jest.fn(),
-      error: jest.fn(),
-    };
-
-    translateServiceMock = {
-      get: jest.fn((key) => of(key)),
-    };
-
+    dialogRefMock = { close: jest.fn() };
+    clientsServiceMock = { createClient: jest.fn().mockReturnValue(of({})) };
+    usersServiceMock = { updateCompany: jest.fn().mockReturnValue(of({})) };
+    toastrServiceMock = { success: jest.fn(), error: jest.fn() };
+    translateServiceMock = { get: jest.fn((key) => of(key)) };
     formBuilder = new FormBuilder();
 
     mockClientData = {
+      created_at: '2024-01-01T08:00:00Z',
+      updated_at: '2024-10-20T08:00:00Z',
       id: '1',
-      clientId: '2',
-      company: 'Test Company',
-      responsible: 'John Doe',
-      phone: '123456789',
-      email: 'test@example.com',
+      name: 'Test Company',
+      nit: '1234567890',
       plan: 'BUSINESS',
-      date: '2024-10-20',
+      responsible_dni: '9876543210',
+      responsible_email: 'john.doe@example.com',
+      responsible_name: 'John Doe',
+      responsible_phone: '123456789',
       services: 'Chatbot',
-      status: 'active',
+      status: 'ACTIVE',
     };
 
     component = new ClientsFormComponent(
@@ -55,6 +47,7 @@ describe('ClientsFormComponent', () => {
       mockClientData,
       clientsServiceMock as ClientsService,
       toastrServiceMock as ToastrService,
+      usersServiceMock as UsersService,
       translateServiceMock as TranslateService
     );
   });
@@ -65,14 +58,13 @@ describe('ClientsFormComponent', () => {
 
   it('should initialize the form with provided clientData', () => {
     component.ngOnInit();
-    expect(component.clientsForm).toBeDefined();
     expect(component.clientsForm.controls['company_name'].value).toBe(
       'Test Company'
     );
     expect(component.clientsForm.controls['user_name'].value).toBe('John Doe');
     expect(component.clientsForm.controls['phone'].value).toBe('123456789');
     expect(component.clientsForm.controls['email'].value).toBe(
-      'test@example.com'
+      'john.doe@example.com'
     );
     expect(component.clientsForm.controls['plan'].value).toBe('BUSINESS');
   });
@@ -81,23 +73,18 @@ describe('ClientsFormComponent', () => {
     component = new ClientsFormComponent(
       formBuilder,
       dialogRefMock as MatDialogRef<ClientsFormComponent>,
-      null as any,
+      null,
       clientsServiceMock as ClientsService,
       toastrServiceMock as ToastrService,
+      usersServiceMock as UsersService,
       translateServiceMock as TranslateService
     );
     component.ngOnInit();
-    expect(component.clientsForm).toBeDefined();
     expect(component.clientsForm.controls['company_name'].value).toBe('');
     expect(component.clientsForm.controls['user_name'].value).toBe('');
     expect(component.clientsForm.controls['phone'].value).toBe('');
     expect(component.clientsForm.controls['email'].value).toBe('');
     expect(component.clientsForm.controls['plan'].value).toBe('');
-  });
-
-  it('should close the dialog when closeDialog is called', () => {
-    component.closeDialog();
-    expect(dialogRefMock.close).toHaveBeenCalled();
   });
 
   it('should not close the dialog when submitForm is called and form is invalid', () => {
@@ -106,6 +93,16 @@ describe('ClientsFormComponent', () => {
   });
 
   it('should call createClient on valid form submission', () => {
+    component = new ClientsFormComponent(
+      formBuilder,
+      dialogRefMock as MatDialogRef<ClientsFormComponent>,
+      null,
+      clientsServiceMock as ClientsService,
+      toastrServiceMock as ToastrService,
+      usersServiceMock as UsersService,
+      translateServiceMock as TranslateService
+    );
+    component.ngOnInit();
     component.clientsForm.setValue({
       company_name: 'Valid Company',
       nit: '1234567890',

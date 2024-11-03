@@ -25,7 +25,7 @@ export class IncidentDetailComponent implements OnInit {
   userId: number = -1;
   userImportance: number = -1;
   listOfCalls: IPhoneHistory[] = [];
-  DEFINITION = '980px'
+  DEFINITION = '1080px';
 
   showDescription = false;
 
@@ -60,8 +60,6 @@ export class IncidentDetailComponent implements OnInit {
       next: (issue: any) => {
         this.incident = issue.data;
         this.userId = this.incident.user_id;
-        console.log(this.incident);
-        console.log(this.userId);
 
         if (this.incident.company_id) {
           this.getUserDetail(this.incident.company_id);
@@ -82,10 +80,8 @@ export class IncidentDetailComponent implements OnInit {
   getUserDetail(id: number) {
     this.usersService.getCompanyById(id).subscribe({
       next: (company: any) => {
-        console.log(company);
         this.user = company.data;
         this.cdr.detectChanges();
-        console.log(this.user);
       },
       error: (err) => {
         console.error(err);
@@ -107,7 +103,6 @@ export class IncidentDetailComponent implements OnInit {
     this.incidentsService.getListOfCalls(userId).subscribe({
       next: (listOfCalls) => {
         this.listOfCalls = listOfCalls.data;
-        console.log(this.listOfCalls);
       },
     });
   }

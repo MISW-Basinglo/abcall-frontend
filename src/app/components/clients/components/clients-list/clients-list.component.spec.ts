@@ -1,63 +1,76 @@
 import { ClientsListComponent } from './clients-list.component';
 import { of } from 'rxjs';
 import { IClientData } from 'src/app/models/abcall.interfaces';
+import { UsersService } from 'src/app/components/users/services/users.service';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 
 describe('ClientsListComponent', () => {
   let component: ClientsListComponent;
-  let clientServiceMock: any;
-  let dialogMock: any;
+  let usersServiceMock: Partial<UsersService>;
+  let dialogMock: Partial<MatDialog>;
+  let dialogRefMock: Partial<MatDialogRef<any>>;
 
   beforeEach(() => {
-    clientServiceMock = {
-      getClients: jest.fn(),
+    usersServiceMock = {
+      getCompanies: jest.fn().mockReturnValue(of({ data: [] })),
+      getCompanyById: jest.fn().mockReturnValue(of({ data: {} })),
+    };
+
+    dialogRefMock = {
+      afterClosed: jest.fn().mockReturnValue(of('closed')),
+      close: jest.fn(),
     };
 
     dialogMock = {
-      open: jest.fn(() => ({
-        afterClosed: () => of('closed'),
-      })),
+      open: jest.fn().mockReturnValue(dialogRefMock as MatDialogRef<any>),
     };
 
-    component = new ClientsListComponent(clientServiceMock, dialogMock);
+    component = new ClientsListComponent(
+      dialogMock as MatDialog,
+      usersServiceMock as UsersService
+    );
   });
 
   it('should create the component', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should initialize the component and call getClientsList', () => {
-    const mockClients: IClientData[] = [
+  it('should initialize the component and call getCompaniesClients', () => {
+    const mockCompanies: IClientData[] = [
       {
         id: '1234',
-        clientId: '1',
-        date: '2022-01-01',
+        created_at: '2022-01-01',
         services: 'Service1',
-        company: 'Company1',
-        status: 'active',
+        name: 'Company1',
+        status: 'ACTIVE',
+        updated_at: '',
       },
       {
         id: '5678',
-        clientId: '2',
-        date: '2022-01-02',
+        created_at: '2022-01-02',
         services: 'Service2',
-        company: 'Company2',
-        status: 'inactive',
+        name: 'Company2',
+        status: 'INACTIVE',
+        updated_at: '',
       },
     ];
 
-    clientServiceMock.getClients.mockReturnValue(of(mockClients));
+    (usersServiceMock.getCompanies as jest.Mock).mockReturnValue(
+      of({ data: mockCompanies })
+    );
+
     component.ngOnInit();
 
-    expect(clientServiceMock.getClients).toHaveBeenCalled();
-    expect(component.dataSource.data).toEqual(mockClients);
-    expect(component.totalLength).toBe(mockClients.length);
+    expect(usersServiceMock.getCompanies).toHaveBeenCalled();
+    expect(component.dataSource.data).toEqual(mockCompanies);
+    expect(component.totalLength).toBe(mockCompanies.length);
   });
 
   it('should apply filters correctly', () => {
     const mockEvent = { target: { value: 'test value' } } as unknown as Event;
-    component.applyFilter(mockEvent, 'clientId');
+    component.applyFilter(mockEvent, 'id');
 
-    expect(component.filterValues['clientId']).toBe('test value');
+    expect(component.filterValues['id']).toBe('test value');
     expect(component.dataSource.filter).toBe(
       JSON.stringify(component.filterValues)
     );
@@ -65,21 +78,28 @@ describe('ClientsListComponent', () => {
 
   it('should clear filters correctly', () => {
     component.clearDate();
-    expect(component.filterValues['date']).toBe('');
+    expect(component.filterValues['created_at']).toBe('');
 
     component.clearService();
     expect(component.filterValues['services']).toBe('');
 
     component.clearCompany();
-    expect(component.filterValues['company']).toBe('');
+    expect(component.filterValues['name']).toBe('');
 
     component.clearStatus();
     expect(component.filterValues['status']).toBe('');
   });
 
   it('should return the correct class for status', () => {
-    expect(component.getStatusClass('active')).toBe('status-active');
-    expect(component.getStatusClass('inactive')).toBe('status-inactive');
+    expect(component.getStatusClass('ACTIVE')).toBe('status-active');
+    expect(component.getStatusClass('INACTIVE')).toBe('status-inactive');
     expect(component.getStatusClass('Unknown')).toBe('');
+  });
+
+  it('should open a dialog when openFormDialog is called', () => {
+    component.openFormDialog();
+
+    expect(dialogMock.open).toHaveBeenCalled();
+    expect(dialogRefMock.afterClosed).toHaveBeenCalled();
   });
 });

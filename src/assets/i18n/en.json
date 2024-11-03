@@ -42,13 +42,14 @@
         "state": "State"
       },
       "clientStatus": {
-        "active": "Active",
-        "inactive": "Inactive"
+        "ACTIVE": "Active",
+        "INACTIVE": "Inactive",
+        "ALL": "All"
       }
     },
     "form": {
       "newTitle": "New Client",
-      "editTitle": "Edit Client",
+      "editTitle": "Client Profile",
       "nameCompanyLabel": "Company Name",
       "nitLabel": "NIT/DNI",
       "responsibleLabel": "Responsible Person",
@@ -65,7 +66,9 @@
       "toastr": {
         "success": {
           "title": "Success",
-          "message": "Client created successfully."
+          "message": "Client created successfully.",
+          "editionTitle": "Success",
+          "editionMessage": "Client updated successfully."
         },
         "error": {
           "title": "Error",
@@ -138,7 +141,7 @@
         },
         "historyCallsGrid": {
           "title": "Calls History",
-          "btn-close": "Close"
+          "btn-close": "Back"
         }
       }
     },

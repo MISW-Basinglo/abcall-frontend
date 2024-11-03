@@ -16,7 +16,7 @@
 
   mat-form-field {
     width: 80%;
-    margin-bottom: 25px;
+    margin-bottom: 15px;
   }
 }
 
@@ -35,3 +35,12 @@
   right: 0;
   padding: 0 !important;
 }
+
+.readonly-field {
+  background-color: #f0f0f0;
+  color: #a9a9a9;
+  pointer-events: none;
+  opacity: 0.6;
+  height: 100%;
+}
+

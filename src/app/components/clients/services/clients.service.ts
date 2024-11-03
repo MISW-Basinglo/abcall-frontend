@@ -40,4 +40,16 @@ export class ClientsService {
     const params = new HttpParams().set('id', id.toString());
     return this.http.get(`${this.apiUrl}/user`, { params, headers });
   }
+
+  updateUser(id: string, user: any) {
+    const token = localStorage.getItem('access_token');
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    });
+
+    return this.http.patch<any>(`${this.apiUrl}/user/${id}`, user, {
+      headers,
+    });
+  }
 }

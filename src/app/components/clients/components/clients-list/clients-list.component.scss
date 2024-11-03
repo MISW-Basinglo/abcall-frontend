@@ -32,7 +32,7 @@
   width: 10%;
 }
 
-.filters .filter-date {
+.filters .filter-created_at {
   width: 20%;
 }
 
@@ -40,7 +40,7 @@
   width: 30%;
 }
 
-.filters .filter-company {
+.filters .filter-name {
   width: 20%;
 }
 
@@ -52,20 +52,20 @@
   margin: 20px;
 }
 
-.mat-table .mat-column-clientId {
-  width: 12% !important;
+.mat-table .mat-column-id {
+  width: 11% !important;
 }
 
-.mat-table .mat-column-date {
+.mat-table .mat-column-created_at {
   width: 20% !important;
 }
 
-.mat-table .mat-column-company {
+.mat-table .mat-column-name {
   width: 20% !important;
 }
 
 .mat-table .mat-column-services {
-  width: 30% !important;
+  width: 28% !important;
 }
 
 .mat-table .mat-column-status {
