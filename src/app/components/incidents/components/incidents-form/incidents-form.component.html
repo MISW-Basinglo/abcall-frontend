@@ -1,5 +1,5 @@
 <section class="form-client-container">
-  <h2 mat-dialog-title class="dialog-title">
+  <h2 mat-dialog-title class="dialog-title" data-cy="dialog-title">
     {{ "incidents.form.newTitle" | translate | uppercase }}
   </h2>
   <form
@@ -10,13 +10,17 @@
     <div class="form-content">
       <mat-form-field appearance="outline">
         <mat-label>{{ "incidents.form.dniLabel" | translate }}</mat-label>
-        <input matInput formControlName="user_id" />
+        <input matInput formControlName="user_id" data-cy="input-dni" />
       </mat-form-field>
 
       <mat-form-field appearance="outline">
         <mat-label>{{ "incidents.form.issueTypeLabel" | translate }}</mat-label>
-        <mat-select formControlName="type">
-          <mat-option *ngFor="let issue of issueTypes" [value]="issue.value">
+        <mat-select formControlName="type" data-cy="select-issue-type">
+          <mat-option
+            *ngFor="let issue of issueTypes"
+            [value]="issue.value"
+            data-cy="option-issue-type"
+          >
             {{ issue.label | translate }}
           </mat-option>
         </mat-select>
@@ -33,6 +37,7 @@
           }}"
           formControlName="description"
           rows="5"
+          data-cy="input-description"
         ></textarea>
         <mat-hint align="start">{{
           "incidents.form.descriptionHint" | translate
@@ -44,7 +49,12 @@
     </div>
 
     <div mat-dialog-actions class="incident-btn-content">
-      <button mat-button (click)="closeDialog()" class="cancel-button">
+      <button
+        mat-button
+        (click)="closeDialog()"
+        class="cancel-button"
+        data-cy="btn-cancel"
+      >
         {{ "incidents.form.btnCancel" | translate }}
       </button>
       <button
@@ -52,6 +62,7 @@
         color="primary"
         type="submit"
         [disabled]="!incidentForm.valid"
+        data-cy="btn-save"
       >
         {{ "incidents.form.btnSave" | translate }}
       </button>

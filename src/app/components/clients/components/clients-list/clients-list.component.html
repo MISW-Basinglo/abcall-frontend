@@ -1,6 +1,12 @@
 <div class="container">
   <div class="button-container">
-    <button mat-fab extended color="primary" (click)="openFormDialog()">
+    <button
+      mat-fab
+      extended
+      color="primary"
+      (click)="openFormDialog()"
+      data-cy="btn-new-client"
+    >
       {{ "clients.list.btnNew" | translate }}
     </button>
   </div>
