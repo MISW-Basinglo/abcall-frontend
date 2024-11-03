@@ -44,7 +44,7 @@ describe('ClientsFormComponent', () => {
     component = new ClientsFormComponent(
       formBuilder,
       dialogRefMock as MatDialogRef<ClientsFormComponent>,
-      mockClientData, // Pasa mockClientData aquí para pruebas de edición
+      mockClientData,
       clientsServiceMock as ClientsService,
       toastrServiceMock as ToastrService,
       usersServiceMock as UsersService,
