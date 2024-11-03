@@ -100,3 +100,11 @@ export interface IPhoneHistory {
   updated_at: string;
   user_id: number;
 }
+
+export interface IUserData {
+  name: string;
+  phone: string;
+  email: string;
+  dni: string;
+  importance: number;
+}

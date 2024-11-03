@@ -52,4 +52,16 @@ export class ClientsService {
       headers,
     });
   }
+
+  importUsers(users: any) {
+    const token = localStorage.getItem('access_token');
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    });
+
+    return this.http.post<any>(`${this.apiUrl}/user/import`, users, {
+      headers,
+    });
+  }
 }

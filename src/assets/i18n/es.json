@@ -204,5 +204,25 @@
         "message": "Ha ocurrido un error, intente nuevamente."
       }
     }
+  },
+  "users": {
+    "toastr": {
+      "validateTitle": "Éxito",
+      "validateMsg": "Archivo validado correctamente.",
+      "validateTitleError": "Error",
+      "validateMsgError": "El archivo CSV no tiene la estructura correcta",
+      "validateWarning": "Por favor, sube un archivo CSV.",
+      "validateReadingFile": "Error al leer el archivo CSV."
+    },
+
+    "list": {
+      "btnLoadUsers": "Cargar Usuarios",
+      "loadUsers": {
+        "dragAndDropMsg": "Arrastra y suelta tu archivo aquí o haz clic para seleccionar",
+        "btnLoadUsers": "Cargar",
+        "loadingErrorTitle": "Error",
+        "loadingErrorMsg": "Se produjo un error, intente nuevamente."
+      }
+    }
   }
 }
