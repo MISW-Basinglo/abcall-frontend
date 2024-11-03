@@ -1,0 +1,226 @@
+{
+  "login": {
+    "title": "ABCALL",
+    "email": "Email",
+    "password": "Password",
+    "btn_login": "Login",
+    "lb_forgot_passwd": "Forgot your password?",
+    "lb_no_account": "Don't have an account?",
+    "link_register": "Register",
+    "toastr": {
+      "errorTitle": "Error",
+      "errorMsg": "Login failed. Please check your credentials."
+    }
+  },
+  "menu": {
+    "incidentsManageLabel": "Incidents",
+    "usersLabel": "Users",
+    "reportsLabel": "Reports",
+    "profileLabel": "Profile",
+    "knowledgeBdLabel": "Knowledge DB",
+    "clientsManageLabel": "Clients"
+  },
+  "clients": {
+    "list": {
+      "btnNew": "New",
+      "clientIdLabel": "Client ID",
+      "registerDateLabel": "Registration Date",
+      "servicesLabel": "Services",
+      "companyLabel": "Company",
+      "stateLabel": "State",
+      "closeBtnInput": "Close",
+      "clientIdGrid": "Client ID",
+      "registerDateGrid": "Date",
+      "servicesGrid": "Services",
+      "companyGrid": "Company",
+      "stateGrid": "State",
+      "placeholders": {
+        "clientId": "Client ID",
+        "registerDate": "Registration Date",
+        "services": "Services",
+        "company": "Company",
+        "state": "State"
+      },
+      "clientStatus": {
+        "ACTIVE": "Active",
+        "INACTIVE": "Inactive",
+        "ALL": "All"
+      }
+    },
+    "form": {
+      "newTitle": "New Client",
+      "editTitle": "Client Profile",
+      "nameCompanyLabel": "Company Name",
+      "nitLabel": "NIT/DNI",
+      "responsibleLabel": "Responsible Person",
+      "phoneLabel": "Phone",
+      "emailLabel": "Email",
+      "planLabel": "Contracted Plan",
+      "cancelButton": "Cancel",
+      "saveButton": "Save",
+      "plans": {
+        "entrepreneur": "Entrepreneur",
+        "business": "Business",
+        "business_plus": "Business Plus"
+      },
+      "toastr": {
+        "success": {
+          "title": "Success",
+          "message": "Client created successfully.",
+          "editionTitle": "Success",
+          "editionMessage": "Client updated successfully."
+        },
+        "error": {
+          "title": "Error",
+          "message": "An error occurred, please try again."
+        }
+      },
+      "errors": {
+        "required": "This field is required",
+        "invalidName": "The name cannot contain numbers",
+        "invalidPhone": "Invalid phone format",
+        "invalidDni": "Invalid DNI format",
+        "invalidEmail": "Invalid email format"
+      }
+    }
+  },
+  "incidents": {
+    "list": {
+      "btnNew": "New",
+      "btnDownloadReport": "Download Report",
+      "filters": {
+        "incidentIdLabel": "Incident ID",
+        "registerDateLabel": "Registration Date",
+        "descriptionLabel": "Description",
+        "companyLabel": "Company",
+        "stateLabel": "State"
+      },
+      "grid": {
+        "incidentId": "Incident ID",
+        "registerDate": "Date",
+        "description": "Description",
+        "company": "Company",
+        "state": "State"
+      },
+      "placeholders": {
+        "issueId": "Incident ID",
+        "registerDate": "Registration Date",
+        "description": "Description",
+        "company": "Company",
+        "status": "State"
+      },
+      "issueStatus": {
+        "OPEN": "Open",
+        "SCALED": "Escalated",
+        "CLOSED": "Closed",
+        "STATUS": "State"
+      },
+      "detail": {
+        "breadcrump": {
+          "firstRoute": "Incidents",
+          "secondRoute": "Incident Detail {{ incidentId }}"
+        },
+        "incidentDetail": {
+          "title": "Incident {{ incidentId }}",
+          "dateLabel": "Registration Date",
+          "lastUpdateLabel": "Last Update",
+          "descriptionLabel": "Description",
+          "sourceLabel": "Source"
+        },
+        "userDetail": {
+          "title": "USER 360 VIEW",
+          "name": "Name",
+          "dniNit": "DNI/NIT",
+          "responsible": "Responsible",
+          "phone": "Phone",
+          "email": "Email",
+          "productsAndServices": "Contracted Products and Services",
+          "allProducts": "All",
+          "importanceLevel": "Importance Level",
+          "btnCallsHistory": "Calls History"
+        },
+        "historyCallsGrid": {
+          "title": "Calls History",
+          "btn-close": "Back"
+        }
+      }
+    },
+    "form": {
+      "issueTypes": {
+        "request": "Request",
+        "complaint": "Complaint",
+        "claim": "Claim",
+        "suggestion": "Suggestion",
+        "praise": "Praise"
+      },
+      "newTitle": "New Incident",
+      "dniLabel": "User DNI",
+      "issueTypeLabel": "Issue Type",
+      "descriptionLabel": "Description",
+      "descriptionPlaceholder": "Write your description here",
+      "descriptionHint": "Maximum 500 characters",
+      "btnCancel": "Cancel",
+      "btnSave": "Save",
+      "toastr": {
+        "success": {
+          "title": "Success",
+          "message": "Incident created successfully."
+        },
+        "error": {
+          "title": "Error",
+          "message": "An error occurred, please try again."
+        }
+      }
+    }
+  },
+  "profile": {
+    "title": "Client Profile:",
+    "company": "Company Name",
+    "companyEx": "Ex. Heidenreich Group",
+    "responsible": "Responsible",
+    "responsibleEx": "Ex. Alfonso Bergnaum",
+    "clientDni": "DNI",
+    "clientDniEx": "Ex. 89398234",
+    "phoneNumber": "Phone Number",
+    "phoneNumberEx": "Ex. +174283488532",
+    "email": "Email",
+    "emailEx": "Ex. allberk@yopmail.com",
+    "btnUpdate": "Update",
+    "errors": {
+      "required": "This field is required",
+      "invalidName": "The name cannot contain numbers",
+      "invalidPhone": "Invalid phone format",
+      "invalidDni": "Invalid DNI format",
+      "invalidEmail": "Invalid email format"
+    },
+    "toastr": {
+      "success": {
+        "title": "Success",
+        "message": "Profile updated successfully."
+      },
+      "error": {
+        "title": "Error",
+        "message": "An error occurred, please try again."
+      }
+    }
+  },
+  "users": {
+    "toastr": {
+      "validateTitle": "Success",
+      "validateMsg": "File validated successfully.",
+      "validateTitleError": "Error",
+      "validateMsgError": "The CSV file does not have the correct structure.",
+      "validateWarning": "Please upload a CSV file.",
+      "validateReadingFile": "Error reading the CSV file."
+    },
+    "list": {
+      "btnLoadUsers": "Load Users",
+      "loadUsers": {
+        "dragAndDropMsg": "Drag and drop your file here or click to select",
+        "btnLoadUsers": "Load",
+        "loadingErrorTitle": "Error",
+        "loadingErrorMsg": "An error occurred, please try again."
+      }
+    }
+  }
+}

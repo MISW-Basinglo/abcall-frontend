@@ -1,0 +1,171 @@
+<section class="form-client-container">
+  <h2
+    mat-dialog-title
+    class="dialog-title"
+    *ngIf="isEmptyObject(clientData)"
+    data-cy="dialog-title-new"
+  >
+    {{ "clients.form.newTitle" | translate | uppercase }}
+  </h2>
+  <h2
+    mat-dialog-title
+    class="dialog-title"
+    *ngIf="!isEmptyObject(clientData)"
+    data-cy="dialog-title-edit"
+  >
+    {{ "clients.form.editTitle" | translate | uppercase }}
+  </h2>
+  <form
+    [formGroup]="clientsForm"
+    (ngSubmit)="submitForm()"
+    class="form-container"
+  >
+    <div class="form-content">
+      <mat-form-field
+        appearance="outline"
+        [ngClass]="{ 'readonly-field': !isEmptyObject(clientData) }"
+      >
+        <mat-label>{{ "clients.form.nameCompanyLabel" | translate }}</mat-label>
+        <input
+          matInput
+          formControlName="company_name"
+          [readonly]="!isEmptyObject(clientData)"
+          data-cy="input-company-name"
+        />
+        <mat-error
+          *ngIf="clientsForm.controls['company_name'].hasError('required')"
+        >
+          {{ "clients.form.errors.required" | translate }}
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field
+        appearance="outline"
+        [ngClass]="{ 'readonly-field': !isEmptyObject(clientData) }"
+      >
+        <mat-label>{{ "clients.form.nitLabel" | translate }}</mat-label>
+        <input
+          matInput
+          formControlName="nit"
+          [readonly]="!isEmptyObject(clientData)"
+          data-cy="input-nit"
+        />
+        <mat-error *ngIf="clientsForm.controls['nit'].hasError('required')">
+          {{ "clients.form.errors.required" | translate }}
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field
+        appearance="outline"
+        [ngClass]="{ 'readonly-field': !isEmptyObject(clientData) }"
+      >
+        <mat-label>{{ "clients.form.responsibleLabel" | translate }}</mat-label>
+        <input
+          matInput
+          formControlName="user_name"
+          [readonly]="!isEmptyObject(clientData)"
+          data-cy="input-user-name"
+        />
+        <mat-error
+          *ngIf="clientsForm.controls['user_name'].hasError('required')"
+        >
+          {{ "profile.errors.required" | translate }}
+        </mat-error>
+        <mat-error
+          *ngIf="
+            !clientsForm.controls['user_name'].hasError('required') &&
+            clientsForm.controls['user_name'].hasError('pattern')
+          "
+        >
+          {{ "profile.errors.invalidName" | translate }}
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field
+        appearance="outline"
+        [ngClass]="{ 'readonly-field': !isEmptyObject(clientData) }"
+      >
+        <mat-label>{{ "clients.form.phoneLabel" | translate }}</mat-label>
+        <input
+          matInput
+          formControlName="phone"
+          [readonly]="!isEmptyObject(clientData)"
+          data-cy="input-phone"
+        />
+        <mat-error *ngIf="clientsForm.controls['phone'].hasError('required')">
+          {{ "profile.errors.required" | translate }}
+        </mat-error>
+        <mat-error
+          *ngIf="
+            !clientsForm.controls['phone'].hasError('required') &&
+            clientsForm.controls['phone'].hasError('pattern')
+          "
+        >
+          {{ "profile.errors.invalidPhone" | translate }}
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field
+        appearance="outline"
+        [ngClass]="{ 'readonly-field': !isEmptyObject(clientData) }"
+      >
+        <mat-label>{{ "clients.form.emailLabel" | translate }}</mat-label>
+        <input
+          matInput
+          formControlName="email"
+          [readonly]="!isEmptyObject(clientData)"
+          data-cy="input-email"
+        />
+        <mat-error *ngIf="clientsForm.controls['email'].hasError('required')">
+          {{ "profile.errors.required" | translate }}
+        </mat-error>
+        <mat-error
+          *ngIf="
+            !clientsForm.controls['email'].hasError('required') &&
+            clientsForm.controls['email'].hasError('email')
+          "
+        >
+          {{ "profile.errors.invalidEmail" | translate }}
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>{{ "clients.form.planLabel" | translate }}</mat-label>
+        <mat-select formControlName="plan" data-cy="select-plan">
+          <mat-option
+            *ngFor="let plan of plans"
+            [value]="plan.value"
+            data-cy="option-plan"
+          >
+            {{ plan.label | translate }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="clientsForm.controls['plan'].hasError('required')">
+          {{ "profile.errors.required" | translate }}
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div mat-dialog-actions class="client-btn-content">
+      <button
+        mat-button
+        type="button"
+        (click)="closeDialog()"
+        class="cancel-button"
+        data-cy="btn-cancel"
+      >
+        {{ "clients.form.cancelButton" | translate }}
+      </button>
+      <button
+        mat-raised-button
+        color="primary"
+        type="button"
+        (click)="submitForm()"
+        [disabled]="!clientsForm.valid"
+        data-cy="btn-save"
+      >
+        {{ "clients.form.saveButton" | translate }}
+      </button>
+    </div>
+  </form>
+</section>

@@ -1,0 +1,76 @@
+.example-container {
+  height: 100vh;
+}
+
+.custom-navigation-rail {
+  width: 80px;
+  background-color: #f7f4ff;
+  display: flex;
+  flex-direction: column;
+  padding-top: 10px;
+}
+
+.custom-nav-header {
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+.custom-nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 0;
+  cursor: pointer;
+  color: #5c5c5c;
+  transition: background-color 0.3s ease;
+  width: 100%;
+  height: 190px;
+}
+
+.custom-nav-item-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+
+.nav-icon {
+  font-size: 24px;
+  background-color: transparent;
+  border-radius: 30px / 30px;
+  display: block;
+  margin-bottom: 2px;
+  padding: 5px 15px;
+}
+
+.custom-nav-item.active .nav-icon {
+  background-color: #c0a4ed;
+}
+
+.custom-nav-item.active {
+  background-color: transparent;
+}
+
+.custom-nav-item:hover .nav-icon {
+  background-color: rgba(192, 164, 237, 0.2);
+}
+
+.nav-label {
+  font-size: 10px;
+  text-align: center;
+  color: #5c5c5c;
+  opacity: 1;
+}
+
+.menu-toggle-button {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+}
+
+.mdc-list-item.mdc-list-item--with-one-line {
+  height: auto !important;
+}

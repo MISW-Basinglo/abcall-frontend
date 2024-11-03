@@ -1,0 +1,46 @@
+.form-client-container {
+  margin: 25px;
+
+  h2 {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.form-content {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+
+  mat-form-field {
+    width: 80%;
+    margin-bottom: 15px;
+  }
+}
+
+.client-btn-content {
+  display: flex;
+  align-items: flex-end;
+  justify-content: end;
+  margin-right: 28px;
+}
+
+::ng-deep .mat-mdc-form-field-hint-wrapper,
+::ng-deep .mat-mdc-form-field-error-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 0 !important;
+}
+
+.readonly-field {
+  background-color: #f0f0f0;
+  color: #a9a9a9;
+  pointer-events: none;
+  opacity: 0.6;
+  height: 100%;
+}
+

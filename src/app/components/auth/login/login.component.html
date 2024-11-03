@@ -1,0 +1,47 @@
+<section class="auth-form">
+  <div class="auth-form__container">
+    <p class="auth-form__header">{{ "login.title" | translate }}</p>
+
+    <mat-form-field appearance="outline" class="auth-form__input">
+      <mat-label>{{ "login.email" | translate }}</mat-label>
+      <input
+        matInput
+        [(ngModel)]="email"
+        data-cy="email"
+        placeholder="{{ 'login.email' | translate }}"
+      />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="auth-form__input">
+      <mat-label>{{ "login.password" | translate }}</mat-label>
+      <input
+        matInput
+        type="password"
+        [(ngModel)]="password"
+        data-cy="password"
+        placeholder="{{ 'login.password' | translate }}"
+      />
+    </mat-form-field>
+
+    <div class="auth-form__link" *ngIf="false">
+      <a href="#">{{ "login.lb_forgot_passwd" | translate }}</a>
+    </div>
+
+    <button
+      mat-fab
+      extended
+      color="primary"
+      data-cy="login-button"
+      (click)="login()"
+    >
+      {{ "login.btn_login" | translate }}
+    </button>
+
+    <p class="auth-form__register" *ngIf="false">
+      {{ "login.lb_no_account" | translate }}
+      <span [routerLink]="['/auth/register']">{{
+        "login.link_register" | translate
+      }}</span>
+    </p>
+  </div>
+</section>

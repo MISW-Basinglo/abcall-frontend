@@ -1,0 +1,106 @@
+<mat-drawer-container class="example-container">
+  <mat-drawer
+    mode="side"
+    [opened]="isMenuOpened"
+    class="custom-navigation-rail"
+  >
+    <div class="custom-nav-header">
+      <button mat-icon-button (click)="toggleMenu()">
+        <mat-icon>{{
+          isMenuOpened ? "chevron_left" : "chevron_right"
+        }}</mat-icon>
+      </button>
+    </div>
+    <mat-nav-list>
+      <mat-list-item
+        class="custom-nav-item"
+        [ngClass]="{ active: selectedTab === 'incidents' }"
+        (click)="selectTab('incidents')"
+        data-cy="nav-incidents"
+      >
+        <div class="custom-nav-item-content">
+          <mat-icon class="nav-icon">assignment</mat-icon>
+          <span class="nav-label">{{
+            "menu.incidentsManageLabel" | translate
+          }}</span>
+        </div>
+      </mat-list-item>
+
+      <mat-list-item
+        *ngIf="true"
+        class="custom-nav-item"
+        [ngClass]="{ active: selectedTab === 'users' }"
+        (click)="selectTab('users')"
+      >
+        <div class="custom-nav-item-content">
+          <mat-icon class="nav-icon">people</mat-icon>
+          <span class="nav-label">{{ "menu.usersLabel" | translate }}</span>
+        </div>
+      </mat-list-item>
+
+      <mat-list-item
+        *ngIf="false"
+        class="custom-nav-item"
+        [ngClass]="{ active: selectedTab === 'reports' }"
+        (click)="selectTab('reports')"
+      >
+        <div class="custom-nav-item-content">
+          <mat-icon class="nav-icon">bar_chart</mat-icon>
+          <span class="nav-label">{{ "menu.reportsLabel" | translate }}</span>
+        </div>
+      </mat-list-item>
+
+      <mat-list-item
+        class="custom-nav-item"
+        [ngClass]="{ active: selectedTab === 'profile' }"
+        (click)="selectTab('profile')"
+        data-cy="nav-profile"
+      >
+        <div class="custom-nav-item-content">
+          <mat-icon class="nav-icon">account_circle</mat-icon>
+          <span class="nav-label">{{ "menu.profileLabel" | translate }}</span>
+        </div>
+      </mat-list-item>
+
+      <mat-list-item
+        *ngIf="false"
+        class="custom-nav-item"
+        [ngClass]="{ active: selectedTab === 'bd' }"
+        (click)="selectTab('bd')"
+      >
+        <div class="custom-nav-item-content">
+          <mat-icon class="nav-icon">storage</mat-icon>
+          <span class="nav-label">{{
+            "menu.knowledgeBdLabel" | translate
+          }}</span>
+        </div>
+      </mat-list-item>
+
+      <mat-list-item
+        class="custom-nav-item"
+        [ngClass]="{ active: selectedTab === 'clients' }"
+        (click)="selectTab('clients')"
+        data-cy="nav-clients"
+      >
+        <div class="custom-nav-item-content">
+          <span class="material-symbols-outlined nav-icon">handshake</span>
+          <span class="nav-label">{{
+            "menu.clientsManageLabel" | translate
+          }}</span>
+        </div>
+      </mat-list-item>
+    </mat-nav-list>
+  </mat-drawer>
+
+  <mat-drawer-content>
+    <button
+      *ngIf="!isMenuOpened"
+      mat-icon-button
+      (click)="toggleMenu()"
+      class="menu-toggle-button"
+    >
+      <mat-icon>menu</mat-icon>
+    </button>
+    <router-outlet></router-outlet>
+  </mat-drawer-content>
+</mat-drawer-container>

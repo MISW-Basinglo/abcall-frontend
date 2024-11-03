@@ -1,0 +1,71 @@
+<section class="form-client-container">
+  <h2 mat-dialog-title class="dialog-title" data-cy="dialog-title">
+    {{ "incidents.form.newTitle" | translate | uppercase }}
+  </h2>
+  <form
+    [formGroup]="incidentForm"
+    (ngSubmit)="submitForm()"
+    class="form-container"
+  >
+    <div class="form-content">
+      <mat-form-field appearance="outline">
+        <mat-label>{{ "incidents.form.dniLabel" | translate }}</mat-label>
+        <input matInput formControlName="user_id" data-cy="input-dni" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>{{ "incidents.form.issueTypeLabel" | translate }}</mat-label>
+        <mat-select formControlName="type" data-cy="select-issue-type">
+          <mat-option
+            *ngFor="let issue of issueTypes"
+            [value]="issue.value"
+            data-cy="option-issue-type"
+          >
+            {{ issue.label | translate }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>{{
+          "incidents.form.descriptionLabel" | translate
+        }}</mat-label>
+        <textarea
+          matInput
+          placeholder="{{
+            'incidents.form.descriptionPlaceholder' | translate
+          }}"
+          formControlName="description"
+          rows="5"
+          data-cy="input-description"
+        ></textarea>
+        <mat-hint align="start">{{
+          "incidents.form.descriptionHint" | translate
+        }}</mat-hint>
+        <mat-hint align="end"
+          >{{ descriptionControl?.value?.length || 0 }}/500</mat-hint
+        >
+      </mat-form-field>
+    </div>
+
+    <div mat-dialog-actions class="incident-btn-content">
+      <button
+        mat-button
+        (click)="closeDialog()"
+        class="cancel-button"
+        data-cy="btn-cancel"
+      >
+        {{ "incidents.form.btnCancel" | translate }}
+      </button>
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        [disabled]="!incidentForm.valid"
+        data-cy="btn-save"
+      >
+        {{ "incidents.form.btnSave" | translate }}
+      </button>
+    </div>
+  </form>
+</section>

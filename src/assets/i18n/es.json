@@ -1,0 +1,228 @@
+{
+  "login": {
+    "title": "ABCALL",
+    "email": "Correo",
+    "password": "Contraseña",
+    "btn_login": "Ingresar",
+    "lb_forgot_passwd": "¿Olvidó su contraseña?",
+    "lb_no_account": "¿No tienes una cuenta?",
+    "link_register": "Registrate",
+    "toastr": {
+      "errorTitle": "Error",
+      "errorMsg": "Error de inicio de sesión. Por favor, verifique sus credenciales."
+    }
+  },
+  "menu": {
+    "incidentsManageLabel": "Incidentes",
+    "usersLabel": "Usuarios",
+    "reportsLabel": "Reportes",
+    "profileLabel": "Perfil",
+    "knowledgeBdLabel": "BD",
+    "clientsManageLabel": "Clientes"
+  },
+  "clients": {
+    "list": {
+      "btnNew": "Nuevo",
+      "clientIdLabel": "ID Cliente",
+      "registerDateLabel": "Fecha de registro",
+      "servicesLabel": "Servicios",
+      "companyLabel": "Empresa",
+      "stateLabel": "Estado",
+      "closeBtnInput": "Cerrar",
+      "clientIdGrid": "ID Cliente",
+      "registerDateGrid": "Fecha",
+      "servicesGrid": "Servicios",
+      "companyGrid": "Empresa",
+      "stateGrid": "Estado",
+      "placeholders": {
+        "clientId": "ID Cliente",
+        "registerDate": "Fecha de registro",
+        "services": "Servicios",
+        "company": "Empresa",
+        "state": "Estado"
+      },
+      "clientStatus": {
+        "ACTIVE": "Activo",
+        "INACTIVE": "Inactivo",
+        "ALL": "Todos"
+      }
+    },
+    "form": {
+      "newTitle": "Nuevo Cliente",
+      "editTitle": "Perfil de Cliente",
+      "nameCompanyLabel": "Nombre de la empresa",
+      "nitLabel": "NIT/DNI",
+      "responsibleLabel": "Nombre del responsable",
+      "phoneLabel": "Teléfono",
+      "emailLabel": "Email",
+      "planLabel": "Plan contratado",
+      "cancelButton": "Cancelar",
+      "saveButton": "Guardar",
+      "plans": {
+        "entrepreneur": "Emprendedor",
+        "business": "Negocios",
+        "business_plus": "Negocios Plus"
+      },
+      "toastr": {
+        "success": {
+          "title": "Éxito",
+          "message": "Cliente creado satisfactoriamente.",
+          "editionTitle": "Éxito",
+          "editionMessage": "Cliente editado satisfactoriamente"
+        },
+        "error": {
+          "title": "Error",
+          "message": "Ha ocurrido un error, intente nuevamente."
+        }
+      },
+      "errors": {
+        "required": "Este campo es obligatorio",
+        "invalidName": "El nombre no puede contener números",
+        "invalidPhone": "Formato de teléfono inválido",
+        "invalidDni": "Formato de DNI inválido",
+        "invalidEmail": "Formato de correo electrónico inválido"
+      }
+    }
+  },
+  "incidents": {
+    "list": {
+      "btnNew": "Nuevo",
+      "btnDownloadReport": "Descargar reporte",
+      "filters": {
+        "incidentIdLabel": "ID Incidente",
+        "registerDateLabel": "Fecha de registro",
+        "descriptionLabel": "Descripción",
+        "companyLabel": "Empresa",
+        "stateLabel": "Estado"
+      },
+      "grid": {
+        "incidentId": "ID incidente",
+        "registerDate": "Fecha",
+        "description": "Descripción",
+        "company": "Empresa",
+        "state": "Estado"
+      },
+      "placeholders": {
+        "issueId": "ID Incidente",
+        "registerDate": "Fecha de registro",
+        "description": "Descripción",
+        "company": "Empresa",
+        "status": "Estado"
+      },
+      "issueStatus": {
+        "OPEN": "Abierto",
+        "SCALED": "Escalado",
+        "CLOSED": "Cerrado",
+        "STATUS": "Estado"
+      },
+      "detail": {
+        "breadcrump": {
+          "firstRoute": "Incidentes",
+          "secondRoute": "Detalle Incidente {{ incidentId }}"
+        },
+        "incidentDetail": {
+          "title": "Incidente {{ incidentId }}",
+          "dateLabel": "Fecha de registro",
+          "lastUpdateLabel": "Última actualización",
+          "descriptionLabel": "Descripción",
+          "sourceLabel": "Fuente"
+        },
+
+        "userDetail": {
+          "title": "VISTA 360 DEL USUARIO",
+          "name": "Nombre",
+          "dniNit": "DNI/NIT",
+          "responsible": "Responsable",
+          "phone": "Teléfono",
+          "email": "Email",
+          "productsAndServices": "Productos y servicios contratados",
+          "allProducts": "Todos",
+          "importanceLevel": "Nivel de importancia",
+          "btnCallsHistory": "Historial de llamadas"
+        },
+        "historyCallsGrid": {
+          "title": "Historial de llamadas",
+          "btn-close": "Atrás"
+        }
+      }
+    },
+    "form": {
+      "issueTypes": {
+        "request": "Solicitud",
+        "complaint": "Queja",
+        "claim": "Reclamo",
+        "suggestion": "Sugerencia",
+        "praise": "Elogio"
+      },
+      "newTitle": "Nuevo incidente",
+      "dniLabel": "DNI Usuario",
+      "issueTypeLabel": "Tipo Incidente",
+      "descriptionLabel": "Descripción",
+      "descriptionPlaceholder": "Escribe tu descripción aquí",
+      "descriptionHint": "Máximo 500 caracteres",
+      "btnCancel": "Cancelar",
+      "btnSave": "Guardar",
+      "toastr": {
+        "success": {
+          "title": "Éxito",
+          "message": "Incidente creado satisfactoriamente."
+        },
+        "error": {
+          "title": "Error",
+          "message": "Ha ocurrido un error, intente nuevamente."
+        }
+      }
+    }
+  },
+  "profile": {
+    "title": "Perfil del cliente:",
+    "company": "Nombre de la empresa",
+    "companyEx": "Ej. Heidenreich Group",
+    "responsible": "Responsable",
+    "responsibleEx": "Ej. Alfonso Bergnaum",
+    "clientDni": "DNI",
+    "clientDniEx": "Ej. 89398234",
+    "phoneNumber": "Teléfono",
+    "phoneNumberEx": "Ej. +174283488532",
+    "email": "Correo electrónico",
+    "emailEx": "Ej. allberk@yopmail.com",
+    "btnUpdate": "Actualizar",
+    "errors": {
+      "required": "Este campo es obligatorio",
+      "invalidName": "El nombre no puede contener números",
+      "invalidPhone": "Formato de teléfono inválido",
+      "invalidDni": "Formato de DNI inválido",
+      "invalidEmail": "Formato de correo electrónico inválido"
+    },
+    "toastr": {
+      "success": {
+        "title": "Éxito",
+        "message": "Perfil actualizado satisfactoriamente."
+      },
+      "error": {
+        "title": "Error",
+        "message": "Ha ocurrido un error, intente nuevamente."
+      }
+    }
+  },
+  "users": {
+    "toastr": {
+      "validateTitle": "Éxito",
+      "validateMsg": "Archivo validado correctamente.",
+      "validateTitleError": "Error",
+      "validateMsgError": "El archivo CSV no tiene la estructura correcta",
+      "validateWarning": "Por favor, sube un archivo CSV.",
+      "validateReadingFile": "Error al leer el archivo CSV."
+    },
+
+    "list": {
+      "btnLoadUsers": "Cargar Usuarios",
+      "loadUsers": {
+        "dragAndDropMsg": "Arrastra y suelta tu archivo aquí o haz clic para seleccionar",
+        "btnLoadUsers": "Cargar",
+        "loadingErrorTitle": "Error",
+        "loadingErrorMsg": "Se produjo un error, intente nuevamente."
+      }
+    }
+  }
+}
