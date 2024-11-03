@@ -203,5 +203,24 @@
         "message": "An error occurred, please try again."
       }
     }
+  },
+  "users": {
+    "toastr": {
+      "validateTitle": "Success",
+      "validateMsg": "File validated successfully.",
+      "validateTitleError": "Error",
+      "validateMsgError": "The CSV file does not have the correct structure.",
+      "validateWarning": "Please upload a CSV file.",
+      "validateReadingFile": "Error reading the CSV file."
+    },
+    "list": {
+      "btnLoadUsers": "Load Users",
+      "loadUsers": {
+        "dragAndDropMsg": "Drag and drop your file here or click to select",
+        "btnLoadUsers": "Load",
+        "loadingErrorTitle": "Error",
+        "loadingErrorMsg": "An error occurred, please try again."
+      }
+    }
   }
 }

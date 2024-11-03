@@ -17,6 +17,8 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatDialogModule } from '@angular/material/dialog';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { NgxFileDropModule } from 'ngx-file-drop';
 
 @NgModule({
   imports: [
@@ -31,13 +33,15 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatSlideToggleModule,
     MatCardModule,
     MatToolbarModule,
-    MatMenuModule,
+    MatMenuModule, 
     MatSidenavModule,
     MatListModule,
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
     MatDialogModule,
+    DragDropModule,
+    NgxFileDropModule,
   ],
   exports: [
     MatFormFieldModule,
@@ -57,6 +61,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatPaginatorModule,
     MatSortModule,
     MatDialogModule,
+    DragDropModule,
+    NgxFileDropModule,
   ],
 })
 export class SharedModule {}

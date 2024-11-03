@@ -1,5 +1,9 @@
 import { faker } from '@faker-js/faker';
-import { IClientData, IIncidentData } from '../models/abcall.interfaces';
+import {
+  IClientData,
+  IIncidentData,
+  IUserData,
+} from '../models/abcall.interfaces';
 
 export const generateClients = (): IClientData[] => {
   const clients: IClientData[] = [];
@@ -47,4 +51,22 @@ export const generateIncidents = (): IIncidentData[] => {
   }
 
   return incidents;
+};
+
+export const generateUsers = (): IUserData[] => {
+  const users: IUserData[] = [];
+
+  for (let i = 0; i < 10; i++) {
+    const user: IUserData = {
+      name: faker.name.fullName(),
+      phone: faker.phone.number(),
+      email: faker.internet.email(),
+      dni: faker.string.numeric(8),
+      importance: faker.helpers.arrayElement([1, 2, 3, 4, 5]),
+    };
+
+    users.push(user);
+  }
+
+  return users;
 };
