@@ -1,7 +1,7 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "types": ["cypress"],
+    "types": ["jest", "cypress"],
     "esModuleInterop": true,
     "allowJs": true,
     "skipLibCheck": true,
