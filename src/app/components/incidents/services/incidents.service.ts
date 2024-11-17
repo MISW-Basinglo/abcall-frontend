@@ -58,4 +58,20 @@ export class IncidentsService {
       }
     );
   }
+
+  updateIssueStatus(id: string, status: any): Observable<any> {
+    const token = localStorage.getItem('access_token');
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    });
+
+    return this.http.patch<any>(
+      `${this.apiUrl}/issues_management/${id}`,
+      status,
+      {
+        headers,
+      }
+    );
+  }
 }

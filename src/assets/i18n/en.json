@@ -125,7 +125,14 @@
           "dateLabel": "Registration Date",
           "lastUpdateLabel": "Last Update",
           "descriptionLabel": "Description",
-          "sourceLabel": "Source"
+          "sourceLabel": "Source",
+          "btnGuardar": "Save",
+          "toastr": {
+            "successTitle": "Success",
+            "successMessage": "Incident updated successfully.",
+            "errorTitle": "Error",
+            "errorMessage": "An error occurred, please try again."
+          }
         },
         "userDetail": {
           "title": "USER 360 VIEW",
