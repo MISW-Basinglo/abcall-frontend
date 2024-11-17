@@ -59,6 +59,13 @@ const routes: Routes = [
       ),
   },
   {
+    path: 'reports',
+    loadChildren: () =>
+      import('./components/reports/reports.module').then(
+        (m) => m.ReportsModule
+      ),
+  },
+  {
     path: '**',
     redirectTo: 'auth/login',
   },

@@ -229,7 +229,29 @@
         "btnLoadUsers": "Cargar",
         "loadingErrorTitle": "Error",
         "loadingErrorMsg": "Se produjo un error, intente nuevamente."
+      },
+      "columnLabels": {
+        "name": "Nombre",
+        "phone": "Teléfono",
+        "email": "Correo electrónico",
+        "dni": "Identificación",
+        "importance": "Nivel de importancia",
+        "channel": "Canal de comunicación"
       }
+    }
+  },
+  "register": {
+    "charts": {
+      "barTitle": "Historial de Incidentes",
+      "pieTitle": "Canales de comunicación",
+      "lineTitle": "Tiempos de respuesta (Hora)",
+      "barIncidents": {
+        "open": "Abierto",
+        "escalated": "Escalado",
+        "closed": "Cerrado"
+      },
+      "responseTime": "Tiempo de respuesta",
+      "issuesIdentifiers": "Identificador de Incidente"
     }
   }
 }

@@ -13,6 +13,7 @@ import { ClientsService } from 'src/app/components/clients/services/clients.serv
 })
 export class UsersFormComponent {
   selectedFile: File | null = null;
+  loading = false;
 
   constructor(
     public dialogRef: MatDialogRef<UsersFormComponent>,
@@ -119,6 +120,7 @@ export class UsersFormComponent {
 
   handleFileUpload() {
     if (this.selectedFile) {
+      this.loading = true;
       const reader = new FileReader();
       reader.onload = () => {
         const base64String = reader.result?.toString().split(',')[1] ?? '';
@@ -126,32 +128,35 @@ export class UsersFormComponent {
           users: base64String,
         };
 
-        this.clientsService.importUsers(body).subscribe({
-          next: () => {
-            this.translate
-              .get('clients.form.toastr.success.message')
-              .pipe(finalize(() => this.dialogRef.close(base64String)))
-              .subscribe((errorMessage: string) => {
-                this.translate
-                  .get('clients.form.toastr.success.title')
-                  .subscribe((errorTitle: string) => {
-                    this.toastr.success(errorMessage, errorTitle);
-                  });
-              });
-          },
+        this.clientsService
+          .importUsers(body)
+          .pipe(finalize(() => (this.loading = false)))
+          .subscribe({
+            next: () => {
+              this.translate
+                .get('clients.form.toastr.success.message')
+                .pipe(finalize(() => this.dialogRef.close(base64String)))
+                .subscribe((errorMessage: string) => {
+                  this.translate
+                    .get('clients.form.toastr.success.title')
+                    .subscribe((errorTitle: string) => {
+                      this.toastr.success(errorMessage, errorTitle);
+                    });
+                });
+            },
 
-          error: () => {
-            this.translate
-              .get('users.list.loadUsers.loadingErrorMsg')
-              .subscribe((errorMessage: string) => {
-                this.translate
-                  .get('users.list.loadUsers.loadingErrorTitle')
-                  .subscribe((errorTitle: string) => {
-                    this.toastr.error(errorMessage, errorTitle);
-                  });
-              });
-          },
-        });
+            error: () => {
+              this.translate
+                .get('users.list.loadUsers.loadingErrorMsg')
+                .subscribe((errorMessage: string) => {
+                  this.translate
+                    .get('users.list.loadUsers.loadingErrorTitle')
+                    .subscribe((errorTitle: string) => {
+                      this.toastr.error(errorMessage, errorTitle);
+                    });
+                });
+            },
+          });
       };
       reader.onerror = () => {
         this.translate
