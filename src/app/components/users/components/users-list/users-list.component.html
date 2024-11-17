@@ -1,5 +1,11 @@
 <div class="users-list__button-container">
-  <button mat-fab extended color="primary" (click)="openFileUploadDialog()">
+  <button
+    mat-fab
+    extended
+    color="primary"
+    (click)="openFileUploadDialog()"
+    data-cy="btn-upload-users"
+  >
     {{ "users.list.btnLoadUsers" | translate }}
   </button>
 </div>

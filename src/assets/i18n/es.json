@@ -214,7 +214,7 @@
   },
   "users": {
     "toastr": {
-      "validateTitle": "Éxito",
+      "validateTitle": "Exito",
       "validateMsg": "Archivo validado correctamente.",
       "validateTitleError": "Error",
       "validateMsgError": "El archivo CSV no tiene la estructura correcta",

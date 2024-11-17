@@ -31,6 +31,7 @@
         class="custom-nav-item"
         [ngClass]="{ active: selectedTab === 'users' }"
         (click)="selectTab('users')"
+        data-cy="nav-users"
       >
         <div class="custom-nav-item-content">
           <mat-icon class="nav-icon">people</mat-icon>
@@ -43,6 +44,7 @@
         class="custom-nav-item"
         [ngClass]="{ active: selectedTab === 'reports' }"
         (click)="selectTab('reports')"
+        data-cy="nav-reports"
       >
         <div class="custom-nav-item-content">
           <mat-icon class="nav-icon">bar_chart</mat-icon>
