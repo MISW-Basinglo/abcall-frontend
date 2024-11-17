@@ -74,3 +74,19 @@
 .mdc-list-item.mdc-list-item--with-one-line {
   height: auto !important;
 }
+
+.language-toggle-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-top: 15px;
+}
+
+.language-toggle {
+  margin-bottom: 8px;
+}
+
+.language-label {
+  font-size: 10px;
+}

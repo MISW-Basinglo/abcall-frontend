@@ -108,3 +108,14 @@ export interface IUserData {
   dni: string;
   importance: number;
 }
+
+export interface IIncidentDetail {
+  id: string;
+  response_time: number;
+  status: string;
+}
+
+export interface IIssuesList {
+  count: number;
+  data: IIncidentData[];
+}

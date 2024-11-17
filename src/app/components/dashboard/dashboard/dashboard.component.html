@@ -39,7 +39,7 @@
       </mat-list-item>
 
       <mat-list-item
-        *ngIf="false"
+        *ngIf="true"
         class="custom-nav-item"
         [ngClass]="{ active: selectedTab === 'reports' }"
         (click)="selectTab('reports')"
@@ -87,6 +87,19 @@
           <span class="nav-label">{{
             "menu.clientsManageLabel" | translate
           }}</span>
+        </div>
+      </mat-list-item>
+
+      <mat-list-item class="custom-nav-item">
+        <div class="custom-nav-item-content language-toggle-container">
+          <mat-slide-toggle
+            class="language-toggle"
+            [checked]="currentLang === 'en'"
+            (change)="toggleLanguage($event)"
+          ></mat-slide-toggle>
+          <span class="language-label">
+            {{ currentLang === "es" ? "English" : "Español" }}
+          </span>
         </div>
       </mat-list-item>
     </mat-nav-list>

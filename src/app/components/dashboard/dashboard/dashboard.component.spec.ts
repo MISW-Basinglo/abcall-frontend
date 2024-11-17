@@ -1,13 +1,19 @@
 import { DashboardComponent } from './dashboard.component';
 import { Router, ActivatedRoute } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { of } from 'rxjs';
 
 describe('DashboardComponent', () => {
   let component: DashboardComponent;
   let routerMock: any;
   let activatedRouteMock: any;
+  let translateServiceMock: any;
 
   beforeEach(() => {
+    translateServiceMock = {
+      get: jest.fn((key: string) => of(key)),
+    } as unknown as jest.Mocked<TranslateService>;
+
     routerMock = {
       navigate: jest.fn(),
       url: '/dashboard/incidents',
@@ -17,7 +23,11 @@ describe('DashboardComponent', () => {
       url: of([{ path: 'incidents' }]),
     };
 
-    component = new DashboardComponent(routerMock, activatedRouteMock);
+    component = new DashboardComponent(
+      routerMock,
+      activatedRouteMock,
+      translateServiceMock
+    );
   });
 
   it('should create the component', () => {
