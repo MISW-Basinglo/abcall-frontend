@@ -140,6 +140,9 @@ export class ClientsListComponent implements OnInit {
         }
 
         this.dataSource.sort = this.sort;
+        this.sort.active = 'id';
+        this.sort.direction = 'asc';
+        this.sort.sortChange.emit();
       },
     });
   }
