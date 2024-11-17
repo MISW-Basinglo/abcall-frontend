@@ -125,7 +125,14 @@
           "dateLabel": "Fecha de registro",
           "lastUpdateLabel": "Última actualización",
           "descriptionLabel": "Descripción",
-          "sourceLabel": "Fuente"
+          "sourceLabel": "Fuente",
+          "btnGuardar": "Guardar",
+          "toastr": {
+            "successTitle": "Éxito",
+            "successMessage": "Incidente actualizado con éxito.",
+            "errorTitle": "Error",
+            "errorMessage": "Se produjo un error intente nuevamente."
+          }
         },
 
         "userDetail": {

@@ -10,6 +10,8 @@ import { ClientsService } from 'src/app/components/clients/services/clients.serv
 import { MatDialog } from '@angular/material/dialog';
 import { of } from 'rxjs';
 import { ChangeDetectorRef } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
+import { TranslateService } from '@ngx-translate/core';
 
 describe('IncidentDetailComponent', () => {
   let component: IncidentDetailComponent;
@@ -20,8 +22,12 @@ describe('IncidentDetailComponent', () => {
   let mockClientsService: Partial<ClientsService>;
   let mockMatDialog: Partial<MatDialog>;
   let mockChangeDetectorRef: Partial<ChangeDetectorRef>;
+  let toastrServiceMock: Partial<ToastrService>;
+  let translateServiceMock: Partial<TranslateService>;
 
   beforeEach(() => {
+    toastrServiceMock = { success: jest.fn(), error: jest.fn() };
+    translateServiceMock = { get: jest.fn((key) => of(key)) };
     const mockParamMap = {
       get: jest.fn().mockReturnValue('1'),
       has: jest.fn().mockReturnValue(true),
@@ -84,7 +90,9 @@ describe('IncidentDetailComponent', () => {
       mockUsersService as UsersService,
       mockClientsService as ClientsService,
       mockMatDialog as MatDialog,
-      mockChangeDetectorRef as ChangeDetectorRef
+      mockChangeDetectorRef as ChangeDetectorRef,
+      toastrServiceMock as ToastrService,
+      translateServiceMock as TranslateService
     );
   });
 

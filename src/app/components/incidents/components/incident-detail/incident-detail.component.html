@@ -73,7 +73,7 @@
             <mat-select
               [(ngModel)]="incident.status"
               name="status"
-              (ngModelChange)="onStatusChange()"
+              (ngModelChange)="onStatusChange($event)"
             >
               <mat-option
                 *ngFor="let status of statusList"
@@ -98,8 +98,25 @@
                 'incidents.form.descriptionPlaceholder' | translate
               }}"
               rows="5"
+              [(ngModel)]="description"
             ></textarea>
           </mat-form-field>
+
+          <div>
+            <button
+              mat-fab
+              extended
+              color="primary"
+              (click)="updateIssueStatus()"
+              *ngIf="showDescription"
+              [disabled]="description == ''"
+              id="btn_history_calls"
+            >
+              {{
+                "incidents.list.detail.incidentDetail.btnGuardar" | translate
+              }}
+            </button>
+          </div>
         </div>
       </div>
     </div>
