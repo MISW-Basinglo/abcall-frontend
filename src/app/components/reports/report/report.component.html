@@ -1,16 +1,22 @@
 <div class="chart-container">
-  <div class="chart">
-    <h2>{{ "register.charts.barTitle" | translate }}</h2>
-    <canvas id="myChart"></canvas>
+  <div class="chart" data-cy="bar-chart">
+    <h2 data-cy="bar-chart-title">
+      {{ "register.charts.barTitle" | translate }}
+    </h2>
+    <canvas id="myChart" data-cy="bar-chart-canvas"></canvas>
   </div>
   <hr />
-  <div class="chart">
-    <h2>{{ "register.charts.lineTitle" | translate }}</h2>
-    <canvas id="lineChart"></canvas>
+  <div class="chart" data-cy="line-chart">
+    <h2 data-cy="line-chart-title">
+      {{ "register.charts.lineTitle" | translate }}
+    </h2>
+    <canvas id="lineChart" data-cy="line-chart-canvas"></canvas>
   </div>
   <hr />
-  <div class="chart">
-    <h2>{{ "register.charts.pieTitle" | translate }}</h2>
-    <canvas id="pieChart"></canvas>
+  <div class="chart" data-cy="pie-chart">
+    <h2 data-cy="pie-chart-title">
+      {{ "register.charts.pieTitle" | translate }}
+    </h2>
+    <canvas id="pieChart" data-cy="pie-chart-canvas"></canvas>
   </div>
 </div>

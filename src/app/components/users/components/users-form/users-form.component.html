@@ -30,6 +30,7 @@
       color="primary"
       (click)="handleFileUpload()"
       [disabled]="!selectedFile"
+      data-cy="btn-send-file-users"
     >
       {{ "users.list.loadUsers.btnLoadUsers" | translate }}
       <div *ngIf="loading" class="spinner-overlay">
