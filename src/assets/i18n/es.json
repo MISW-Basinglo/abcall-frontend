@@ -169,6 +169,8 @@
       "descriptionHint": "Máximo 500 caracteres",
       "btnCancel": "Cancelar",
       "btnSave": "Guardar",
+      "btnAISuggestions": "Sugerir solución con IA",
+      "titleIASuggestion": "Respuesta IA",
       "toastr": {
         "success": {
           "title": "Éxito",
