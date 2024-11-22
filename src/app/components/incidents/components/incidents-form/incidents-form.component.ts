@@ -13,6 +13,8 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class IncidentsFormComponent {
   incidentForm: FormGroup;
+  showSuggestion = false;
+  aiSuggestion = '';
 
   issueTypes = [
     { value: 'REQUEST', label: 'incidents.form.issueTypes.request' },
@@ -39,6 +41,7 @@ export class IncidentsFormComponent {
 
   closeDialog() {
     this.dialogRef.close();
+    this.showSuggestion = false;
   }
 
   submitForm() {
@@ -76,6 +79,20 @@ export class IncidentsFormComponent {
           },
         });
     }
+  }
+
+  makeAIPrediction() {
+    const message = {
+      msg: this.descriptionControl?.value,
+    };
+
+    this.incidentsService.makeAIPrediction(message).subscribe({
+      next: (IAresponse: any) => {
+        this.aiSuggestion = IAresponse.text;
+      },
+    });
+
+    this.showSuggestion = true;
   }
 
   get descriptionControl() {

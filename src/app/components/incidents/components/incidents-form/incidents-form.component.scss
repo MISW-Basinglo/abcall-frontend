@@ -26,3 +26,44 @@
   margin-right: 28px;
   margin-top: 40px;
 }
+
+.IA-content-suggestion {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 15px;
+}
+
+.IA-suggestion__options {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+  align-items: center;
+
+  span {
+    margin-left: 10px;
+  }
+}
+
+.response-container {
+  margin-top: 16px;
+  display: flex;
+  justify-content: center;
+  margin: 20px 15px;
+}
+
+.scrollable-textarea-container {
+  width: 90%;
+  max-width: 1200px;
+}
+
+.scrollable-textarea {
+  resize: none;
+  overflow-y: auto;
+  font-size: 16px;
+  line-height: 1.5;
+  background-color: var(--md-sys-color-surface-container-high);
+  color: var(--md-sys-color-on-surface);
+  border-radius: 4px;
+}

@@ -168,6 +168,8 @@
       "descriptionHint": "Maximum 500 characters",
       "btnCancel": "Cancel",
       "btnSave": "Save",
+      "btnAISuggestions": "To suggest with AI",
+      "titleIASuggestion": "AI response",
       "toastr": {
         "success": {
           "title": "Success",

@@ -43,5 +43,9 @@
         "login.link_register" | translate
       }}</span>
     </p>
+
+    <div *ngIf="loading" class="spinner-overlay">
+      <div class="spinner"></div>
+    </div>
   </div>
 </section>

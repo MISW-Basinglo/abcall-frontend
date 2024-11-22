@@ -48,9 +48,47 @@
       </mat-form-field>
     </div>
 
+    <div class="IA-content-suggestion">
+      <button
+        mat-fab
+        extended
+        color="primary"
+        type="button"
+        (click)="makeAIPrediction()"
+        [disabled]="descriptionControl?.value == '' || !incidentForm.valid"
+        data-cy="btn-aiPrediction"
+      >
+        <div class="IA-suggestion__options">
+          <span class="material-icons">auto_awesome</span>
+          {{ "incidents.form.btnAISuggestions" | translate }}
+        </div>
+      </button>
+    </div>
+    <div class="response-container" *ngIf="showSuggestion">
+      <mat-form-field
+        appearance="outline"
+        class="scrollable-textarea-container"
+      >
+        <mat-label>{{
+          "incidents.form.titleIASuggestion" | translate
+        }}</mat-label>
+        <textarea
+          matInput
+          readonly
+          [value]="aiSuggestion"
+          rows="5"
+          class="scrollable-textarea"
+        >
+        </textarea>
+      </mat-form-field>
+    </div>
+
     <div mat-dialog-actions class="incident-btn-content">
       <button
-        mat-button
+        mat-fab
+        type="button"
+        extended
+        color="outlined"
         (click)="closeDialog()"
         class="cancel-button"
         data-cy="btn-cancel"
@@ -58,7 +96,8 @@
         {{ "incidents.form.btnCancel" | translate }}
       </button>
       <button
-        mat-raised-button
+        mat-fab
+        extended
         color="primary"
         type="submit"
         [disabled]="!incidentForm.valid"

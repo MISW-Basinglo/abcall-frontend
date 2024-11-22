@@ -74,4 +74,16 @@ export class IncidentsService {
       }
     );
   }
+
+  makeAIPrediction(message: any): Observable<any> {
+    const token = localStorage.getItem('access_token');
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    });
+
+    return this.http.post<any>(`${this.apiUrl}/ai/generative`, message, {
+      headers,
+    });
+  }
 }
