@@ -32,7 +32,7 @@ export class IncidentsFormComponent {
     private translate: TranslateService
   ) {
     this.incidentForm = this.fb.group({
-      user_id: ['', [Validators.required]],
+      dni: ['', [Validators.required]],
       type: ['', [Validators.required]],
       description: ['', [Validators.maxLength(500)]],
       source: ['WEB'],

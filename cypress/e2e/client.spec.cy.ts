@@ -2,10 +2,10 @@ describe('Client Form Test', () => {
   before(() => {
     cy.visit('http://localhost:4200/auth/login');
     cy.wait(1000);
-    cy.get('[data-cy="email"]').type('user@example.com');
-    cy.get('[data-cy="password"]').type('userpass');
+    cy.get('[data-cy="email"]').type('admin@example.com');
+    cy.get('[data-cy="password"]').type('adminpass');
     cy.get('[data-cy="login-button"]').click();
-    cy.url().should('include', '/dashboard/incidents');
+    cy.url().should('include', '/dashboard/clients');
   });
 
   it('Should fill out and submit the client form', () => {
@@ -14,7 +14,7 @@ describe('Client Form Test', () => {
 
     cy.get('[data-cy="input-company-name"]').type('Empresa Ejemplo');
     cy.get('[data-cy="input-nit"]').type('123456789');
-    cy.get('[data-cy="input-user-name"]').type('Juan Perezz', { force: true });
+    cy.get('[data-cy="input-user-name"]').type('Juan Perez', { force: true });
     cy.get('[data-cy="input-phone"]').type('3001234567');
     cy.get('[data-cy="input-email"]').type('juan.perezzz@example.com');
     cy.get('[data-cy="select-plan"]').click({ force: true });
