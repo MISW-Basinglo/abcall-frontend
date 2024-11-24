@@ -50,7 +50,7 @@ describe('IncidentsFormComponent', () => {
 
   it('should initialize the form with empty values', () => {
     expect(component.incidentForm).toBeDefined();
-    expect(component.incidentForm.controls['user_id'].value).toBe('');
+    expect(component.incidentForm.controls['dni'].value).toBe('');
     expect(component.incidentForm.controls['type'].value).toBe('');
     expect(component.incidentForm.controls['description'].value).toBe('');
   });
@@ -61,7 +61,7 @@ describe('IncidentsFormComponent', () => {
   });
 
   it('should call incidentsService.createIssue and close the dialog on successful submit', () => {
-    component.incidentForm.controls['user_id'].setValue('1');
+    component.incidentForm.controls['dni'].setValue('1');
     component.incidentForm.controls['type'].setValue('REQUEST');
     component.incidentForm.controls['description'].setValue('Test description');
 
@@ -70,7 +70,7 @@ describe('IncidentsFormComponent', () => {
     component.submitForm();
 
     expect(incidentsServiceMock.createIssue).toHaveBeenCalledWith({
-      user_id: '1',
+      dni: '1',
       type: 'REQUEST',
       description: 'Test description',
       source: 'WEB',
@@ -79,7 +79,7 @@ describe('IncidentsFormComponent', () => {
   });
 
   it('should show success toastr on successful submit', () => {
-    component.incidentForm.controls['user_id'].setValue('1');
+    component.incidentForm.controls['dni'].setValue('1');
     component.incidentForm.controls['type'].setValue('REQUEST');
     component.incidentForm.controls['description'].setValue('Test description');
 
@@ -100,7 +100,7 @@ describe('IncidentsFormComponent', () => {
   });
 
   it('should show error toastr on failed submit', () => {
-    component.incidentForm.controls['user_id'].setValue('1');
+    component.incidentForm.controls['dni'].setValue('1');
     component.incidentForm.controls['type'].setValue('REQUEST');
     component.incidentForm.controls['description'].setValue('Test description');
 
@@ -121,7 +121,7 @@ describe('IncidentsFormComponent', () => {
   });
 
   it('should not close the dialog when submitForm is called and form is invalid', () => {
-    component.incidentForm.controls['user_id'].setValue('');
+    component.incidentForm.controls['dni'].setValue('');
     component.incidentForm.controls['type'].setValue('');
     component.incidentForm.controls['description'].setValue('');
 
