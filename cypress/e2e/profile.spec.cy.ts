@@ -2,14 +2,13 @@ describe('Profile Update Test', () => {
   before(() => {
     cy.visit('http://localhost:4200/auth/login');
     cy.wait(1000);
-    cy.get('[data-cy="email"]').type('user@example.com');
-    cy.get('[data-cy="password"]').type('userpass');
+    cy.get('[data-cy="email"]').type('movistarclient@example.com');
+    cy.get('[data-cy="password"]').type('movistarclientpass');
     cy.get('[data-cy="login-button"]').click();
-    cy.url().should('include', '/dashboard/incidents');
+    cy.url().should('include', '/dashboard/users');
   });
 
   it('Should navigate to profile and update fields', () => {
-    
     cy.get('[data-cy="nav-profile"]').click();
 
     cy.get('[data-cy="input-responsible"]').clear().type('Nuevo Responsable');

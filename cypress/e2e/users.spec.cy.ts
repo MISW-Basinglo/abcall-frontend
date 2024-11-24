@@ -3,10 +3,10 @@ import 'cypress-file-upload';
 describe('CSV File Upload', () => {
   it('Should upload a CSV file and display a toaster message', () => {
     cy.visit('http://localhost:4200/auth/login');
-    cy.get('[data-cy="email"]').type('user@example.com');
-    cy.get('[data-cy="password"]').type('userpass');
+    cy.get('[data-cy="email"]').type('claroclient@example.com');
+    cy.get('[data-cy="password"]').type('claroclientpass');
     cy.get('[data-cy="login-button"]').click();
-    cy.url().should('include', '/dashboard/incidents');
+    cy.url().should('include', '/dashboard/users');
 
     cy.get('[data-cy="nav-users"]').click();
     cy.get('[data-cy="btn-upload-users"]').click();

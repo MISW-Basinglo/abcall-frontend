@@ -2,8 +2,8 @@ describe('Incident Creation Test', () => {
   before(() => {
     cy.visit('http://localhost:4200/auth/login');
     cy.wait(1000);
-    cy.get('[data-cy="email"]').type('user@example.com');
-    cy.get('[data-cy="password"]').type('userpass');
+    cy.get('[data-cy="email"]').type('gestor-incidentes@abcall.lat');
+    cy.get('[data-cy="password"]').type('gestor-incidentes-pass');
     cy.get('[data-cy="login-button"]').click();
     cy.url().should('include', '/dashboard/incidents');
   });
@@ -12,7 +12,7 @@ describe('Incident Creation Test', () => {
     cy.get('[data-cy="btn-new-incident"]').click();
     cy.get('[data-cy="dialog-title"]').should('exist');
 
-    cy.get('[data-cy="input-dni"]').type('123456789');
+    cy.get('[data-cy="input-dni"]').type('11111111');
     cy.get('[data-cy="select-issue-type"]').click();
     cy.get('[data-cy="option-issue-type"]').contains('Queja').click();
 
