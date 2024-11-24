@@ -74,3 +74,43 @@
 .mdc-list-item.mdc-list-item--with-one-line {
   height: auto !important;
 }
+
+.language-toggle-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-top: 15px;
+}
+
+.language-toggle {
+  margin-bottom: 8px;
+}
+
+.language-label {
+  font-size: 10px;
+}
+
+.logout-button {
+  color: var(--md-sys-color-on-surface);
+  font-size: 24px;
+}
+
+.logout-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-self: center;
+}
+
+.management-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: calc(100vh - 100px);
+  min-height: 750px;
+  max-height: 100%;
+  overflow-y: auto;
+  box-sizing: border-box;
+}

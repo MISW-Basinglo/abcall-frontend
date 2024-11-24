@@ -6,10 +6,10 @@
     "btn_login": "Login",
     "lb_forgot_passwd": "Forgot your password?",
     "lb_no_account": "Don't have an account?",
-    "link_register": "Register",
+    "link_register": "Sign up",
     "toastr": {
       "errorTitle": "Error",
-      "errorMsg": "Login failed. Please check your credentials."
+      "errorMsg": "Login error. Please check your credentials."
     }
   },
   "menu": {
@@ -17,7 +17,7 @@
     "usersLabel": "Users",
     "reportsLabel": "Reports",
     "profileLabel": "Profile",
-    "knowledgeBdLabel": "Knowledge DB",
+    "knowledgeBdLabel": "DB",
     "clientsManageLabel": "Clients"
   },
   "clients": {
@@ -52,7 +52,7 @@
       "editTitle": "Client Profile",
       "nameCompanyLabel": "Company Name",
       "nitLabel": "NIT/DNI",
-      "responsibleLabel": "Responsible Person",
+      "responsibleLabel": "Responsible Name",
       "phoneLabel": "Phone",
       "emailLabel": "Email",
       "planLabel": "Contracted Plan",
@@ -68,16 +68,16 @@
           "title": "Success",
           "message": "Client created successfully.",
           "editionTitle": "Success",
-          "editionMessage": "Client updated successfully."
+          "editionMessage": "Client updated successfully"
         },
         "error": {
           "title": "Error",
-          "message": "An error occurred, please try again."
+          "message": "An error occurred. Please try again."
         }
       },
       "errors": {
         "required": "This field is required",
-        "invalidName": "The name cannot contain numbers",
+        "invalidName": "Name cannot contain numbers",
         "invalidPhone": "Invalid phone format",
         "invalidDni": "Invalid DNI format",
         "invalidEmail": "Invalid email format"
@@ -125,7 +125,14 @@
           "dateLabel": "Registration Date",
           "lastUpdateLabel": "Last Update",
           "descriptionLabel": "Description",
-          "sourceLabel": "Source"
+          "sourceLabel": "Source",
+          "btnGuardar": "Save",
+          "toastr": {
+            "successTitle": "Success",
+            "successMessage": "Incident updated successfully.",
+            "errorTitle": "Error",
+            "errorMessage": "An error occurred, please try again."
+          }
         },
         "userDetail": {
           "title": "USER 360 VIEW",
@@ -155,12 +162,14 @@
       },
       "newTitle": "New Incident",
       "dniLabel": "User DNI",
-      "issueTypeLabel": "Issue Type",
+      "issueTypeLabel": "Incident Type",
       "descriptionLabel": "Description",
       "descriptionPlaceholder": "Write your description here",
       "descriptionHint": "Maximum 500 characters",
       "btnCancel": "Cancel",
       "btnSave": "Save",
+      "btnAISuggestions": "To suggest with AI",
+      "titleIASuggestion": "AI response",
       "toastr": {
         "success": {
           "title": "Success",
@@ -168,7 +177,7 @@
         },
         "error": {
           "title": "Error",
-          "message": "An error occurred, please try again."
+          "message": "An error occurred. Please try again."
         }
       }
     }
@@ -176,19 +185,19 @@
   "profile": {
     "title": "Client Profile:",
     "company": "Company Name",
-    "companyEx": "Ex. Heidenreich Group",
+    "companyEx": "E.g. Heidenreich Group",
     "responsible": "Responsible",
-    "responsibleEx": "Ex. Alfonso Bergnaum",
+    "responsibleEx": "E.g. Alfonso Bergnaum",
     "clientDni": "DNI",
-    "clientDniEx": "Ex. 89398234",
-    "phoneNumber": "Phone Number",
-    "phoneNumberEx": "Ex. +174283488532",
+    "clientDniEx": "E.g. 89398234",
+    "phoneNumber": "Phone",
+    "phoneNumberEx": "E.g. +174283488532",
     "email": "Email",
-    "emailEx": "Ex. allberk@yopmail.com",
+    "emailEx": "E.g. allberk@yopmail.com",
     "btnUpdate": "Update",
     "errors": {
       "required": "This field is required",
-      "invalidName": "The name cannot contain numbers",
+      "invalidName": "Name cannot contain numbers",
       "invalidPhone": "Invalid phone format",
       "invalidDni": "Invalid DNI format",
       "invalidEmail": "Invalid email format"
@@ -200,7 +209,7 @@
       },
       "error": {
         "title": "Error",
-        "message": "An error occurred, please try again."
+        "message": "An error occurred. Please try again."
       }
     }
   },
@@ -209,7 +218,7 @@
       "validateTitle": "Success",
       "validateMsg": "File validated successfully.",
       "validateTitleError": "Error",
-      "validateMsgError": "The CSV file does not have the correct structure.",
+      "validateMsgError": "The CSV file has an incorrect structure.",
       "validateWarning": "Please upload a CSV file.",
       "validateReadingFile": "Error reading the CSV file."
     },
@@ -219,8 +228,35 @@
         "dragAndDropMsg": "Drag and drop your file here or click to select",
         "btnLoadUsers": "Load",
         "loadingErrorTitle": "Error",
-        "loadingErrorMsg": "An error occurred, please try again."
+        "loadingErrorMsg": "An error occurred. Please try again."
+      },
+      "columnLabels": {
+        "name": "Name",
+        "phone": "Phone",
+        "email": "Email",
+        "dni": "Identification",
+        "importance": "Importance Level",
+        "channel": "Communication channel"
       }
     }
+  },
+  "register": {
+    "charts": {
+      "barTitle": "Incident History",
+      "pieTitle": "Communication Channels",
+      "lineTitle": "Response Times (Hours)",
+      "barIncidents": {
+        "open": "Open",
+        "escalated": "Escalated",
+        "closed": "Closed"
+      },
+      "responseTime": "Response Time",
+      "issuesIdentifiers": "Incident Identifiers"
+    }
+  },
+  "reports": {
+    "btnAISuggestions": "AI Incident Analysis",
+    "btnClose": "Close",
+    "dialogTitle": "AI Incident Suggestions"
   }
 }

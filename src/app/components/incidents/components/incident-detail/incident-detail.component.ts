@@ -6,6 +6,9 @@ import { ClientsService } from 'src/app/components/clients/services/clients.serv
 import { IPhoneHistory } from 'src/app/models/abcall.interfaces';
 import { MatDialog } from '@angular/material/dialog';
 import { HistoryDialogComponent } from '../history-dialog/history-dialog.component';
+import { ToastrService } from 'ngx-toastr';
+import { TranslateService } from '@ngx-translate/core';
+import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-incident-detail',
@@ -28,6 +31,8 @@ export class IncidentDetailComponent implements OnInit {
   DEFINITION = '1080px';
 
   showDescription = false;
+  status = '';
+  description: string = '';
 
   constructor(
     private route: ActivatedRoute,
@@ -36,7 +41,9 @@ export class IncidentDetailComponent implements OnInit {
     private usersService: UsersService,
     private clientsService: ClientsService,
     public dialog: MatDialog,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private toastr: ToastrService,
+    private translate: TranslateService
   ) {}
 
   ngOnInit(): void {
@@ -51,7 +58,8 @@ export class IncidentDetailComponent implements OnInit {
     });
   }
 
-  onStatusChange(): void {
+  onStatusChange(status: string): void {
+    this.status = status;
     this.showDescription = true;
   }
 
@@ -109,5 +117,38 @@ export class IncidentDetailComponent implements OnInit {
 
   goBackToList(): void {
     this.router.navigate(['/dashboard/incidents']);
+  }
+
+  updateIssueStatus() {
+    const idToUpdate = this.incidentId ?? '';
+    const payload = {
+      status: this.status,
+      solution: this.description,
+    };
+    this.incidentsService.updateIssueStatus(idToUpdate, payload).subscribe({
+      next: () => {
+        this.translate
+          .get('incidents.list.detail.incidentDetail.toastr.successMessage')
+          .pipe(finalize(() => (this.showDescription = false)))
+          .subscribe((errorMessage: string) => {
+            this.translate
+              .get('incidents.list.detail.incidentDetail.toastr.successTitle')
+              .subscribe((errorTitle: string) => {
+                this.toastr.success(errorMessage, errorTitle);
+              });
+          });
+      },
+      error: () => {
+        this.translate
+          .get('incidents.list.detail.incidentDetail.toastr.errorMessage')
+          .subscribe((errorMessage: string) => {
+            this.translate
+              .get('incidents.list.detail.incidentDetail.toastr.errorTitle')
+              .subscribe((errorTitle: string) => {
+                this.toastr.error(errorMessage, errorTitle);
+              });
+          });
+      },
+    });
   }
 }

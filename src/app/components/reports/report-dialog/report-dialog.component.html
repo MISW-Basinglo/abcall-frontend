@@ -1,0 +1,14 @@
+<div class="content-dialog__main">
+  <h2 mat-dialog-title>{{ "reports.dialogTitle" | translate }}</h2>
+
+  <div mat-dialog-content>
+    <textarea readonly class="incident-report" [value]="incidentReport">
+    </textarea>
+  </div>
+
+  <div mat-dialog-actions align="end">
+    <button mat-fab extended color="primary" mat-dialog-close>
+      {{ "reports.btnClose" | translate }}
+    </button>
+  </div>
+</div>

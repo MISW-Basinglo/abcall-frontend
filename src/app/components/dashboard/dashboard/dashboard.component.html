@@ -11,84 +11,111 @@
         }}</mat-icon>
       </button>
     </div>
-    <mat-nav-list>
-      <mat-list-item
-        class="custom-nav-item"
-        [ngClass]="{ active: selectedTab === 'incidents' }"
-        (click)="selectTab('incidents')"
-        data-cy="nav-incidents"
-      >
-        <div class="custom-nav-item-content">
-          <mat-icon class="nav-icon">assignment</mat-icon>
-          <span class="nav-label">{{
-            "menu.incidentsManageLabel" | translate
-          }}</span>
-        </div>
-      </mat-list-item>
+    <mat-nav-list class="management-content">
+      <div class="management-content__options">
+        <mat-list-item
+          *ngIf="hasAccess('incidents')"
+          class="custom-nav-item"
+          [ngClass]="{ active: selectedTab === 'incidents' }"
+          (click)="selectTab('incidents')"
+          data-cy="nav-incidents"
+        >
+          <div class="custom-nav-item-content">
+            <mat-icon class="nav-icon">assignment</mat-icon>
+            <span class="nav-label">{{
+              "menu.incidentsManageLabel" | translate
+            }}</span>
+          </div>
+        </mat-list-item>
 
-      <mat-list-item
-        *ngIf="true"
-        class="custom-nav-item"
-        [ngClass]="{ active: selectedTab === 'users' }"
-        (click)="selectTab('users')"
-      >
-        <div class="custom-nav-item-content">
-          <mat-icon class="nav-icon">people</mat-icon>
-          <span class="nav-label">{{ "menu.usersLabel" | translate }}</span>
-        </div>
-      </mat-list-item>
+        <mat-list-item
+          *ngIf="hasAccess('users')"
+          class="custom-nav-item"
+          [ngClass]="{ active: selectedTab === 'users' }"
+          (click)="selectTab('users')"
+          data-cy="nav-users"
+        >
+          <div class="custom-nav-item-content">
+            <mat-icon class="nav-icon">people</mat-icon>
+            <span class="nav-label">{{ "menu.usersLabel" | translate }}</span>
+          </div>
+        </mat-list-item>
 
-      <mat-list-item
-        *ngIf="false"
-        class="custom-nav-item"
-        [ngClass]="{ active: selectedTab === 'reports' }"
-        (click)="selectTab('reports')"
-      >
-        <div class="custom-nav-item-content">
-          <mat-icon class="nav-icon">bar_chart</mat-icon>
-          <span class="nav-label">{{ "menu.reportsLabel" | translate }}</span>
-        </div>
-      </mat-list-item>
+        <mat-list-item
+          *ngIf="hasAccess('reports')"
+          class="custom-nav-item"
+          [ngClass]="{ active: selectedTab === 'reports' }"
+          (click)="selectTab('reports')"
+          data-cy="nav-reports"
+        >
+          <div class="custom-nav-item-content">
+            <mat-icon class="nav-icon">bar_chart</mat-icon>
+            <span class="nav-label">{{ "menu.reportsLabel" | translate }}</span>
+          </div>
+        </mat-list-item>
 
-      <mat-list-item
-        class="custom-nav-item"
-        [ngClass]="{ active: selectedTab === 'profile' }"
-        (click)="selectTab('profile')"
-        data-cy="nav-profile"
-      >
-        <div class="custom-nav-item-content">
-          <mat-icon class="nav-icon">account_circle</mat-icon>
-          <span class="nav-label">{{ "menu.profileLabel" | translate }}</span>
-        </div>
-      </mat-list-item>
+        <mat-list-item
+          *ngIf="hasAccess('profile')"
+          class="custom-nav-item"
+          [ngClass]="{ active: selectedTab === 'profile' }"
+          (click)="selectTab('profile')"
+          data-cy="nav-profile"
+        >
+          <div class="custom-nav-item-content">
+            <mat-icon class="nav-icon">account_circle</mat-icon>
+            <span class="nav-label">{{ "menu.profileLabel" | translate }}</span>
+          </div>
+        </mat-list-item>
 
-      <mat-list-item
-        *ngIf="false"
-        class="custom-nav-item"
-        [ngClass]="{ active: selectedTab === 'bd' }"
-        (click)="selectTab('bd')"
-      >
-        <div class="custom-nav-item-content">
-          <mat-icon class="nav-icon">storage</mat-icon>
-          <span class="nav-label">{{
-            "menu.knowledgeBdLabel" | translate
-          }}</span>
-        </div>
-      </mat-list-item>
+        <mat-list-item
+          *ngIf="false"
+          class="custom-nav-item"
+          [ngClass]="{ active: selectedTab === 'bd' }"
+          (click)="selectTab('bd')"
+        >
+          <div class="custom-nav-item-content">
+            <mat-icon class="nav-icon">storage</mat-icon>
+            <span class="nav-label">{{
+              "menu.knowledgeBdLabel" | translate
+            }}</span>
+          </div>
+        </mat-list-item>
 
-      <mat-list-item
-        class="custom-nav-item"
-        [ngClass]="{ active: selectedTab === 'clients' }"
-        (click)="selectTab('clients')"
-        data-cy="nav-clients"
-      >
-        <div class="custom-nav-item-content">
-          <span class="material-symbols-outlined nav-icon">handshake</span>
-          <span class="nav-label">{{
-            "menu.clientsManageLabel" | translate
-          }}</span>
+        <mat-list-item
+          *ngIf="hasAccess('clients')"
+          class="custom-nav-item"
+          [ngClass]="{ active: selectedTab === 'clients' }"
+          (click)="selectTab('clients')"
+          data-cy="nav-clients"
+        >
+          <div class="custom-nav-item-content">
+            <span class="material-symbols-outlined nav-icon">handshake</span>
+            <span class="nav-label">{{
+              "menu.clientsManageLabel" | translate
+            }}</span>
+          </div>
+        </mat-list-item>
+      </div>
+
+      <div class="management-content__session">
+        <mat-list-item class="custom-nav-item">
+          <div class="custom-nav-item-content language-toggle-container">
+            <mat-slide-toggle
+              class="language-toggle"
+              [checked]="currentLang === 'en'"
+              (change)="toggleLanguage($event)"
+            ></mat-slide-toggle>
+            <span class="language-label">
+              {{ currentLang === "es" ? "English" : "Español" }}
+            </span>
+          </div>
+        </mat-list-item>
+        <div class="logout-content">
+          <button mat-icon-button aria-label="Logout" (click)="onLogout()">
+            <mat-icon>logout</mat-icon>
+          </button>
         </div>
-      </mat-list-item>
+      </div>
     </mat-nav-list>
   </mat-drawer>
 

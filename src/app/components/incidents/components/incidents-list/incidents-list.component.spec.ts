@@ -2,7 +2,6 @@ import { IncidentsListComponent } from './incidents-list.component';
 import { of } from 'rxjs';
 import { IIssueData } from 'src/app/models/abcall.interfaces';
 import { IncidentsFormComponent } from '../incidents-form/incidents-form.component';
-import { v } from '@faker-js/faker/dist/airline-C5Qwd7_q';
 
 describe('IncidentsListComponent', () => {
   let component: IncidentsListComponent;

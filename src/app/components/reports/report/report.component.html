@@ -1,1 +1,37 @@
-<p>report works!</p>
+<div class="content_btn__main">
+  <button
+    mat-fab
+    extended
+    color="primary"
+    data-cy="btn-update-profile"
+    (click)="openIncidentDialog()"
+  >
+    <div class="content_btn__aux">
+      {{ "reports.btnAISuggestions" | translate }}
+      <span class="material-icons" style="margin-left: 10px">auto_awesome</span>
+    </div>
+  </button>
+</div>
+
+<div class="chart-container">
+  <div class="chart" data-cy="bar-chart">
+    <h2 data-cy="bar-chart-title">
+      {{ "register.charts.barTitle" | translate }}
+    </h2>
+    <canvas id="myChart" data-cy="bar-chart-canvas"></canvas>
+  </div>
+  <hr />
+  <div class="chart" data-cy="line-chart">
+    <h2 data-cy="line-chart-title">
+      {{ "register.charts.lineTitle" | translate }}
+    </h2>
+    <canvas id="lineChart" data-cy="line-chart-canvas"></canvas>
+  </div>
+  <hr />
+  <div class="chart" data-cy="pie-chart">
+    <h2 data-cy="pie-chart-title">
+      {{ "register.charts.pieTitle" | translate }}
+    </h2>
+    <canvas id="pieChart" data-cy="pie-chart-canvas"></canvas>
+  </div>
+</div>

@@ -125,7 +125,14 @@
           "dateLabel": "Fecha de registro",
           "lastUpdateLabel": "Última actualización",
           "descriptionLabel": "Descripción",
-          "sourceLabel": "Fuente"
+          "sourceLabel": "Fuente",
+          "btnGuardar": "Guardar",
+          "toastr": {
+            "successTitle": "Éxito",
+            "successMessage": "Incidente actualizado con éxito.",
+            "errorTitle": "Error",
+            "errorMessage": "Se produjo un error intente nuevamente."
+          }
         },
 
         "userDetail": {
@@ -162,6 +169,8 @@
       "descriptionHint": "Máximo 500 caracteres",
       "btnCancel": "Cancelar",
       "btnSave": "Guardar",
+      "btnAISuggestions": "Sugerir solución con IA",
+      "titleIASuggestion": "Respuesta IA",
       "toastr": {
         "success": {
           "title": "Éxito",
@@ -207,7 +216,7 @@
   },
   "users": {
     "toastr": {
-      "validateTitle": "Éxito",
+      "validateTitle": "Exito",
       "validateMsg": "Archivo validado correctamente.",
       "validateTitleError": "Error",
       "validateMsgError": "El archivo CSV no tiene la estructura correcta",
@@ -222,7 +231,34 @@
         "btnLoadUsers": "Cargar",
         "loadingErrorTitle": "Error",
         "loadingErrorMsg": "Se produjo un error, intente nuevamente."
+      },
+      "columnLabels": {
+        "name": "Nombre",
+        "phone": "Teléfono",
+        "email": "Correo electrónico",
+        "dni": "Identificación",
+        "importance": "Nivel de importancia",
+        "channel": "Canal de comunicación"
       }
     }
+  },
+  "register": {
+    "charts": {
+      "barTitle": "Historial de Incidentes",
+      "pieTitle": "Canales de comunicación",
+      "lineTitle": "Tiempos de respuesta (Hora)",
+      "barIncidents": {
+        "open": "Abierto",
+        "escalated": "Escalado",
+        "closed": "Cerrado"
+      },
+      "responseTime": "Tiempo de respuesta",
+      "issuesIdentifiers": "Identificador de Incidente"
+    }
+  },
+  "reports": {
+    "btnAISuggestions": "Análisis de incidentes con IA",
+    "btnClose": "Cerrar",
+    "dialogTitle": "Sugerencias para Incidentes con IA"
   }
 }

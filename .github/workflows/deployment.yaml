@@ -1,0 +1,56 @@
+name: Deploy into Kubernetes
+
+# El workflow solo se ejecuta cuando se crea o actualiza un Pull Request
+on:
+  pull_request:
+    branches:
+      - release/*
+      - main
+    paths-ignore:
+      - 'README.md'
+  push:
+    branches:
+      - release/*
+    paths-ignore:
+      - 'README.md'
+
+jobs:
+  deployment-k8s:
+    runs-on: ubuntu-latest
+    steps:
+      #1. Chequear el código desde el repositorio
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Google Cloud SDK
+        uses: google-github-actions/setup-gcloud@v1
+        with:
+          project_id: 'basingo-abcall'
+          service_account_key: ${{ secrets.GCP_SERVICE_ACCOUNT_KEY }}
+
+      # Autenticar con Google Cloud usando la cuenta de servicio
+      - name: Authenticate to GCP
+        uses: google-github-actions/auth@v1
+        with:
+          credentials_json: ${{ secrets.GCP_SERVICE_ACCOUNT_KEY }}
+
+      # Authenticate to Google Cloud
+      - name: Configure Docker
+        run: |
+          gcloud auth configure-docker us-central1-docker.pkg.dev
+
+      # Install gke-gcloud-auth-plugin
+      - name: Install gke-gcloud-auth-plugin
+        run: |
+          gcloud components install gke-gcloud-auth-plugin
+
+      # Configure kubectl
+      - name: Set up kubectl
+        run: |
+          gcloud config set project basingo-abcall
+          gcloud container clusters get-credentials basinglo-abcall-k8s --zone us-central1
+
+      # Aplicar el archivo de configuración de Kubernetes
+      - name: Apply Kubernetes configuration
+        run: |
+          kubectl apply -f deployment/

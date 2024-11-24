@@ -1,9 +1,9 @@
 import { UsersFormComponent } from './users-form.component';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
-import { ClientsService } from 'src/app/components/clients/services/clients.service';
 import { of } from 'rxjs';
+import { ClientsService } from '../../../clients/services/clients.service';
 
 describe('UsersFormComponent', () => {
   let component: UsersFormComponent;

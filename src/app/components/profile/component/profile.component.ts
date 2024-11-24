@@ -101,14 +101,14 @@ export class ProfileComponent implements OnInit {
       const company = this.companies.find(
         (comp) => comp.id === this.profileUser?.company_id
       );
-      const companyName = company ? company.name : 'Unknown Company';
+      const companyName = company ? company.name : 'ABCall Company';
 
       this.profileForm.controls['company'].setValue(companyName);
       this.profileForm.controls['responsible'].setValue(this.profileUser.name);
       this.profileForm.controls['dni'].setValue(this.profileUser.dni);
       this.profileForm.controls['phone'].setValue(this.profileUser.phone);
       this.profileForm.controls['email'].setValue(this.profileUser.email);
-      this.profileForm.controls['plan'].setValue(company.plan);
+      this.profileForm.controls['plan'].setValue(company?.plan);
     } else {
       this.translate
         .get('profile.toastr.error.message')

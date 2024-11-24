@@ -1,30 +1,40 @@
 import { inject } from '@angular/core';
+import { CanActivateFn } from '@angular/router';
 import { Router } from '@angular/router';
-import { Observable, of } from 'rxjs';
-import { catchError, map, switchMap } from 'rxjs/operators';
 import { AuthService } from '../auth/auth.service';
 
-export const authGuard = (): Observable<boolean> => {
+export const roleGuard: CanActivateFn = (route, state) => {
   const authService = inject(AuthService);
   const router = inject(Router);
 
-  if (authService.isTokenValid()) {
-    return of(true);
-  } else {
-    
-    return authService.handleTokenExpiration().pipe(
-      switchMap((isTokenRefreshed: boolean) => {
-        if (isTokenRefreshed) {
-          return of(true);
-        } else {
-          router.navigate(['/auth/login']);
-          return of(false);
-        }
-      }),
-      catchError(() => {
-        router.navigate(['/auth/login']);
-        return of(false);
-      })
-    );
+  const requiredRoles = (route.data['roles'] as string[]) || [
+    route.data['role'],
+  ];
+  const userRole = authService.getRole();
+
+  const normalizedUserRole = userRole?.toLowerCase();
+  const normalizedRequiredRoles = requiredRoles.map((role) =>
+    role.toLowerCase()
+  );
+
+  console.log('Normalized User Role:', normalizedUserRole);
+  console.log('Normalized Required Roles:', normalizedRequiredRoles);
+
+  if (!authService.isTokenValid()) {
+    router.navigateByUrl('/auth/login');
+    return false;
   }
+
+  if (
+    !normalizedUserRole ||
+    !normalizedRequiredRoles.includes(normalizedUserRole)
+  ) {
+    const initialRoute = userRole
+      ? authService.getInitialRouteByRole(userRole)
+      : '/auth/login';
+    router.navigateByUrl(initialRoute);
+    return false;
+  }
+
+  return true;
 };

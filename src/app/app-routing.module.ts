@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { authGuard } from './components/auth/services/guard/auth-guard';
 
 const routes: Routes = [
   {
@@ -17,7 +16,6 @@ const routes: Routes = [
     path: 'users',
     loadChildren: () =>
       import('./components/users/users.module').then((m) => m.UsersModule),
-    canActivate: [authGuard],
   },
   {
     path: 'incidents',
@@ -25,7 +23,6 @@ const routes: Routes = [
       import('./components/incidents/incidents.module').then(
         (m) => m.IncidentsModule
       ),
-    canActivate: [authGuard],
   },
   {
     path: 'bd_knowledge',
@@ -33,7 +30,6 @@ const routes: Routes = [
       import('./components/bd-knowledge/bd-knowledge.module').then(
         (m) => m.BdKnowledgeModule
       ),
-    canActivate: [authGuard],
   },
   {
     path: 'clients',
@@ -41,7 +37,6 @@ const routes: Routes = [
       import('./components/clients/clients.module').then(
         (m) => m.ClientsModule
       ),
-    canActivate: [authGuard],
   },
   {
     path: 'dashboard',
@@ -49,13 +44,19 @@ const routes: Routes = [
       import('./components/dashboard/dashboard.module').then(
         (m) => m.DashboardModule
       ),
-    canActivate: [authGuard],
   },
   {
     path: 'profile',
     loadChildren: () =>
       import('./components/profile/profile.module').then(
         (m) => m.ProfileModule
+      ),
+  },
+  {
+    path: 'reports',
+    loadChildren: () =>
+      import('./components/reports/reports.module').then(
+        (m) => m.ReportsModule
       ),
   },
   {
