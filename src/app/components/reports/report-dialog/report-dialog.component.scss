@@ -1,0 +1,15 @@
+textarea.incident-report {
+  width: 100%;
+  height: 200px;
+  resize: none;
+  overflow-y: auto;
+  border: 1px solid #c0a4ed;
+  padding: 8px;
+  font-family: inherit;
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+.content-dialog__main {
+  margin: 20px;
+}

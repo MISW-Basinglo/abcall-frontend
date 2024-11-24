@@ -1,3 +1,18 @@
+<div class="content_btn__main">
+  <button
+    mat-fab
+    extended
+    color="primary"
+    data-cy="btn-update-profile"
+    (click)="openIncidentDialog()"
+  >
+    <div class="content_btn__aux">
+      {{ "reports.btnAISuggestions" | translate }}
+      <span class="material-icons" style="margin-left: 10px">auto_awesome</span>
+    </div>
+  </button>
+</div>
+
 <div class="chart-container">
   <div class="chart" data-cy="bar-chart">
     <h2 data-cy="bar-chart-title">

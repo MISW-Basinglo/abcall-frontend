@@ -4,6 +4,8 @@ import { Chart, registerables } from 'chart.js';
 import { ProfileService } from '../../profile/services/profile.service';
 import { ReportsService } from '../service/reports.service';
 import { IIssuesList } from 'src/app/models/abcall.interfaces';
+import { MatDialog } from '@angular/material/dialog';
+import { ReportDialogComponent } from '../report-dialog/report-dialog.component';
 
 @Component({
   selector: 'app-report',
@@ -22,7 +24,8 @@ export class ReportComponent implements AfterViewInit {
   constructor(
     private translate: TranslateService,
     private profileService: ProfileService,
-    private reportsService: ReportsService
+    private reportsService: ReportsService,
+    private dialog: MatDialog
   ) {}
 
   getCompanyDetail(): Promise<any> {
@@ -214,5 +217,12 @@ export class ReportComponent implements AfterViewInit {
           });
         }, 1000);
       });
+  }
+
+  openIncidentDialog() {
+    this.dialog.open(ReportDialogComponent, {
+      data: { companyId: this.companyId },
+      width: '600px',
+    });
   }
 }

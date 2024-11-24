@@ -6,9 +6,10 @@ import { ReportComponent } from './report/report.component';
 import { SharedModule } from 'src/app/utils/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
+import { ReportDialogComponent } from './report-dialog/report-dialog.component';
 
 @NgModule({
-  declarations: [ReportComponent],
+  declarations: [ReportComponent, ReportDialogComponent],
   imports: [
     CommonModule,
     ReportsRoutingModule,
