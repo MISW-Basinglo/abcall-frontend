@@ -86,4 +86,15 @@ export class IncidentsService {
       headers,
     });
   }
+
+  AIIncidentReport(companyId: any): Observable<any> {
+    const token = localStorage.getItem('access_token');
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    });
+    return this.http.get<any>(`${this.apiUrl}/ai/predictive/${companyId}`, {
+      headers,
+    });
+  }
 }

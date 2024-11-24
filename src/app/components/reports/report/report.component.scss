@@ -36,3 +36,15 @@ canvas#lineChart {
   height: 450px;
   box-sizing: border-box;
 }
+
+.content_btn__main {
+  display: flex;
+  justify-content: flex-end;
+  margin: 20px;
+}
+
+.content_btn__aux {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

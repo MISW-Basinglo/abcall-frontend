@@ -255,5 +255,10 @@
       "responseTime": "Tiempo de respuesta",
       "issuesIdentifiers": "Identificador de Incidente"
     }
+  },
+  "reports": {
+    "btnAISuggestions": "Análisis de incidentes con IA",
+    "btnClose": "Cerrar",
+    "dialogTitle": "Sugerencias para Incidentes con IA"
   }
 }

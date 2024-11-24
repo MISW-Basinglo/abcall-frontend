@@ -253,5 +253,10 @@
       "responseTime": "Response Time",
       "issuesIdentifiers": "Incident Identifiers"
     }
+  },
+  "reports": {
+    "btnAISuggestions": "AI Incident Analysis",
+    "btnClose": "Close",
+    "dialogTitle": "AI Incident Suggestions"
   }
 }

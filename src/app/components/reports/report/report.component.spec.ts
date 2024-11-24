@@ -6,6 +6,7 @@ describe('ReportComponent', () => {
   let translateServiceMock: any;
   let profileServiceMock: any;
   let reportsServiceMock: any;
+  let matDialogMock: any;
 
   beforeEach(() => {
     translateServiceMock = {
@@ -51,6 +52,12 @@ describe('ReportComponent', () => {
       ),
     };
 
+    matDialogMock = {
+      open: jest.fn().mockReturnValue({
+        afterClosed: jest.fn().mockReturnValue(of({})),
+      }),
+    };
+
     jest.spyOn(document, 'getElementById').mockReturnValue({
       getContext: jest.fn().mockReturnValue({}),
     } as unknown as HTMLCanvasElement);
@@ -58,7 +65,8 @@ describe('ReportComponent', () => {
     component = new ReportComponent(
       translateServiceMock,
       profileServiceMock,
-      reportsServiceMock
+      reportsServiceMock,
+      matDialogMock
     );
   });
 

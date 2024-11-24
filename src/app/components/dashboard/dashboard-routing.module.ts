@@ -44,7 +44,7 @@ const routes: Routes = [
         path: 'profile',
         component: ProfileComponent,
         canActivate: [roleGuard],
-        data: { role: Roles.CLIENT },
+        data: { roles: [Roles.CLIENT, Roles.AGENT] },
       },
       {
         path: 'bd',
