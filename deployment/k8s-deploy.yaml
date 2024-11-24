@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: angular-app
-        image: us-central1-docker.pkg.dev/basingo-abcall/basinglo-abcall-misw/abcall-frontend:2.0
+        image: us-central1-docker.pkg.dev/basingo-abcall/basinglo-abcall-misw/abcall-frontend:latest
         ports:
         - containerPort: 80
         resources:
