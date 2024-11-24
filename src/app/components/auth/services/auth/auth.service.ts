@@ -1,34 +1,22 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
 import { environment } from '../../../../../environments/environment';
+import { Router } from '@angular/router';
+import { Roles } from '../../../../utils/roles.enum';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
+  apiUrl = environment.apiUrl + '/auth';
 
-  private apiUrl = environment.apiUrl + '/auth';
-
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   login(email: string, password: string): Observable<any> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     const body = { email, password };
     return this.http.post(`${this.apiUrl}/login`, body, { headers });
-  }
-
-  refreshToken(): Observable<any> {
-    const refreshToken = localStorage.getItem('refresh_token');
-    if (!refreshToken) {
-      return of(null);
-    }
-
-    const headers = new HttpHeaders({
-      Authorization: `Bearer ${refreshToken}`,
-    });
-    return this.http.post(`${this.apiUrl}/refresh-token`, {}, { headers });
   }
 
   getToken(): string | null {
@@ -40,21 +28,26 @@ export class AuthService {
     return !!token;
   }
 
-  handleTokenExpiration(): Observable<boolean> {
-    return this.refreshToken().pipe(
-      map((response) => {
-        if (response && response.access_token) {
-          localStorage.setItem('access_token', response.access_token);
-          return true;
-        }
-        return false;
-      }),
-      catchError(() => of(false))
-    );
-  }
-
   logout(): void {
     localStorage.removeItem('access_token');
     localStorage.removeItem('refresh_token');
+    localStorage.removeItem('user_role');
+    this.router.navigate(['/auth/login']);
+  }
+
+  getRole(): Roles | null {
+    const role = localStorage.getItem('user_role');
+    return role ? (role as Roles) : null;
+  }
+
+  getInitialRouteByRole(role: Roles): string {
+    const roleRoutes: Record<Roles, string> = {
+      [Roles.ADMIN]: '/dashboard/clients',
+      [Roles.AGENT]: '/dashboard/incidents',
+      [Roles.CLIENT]: '/dashboard/users',
+      [Roles.USER]: '/auth/login',
+    };
+
+    return roleRoutes[role] || '/auth/login';
   }
 }

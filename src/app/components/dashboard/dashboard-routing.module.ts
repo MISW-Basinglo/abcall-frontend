@@ -8,20 +8,56 @@ import { ProfileComponent } from '../profile/component/profile.component';
 import { BdKnowledgeComponent } from '../bd-knowledge/bd-knowledge/bd-knowledge.component';
 import { ClientsListComponent } from '../clients/components/clients-list/clients-list.component';
 import { IncidentDetailComponent } from '../incidents/components/incident-detail/incident-detail.component';
+import { roleGuard } from '../auth/services/guard/auth-guard';
+import { Roles } from 'src/app/utils/roles.enum';
 
 const routes: Routes = [
   {
     path: '',
     component: DashboardComponent,
     children: [
-      { path: 'incidents', component: IncidentsListComponent },
-      { path: 'incidents/detail/:id', component: IncidentDetailComponent },
-      { path: 'users', component: UsersListComponent },
-      { path: 'reports', component: ReportComponent },
-      { path: 'profile', component: ProfileComponent },
-      { path: 'bd', component: BdKnowledgeComponent },
-      { path: 'clients', component: ClientsListComponent },
-      { path: '', redirectTo: 'incidents', pathMatch: 'full' },
+      {
+        path: 'incidents',
+        component: IncidentsListComponent,
+        canActivate: [roleGuard],
+        data: { role: Roles.AGENT },
+      },
+      {
+        path: 'incidents/detail/:id',
+        component: IncidentDetailComponent,
+        canActivate: [roleGuard],
+        data: { role: Roles.AGENT },
+      },
+      {
+        path: 'users',
+        component: UsersListComponent,
+        canActivate: [roleGuard],
+        data: { role: Roles.CLIENT },
+      },
+      {
+        path: 'reports',
+        component: ReportComponent,
+        canActivate: [roleGuard],
+        data: { role: Roles.CLIENT },
+      },
+      {
+        path: 'profile',
+        component: ProfileComponent,
+        canActivate: [roleGuard],
+        data: { role: Roles.CLIENT },
+      },
+      {
+        path: 'bd',
+        component: BdKnowledgeComponent,
+        canActivate: [roleGuard],
+        data: { role: Roles.ADMIN },
+      },
+      {
+        path: 'clients',
+        component: ClientsListComponent,
+        canActivate: [roleGuard],
+        data: { role: Roles.ADMIN },
+      },
     ],
   },
 ];

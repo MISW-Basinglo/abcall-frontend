@@ -1,30 +1,28 @@
 import { inject } from '@angular/core';
+import { CanActivateFn } from '@angular/router';
 import { Router } from '@angular/router';
-import { Observable, of } from 'rxjs';
-import { catchError, map, switchMap } from 'rxjs/operators';
+import { Roles } from 'src/app/utils/roles.enum';
 import { AuthService } from '../auth/auth.service';
 
-export const authGuard = (): Observable<boolean> => {
+export const roleGuard: CanActivateFn = (route, state) => {
   const authService = inject(AuthService);
   const router = inject(Router);
 
-  if (authService.isTokenValid()) {
-    return of(true);
-  } else {
-    
-    return authService.handleTokenExpiration().pipe(
-      switchMap((isTokenRefreshed: boolean) => {
-        if (isTokenRefreshed) {
-          return of(true);
-        } else {
-          router.navigate(['/auth/login']);
-          return of(false);
-        }
-      }),
-      catchError(() => {
-        router.navigate(['/auth/login']);
-        return of(false);
-      })
-    );
+  const requiredRole = route.data['role'] as Roles;
+  const userRole = authService.getRole();
+
+  console.log(userRole);
+
+  if (!authService.isTokenValid()) {
+    router.navigateByUrl('/auth/login');
+    return false;
   }
+
+  if (userRole && userRole !== requiredRole) {
+    const initialRoute = authService.getInitialRouteByRole(userRole);
+    router.navigateByUrl(initialRoute);
+    return false;
+  }
+
+  return true;
 };
