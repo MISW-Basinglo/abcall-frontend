@@ -68,7 +68,7 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build -t us-central1-docker.pkg.dev/basingo-abcall/basinglo-abcall-misw/abcall-frontend:2.0 .
+          docker build -t us-central1-docker.pkg.dev/basingo-abcall/basinglo-abcall-misw/abcall-frontend:latest .
 
       - name: Push Docker image to Artifact Registry
-        run: docker push us-central1-docker.pkg.dev/basingo-abcall/basinglo-abcall-misw/abcall-frontend:2.0
+        run: docker push us-central1-docker.pkg.dev/basingo-abcall/basinglo-abcall-misw/abcall-frontend:latest
