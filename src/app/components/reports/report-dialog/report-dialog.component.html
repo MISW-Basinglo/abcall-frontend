@@ -11,4 +11,7 @@
       {{ "reports.btnClose" | translate }}
     </button>
   </div>
+  <div *ngIf="isloading" class="spinner-overlay">
+    <div class="spinner"></div>
+  </div>
 </div>

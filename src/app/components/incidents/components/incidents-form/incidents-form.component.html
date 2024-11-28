@@ -62,6 +62,10 @@
           <span class="material-icons">auto_awesome</span>
           {{ "incidents.form.btnAISuggestions" | translate }}
         </div>
+
+        <div *ngIf="isLoading" class="spinner-overlay">
+          <div class="spinner"></div>
+        </div>
       </button>
     </div>
     <div class="response-container" *ngIf="showSuggestion">

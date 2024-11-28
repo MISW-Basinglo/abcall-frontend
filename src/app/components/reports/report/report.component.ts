@@ -20,6 +20,7 @@ export class ReportComponent implements AfterViewInit {
   responseTimes: any = [];
   channelLabels: any = [];
   channelData: any = [];
+  isloading = false;
 
   constructor(
     private translate: TranslateService,

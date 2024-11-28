@@ -15,6 +15,7 @@ export class IncidentsFormComponent {
   incidentForm: FormGroup;
   showSuggestion = false;
   aiSuggestion = '';
+  isLoading = false;
 
   issueTypes = [
     { value: 'REQUEST', label: 'incidents.form.issueTypes.request' },
@@ -34,7 +35,7 @@ export class IncidentsFormComponent {
     this.incidentForm = this.fb.group({
       dni: ['', [Validators.required]],
       type: ['', [Validators.required]],
-      description: ['', [Validators.maxLength(500)]],
+      description: ['', [Validators.required, Validators.maxLength(500)]],
       source: ['WEB'],
     });
   }
@@ -82,15 +83,19 @@ export class IncidentsFormComponent {
   }
 
   makeAIPrediction() {
+    this.isLoading = true;
     const message = {
       msg: this.descriptionControl?.value,
     };
 
-    this.incidentsService.makeAIPrediction(message).subscribe({
-      next: (IAresponse: any) => {
-        this.aiSuggestion = IAresponse.text;
-      },
-    });
+    this.incidentsService
+      .makeAIPrediction(message)
+      .pipe(finalize(() => (this.isLoading = false)))
+      .subscribe({
+        next: (IAresponse: any) => {
+          this.aiSuggestion = IAresponse.text;
+        },
+      });
 
     this.showSuggestion = true;
   }
